@@ -1,0 +1,340 @@
+C51 COMPILER V9.01   CODE                                                                  07/24/2012 13:46:51 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN code.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE code.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1             #include<reg52.h>
+   2          sbit  DATA1 = P2^7;
+   3          sbit  SCK1 = P2^6;
+   4          sbit  LACH1 = P2^5;
+   5          sbit   set=P3^5;
+   6          sbit   up=P3^6;
+   7          sbit   down=P3^7;
+   8          
+   9          sbit sdi1 = P3^1;
+  10          sbit str1 = P3^2;
+  11          sbit clk1 = P3^0;
+  12          unsigned char m1[]={0xfe,0xfc,0xf8,0xf0,0xe0,0xc0,0x80,0x00};
+  13          unsigned char m2[]={0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+  14          unsigned char m3[]={0x00,0x01,0x03,0x07,0x0f,0x1f,0x3f,0x7f,0xff};
+  15           
+  16          
+  17          unsigned char hour, minute, second,c;
+  18          unsigned char ma[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90};
+  19          unsigned char kt=0,a=0,i,k,x=0;
+  20          bit set0=1,set1=1,up0=1,up1=1,down0=1,down1=1;
+  21          sbit SCL = P1^0;
+  22          sbit SDA = P1^1;
+  23          void delay(){
+  24   1      unsigned char i;
+  25   1      for (i = 0; i < 4; i++){};
+  26   1      }
+  27          
+  28          //-----------------------------------------
+  29          void SCL_high(){
+  30   1      SCL = 1;
+  31   1      delay();
+  32   1      }
+  33          
+  34          //------------------------------------------
+  35          void SCL_low(){
+  36   1      SCL = 0;
+  37   1      delay();
+  38   1      }
+  39          
+  40          //-------------------------------------------
+  41          void I2C_Start(){
+  42   1      SDA = 1;
+  43   1      SCL = 1;
+  44   1      SDA = 0;
+  45   1      delay();
+  46   1      SCL = 0;
+  47   1      SDA = 1;
+  48   1      }
+  49          
+  50          //--------------------------------------------
+  51          void I2C_Stop(){
+  52   1      SDA = 0;
+  53   1      SCL_high();
+  54   1      SDA = 1;
+  55   1      }
+C51 COMPILER V9.01   CODE                                                                  07/24/2012 13:46:51 PAGE 2   
+
+  56          
+  57          //----------------------------------------------
+  58          bit I2C_Write(unsigned char dat){
+  59   1      unsigned char i;
+  60   1      bit outbit;
+  61   1      for (i = 1; i <= 8; i++){
+  62   2      outbit=dat&0x80;
+  63   2      SDA = outbit;
+  64   2      dat = dat << 1;
+  65   2      SCL_high();
+  66   2      SCL_low();
+  67   2      }
+  68   1      SDA = 1; 
+  69   1      SCL_high();
+  70   1      outbit = SDA; 
+  71   1      SCL_low();
+  72   1      return(outbit); 
+  73   1      }
+  74          
+  75          //----------------------------------------------------
+  76          unsigned char I2C_Read(bit ack){
+  77   1      unsigned char i, dat;
+  78   1      bit inbit;
+  79   1      
+  80   1      dat = 0;
+  81   1      for(i=1;i<=8;i++) {
+  82   2      SCL_high();
+  83   2      inbit = SDA;
+  84   2      dat = dat << 1;
+  85   2      dat = dat | inbit;
+  86   2      SCL_low();
+  87   2      }
+  88   1      if (ack) SDA = 0; 
+  89   1      else SDA = 1;
+  90   1      SCL_high();
+  91   1      SCL = 0;
+  92   1      SDA = 1; 
+  93   1      delay();
+  94   1      return(dat);
+  95   1      } 
+  96          
+  97          //-------------------------------------------------------------
+  98          void rtc_write(unsigned char add, unsigned char dat){
+  99   1      I2C_Start();
+ 100   1      I2C_Write(0xd0);
+ 101   1      I2C_Write(add); 
+ 102   1      I2C_Write(((dat/10)<<4)|(dat%10)); 
+ 103   1      I2C_Stop();
+ 104   1      }
+ 105          
+ 106          unsigned char rtc_read(unsigned char add){
+ 107   1      unsigned char dat;
+ 108   1      I2C_Start();
+ 109   1      I2C_Write(0xd0); 
+ 110   1      I2C_Write(add);
+ 111   1      I2C_Start(); 
+ 112   1      I2C_Write(0xd1); 
+ 113   1      dat = I2C_Read(0);
+ 114   1      I2C_Stop();
+ 115   1      dat = (dat & 0x0f) + (dat>>4)*10;
+ 116   1      return (dat);
+ 117   1      }
+C51 COMPILER V9.01   CODE                                                                  07/24/2012 13:46:51 PAGE 3   
+
+ 118          void writeds(){
+ 119   1      rtc_write(0x00, second);
+ 120   1      rtc_write(0x01, minute);
+ 121   1      rtc_write(0x02, hour);
+ 122   1      }
+ 123          
+ 124          void readds()
+ 125          {
+ 126   1      if(kt==0)
+ 127   1      {
+ 128   2      if(a==1)
+ 129   2      {writeds();a=0;
+ 130   3      }
+ 131   2      second = rtc_read(0x00);
+ 132   2      minute = rtc_read(0x01);
+ 133   2      hour = rtc_read(0x02);
+ 134   2      }
+ 135   1      }
+ 136          
+ 137          void hienthi(unsigned char x)
+ 138          {
+ 139   1      unsigned int i,temp;
+ 140   1      for(i=0;i<8;i++)
+ 141   1      {
+ 142   2      temp=x;
+ 143   2      temp=temp&0x80;
+ 144   2      if(temp==0x80)
+ 145   2      DATA1=1;   
+ 146   2      else
+ 147   2      DATA1=0;    
+ 148   2      x*=2;   
+ 149   2      SCK1=0;   
+ 150   2      SCK1=1;  
+ 151   2      }
+ 152   1      }
+ 153          void quetled()
+ 154          {
+ 155   1      
+ 156   1      if(kt==0)
+ 157   1      {
+ 158   2      hienthi(ma[second%10]);
+ 159   2      hienthi(ma[second/10]);
+ 160   2      hienthi(ma[minute%10]);
+ 161   2      hienthi(ma[minute/10]);
+ 162   2      hienthi(ma[hour%10]);
+ 163   2      hienthi(ma[hour/10]);
+ 164   2      LACH1=0;   
+ 165   2      LACH1=1;
+ 166   2      }
+ 167   1      if(kt==1)
+ 168   1      {
+ 169   2      hienthi(0xff);
+ 170   2      hienthi(0xff);
+ 171   2      hienthi(0xff);
+ 172   2      hienthi(0xff);
+ 173   2      hienthi(ma[hour%10]);
+ 174   2      hienthi(ma[hour/10]);
+ 175   2      LACH1=0;   
+ 176   2      LACH1=1;
+ 177   2      }
+ 178   1      if(kt==2)
+ 179   1      {
+C51 COMPILER V9.01   CODE                                                                  07/24/2012 13:46:51 PAGE 4   
+
+ 180   2      hienthi(0xff);
+ 181   2      hienthi(0xff);
+ 182   2      hienthi(ma[minute%10]);
+ 183   2      hienthi(ma[minute/10]);
+ 184   2      hienthi(0xff);
+ 185   2      hienthi(0xff);
+ 186   2      LACH1=0;   
+ 187   2      LACH1=1;
+ 188   2      }
+ 189   1      if(kt==3)
+ 190   1      {
+ 191   2      hienthi(ma[second%10]);
+ 192   2      hienthi(ma[second/10]);
+ 193   2      hienthi(0xff);
+ 194   2      hienthi(0xff);
+ 195   2      hienthi(0xff);
+ 196   2      hienthi(0xff);
+ 197   2      LACH1=0;  
+ 198   2      LACH1=1;
+ 199   2      }
+ 200   1      }
+ 201          void ktphim()
+ 202          {
+ 203   1      set0=set1;set1=set;
+ 204   1      if((set0==1)&&(set1==0))
+ 205   1        {
+ 206   2         kt++;
+ 207   2         if(kt>3)kt=0;
+ 208   2        }
+ 209   1      switch(kt)
+ 210   1       {
+ 211   2        case 0:break;
+ 212   2        case 1:
+ 213   2          {
+ 214   3            up0=up1;up1=up; a=1;
+ 215   3            if((up0==1)&&(up1==0))
+ 216   3             {
+ 217   4               hour++;
+ 218   4                        if(hour>23)hour=0;
+ 219   4             }
+ 220   3             down0=down1;down1=down;
+ 221   3             if((down0==1)&&(down1==0))
+ 222   3              {
+ 223   4                hour--;
+ 224   4                         if(hour==-1)
+ 225   4                         hour=23;
+ 226   4              }
+ 227   3           break;
+ 228   3         }
+ 229   2        case 2:
+ 230   2          {
+ 231   3           up0=up1;up1=up; a=1;
+ 232   3           if((up0==1)&&(up1==0))
+ 233   3             {
+ 234   4               minute++;
+ 235   4                       if(minute>59)
+ 236   4                       minute=0;
+ 237   4             }
+ 238   3           down0=down1;down1=down;
+ 239   3           if((down0==1)&&(down1==0))
+ 240   3             {
+ 241   4               minute--;
+C51 COMPILER V9.01   CODE                                                                  07/24/2012 13:46:51 PAGE 5   
+
+ 242   4                       if(minute==-1)
+ 243   4                       minute=59;
+ 244   4             }
+ 245   3            break;
+ 246   3          }
+ 247   2      
+ 248   2        case 3:
+ 249   2          {
+ 250   3           up0=up1;up1=up;a=1;
+ 251   3           if((up0==1)&&(up1==0))
+ 252   3            {
+ 253   4             second++;
+ 254   4                       if(second>59)
+ 255   4                       second++;
+ 256   4            }
+ 257   3            down0=down1;down1=down;
+ 258   3           if((down0==1)&&(down1==0))
+ 259   3            {
+ 260   4            second=0;
+ 261   4            }
+ 262   3           break;
+ 263   3          }
+ 264   2         }
+ 265   1      }
+ 266          
+ 267          void ghi_dich(unsigned char t1,unsigned char t2,unsigned char t3,unsigned char t4,unsigned char t5,unsigne
+             -d char t6,unsigned char t7,unsigned char t8)
+ 268          {unsigned char i,Q; 
+ 269   1      Q=t8;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+ 270   1      Q=t7;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+ 271   1      Q=t6;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+ 272   1      Q=t5;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+ 273   1      Q=t4;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+ 274   1      Q=t3;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+ 275   1      Q=t2;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+ 276   1      Q=t1;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+ 277   1      str1=0; str1=1;
+ 278   1      }
+ 279          void sosanh(unsigned char gia_tri)
+ 280                  {unsigned char k1,k2,k3;
+ 281   1               k1=0;k2=m1[gia_tri%8];k3=0xff;
+ 282   1               if((gia_tri>=0)&&(gia_tri<8))  ghi_dich(k2,k3,k3,k3,k3,k3,k3,k3);
+ 283   1               if((gia_tri>=8)&&(gia_tri<16)) ghi_dich(k1,k2,k3,k3,k3,k3,k3,k3);
+ 284   1               if((gia_tri>=16)&&(gia_tri<24))ghi_dich(k1,k1,k2,k3,k3,k3,k3,k3);
+ 285   1               if((gia_tri>=24)&&(gia_tri<32))ghi_dich(k1,k1,k1,k2,k3,k3,k3,k3);
+ 286   1               if((gia_tri>=32)&&(gia_tri<40))ghi_dich(k1,k1,k1,k1,k2,k3,k3,k3);
+ 287   1               if((gia_tri>=40)&&(gia_tri<48))ghi_dich(k1,k1,k1,k1,k1,k2,k3,k3);
+ 288   1               if((gia_tri>=48)&&(gia_tri<56))ghi_dich(k1,k1,k1,k1,k1,k1,k2,k3);
+ 289   1               if((gia_tri>=56)&&(gia_tri<60))ghi_dich(k1,k1,k1,k1,k1,k1,k1,k2);
+ 290   1              }
+ 291          
+ 292          void main()
+ 293          {
+ 294   1          I2C_Start();
+ 295   1          I2C_Write(0xD0);
+ 296   1          I2C_Write(0x07); 
+ 297   1          I2C_Write(0x10); 
+ 298   1          I2C_Stop();            
+ 299   1              while(1)
+ 300   1       {
+ 301   2       ktphim();
+ 302   2       readds();
+C51 COMPILER V9.01   CODE                                                                  07/24/2012 13:46:51 PAGE 6   
+
+ 303   2       quetled();
+ 304   2       sosanh(second);
+ 305   2      }
+ 306   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1242    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     44      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      6       3
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

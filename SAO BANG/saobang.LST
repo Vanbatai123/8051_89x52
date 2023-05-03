@@ -1,0 +1,174 @@
+C51 COMPILER V9.01   SAOBANG                                                               09/11/2012 23:37:18 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE SAOBANG
+OBJECT MODULE PLACED IN saobang.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE saobang.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          unsigned char led[16]={255,250,150,90,30,15,12,8,6,4,4,1,1,0,0,0};
+   4          
+   5          void delay_ms(unsigned int ms,ttt){
+   6   1      //65535ms 9000MHz
+   7   1      while(ms--){ 
+   8   2      unsigned int xxx = 7*ttt+1;
+   9   2      while(xxx--); 
+  10   2      }
+  11   1      }
+  12          /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+  13          /*void delay(unsigned long t)
+  14          {
+  15          unsigned int m;
+  16          for(m=0;m<t;m++);
+  17          }*/
+  18          unsigned char dem=0,nho;
+  19          /*xxxxxxxxxxxxxxx*/
+  20          void Timer0()interrupt 1 {
+  21   1      TF0=0; TR0=0;
+  22   1      //if(dem==0) {P0=0;P2=0;}
+  23   1      if(dem>=led[0]) P0_0=0; else P0_0=1;
+  24   1      if(dem>=led[1]) P0_1=0; else P0_1=1;
+  25   1      if(dem>=led[2]) P0_2=0; else P0_2=1;
+  26   1      if(dem>=led[3]) P0_3=0; else P0_3=1;
+  27   1      if(dem>=led[4]) P0_4=0; else P0_4=1;
+  28   1      if(dem>=led[5]) P0_5=0; else P0_5=1;
+  29   1      if(dem>=led[6]) P0_6=0; else P0_6=1;
+  30   1      if(dem>=led[7]) P0_7=0; else P0_7=1;
+  31   1      
+  32   1      if(dem>=led[8]) P2_7=0; else P2_7=1;
+  33   1      if(dem>=led[9]) P2_6=0; else P2_6=1;
+  34   1      if(dem>=led[10]) P2_5=0; else P2_5=1;
+  35   1      if(dem>=led[11]) P2_4=0; else P2_4=1;
+  36   1      if(dem>=led[12]) P2_3=0; else P2_3=1;
+  37   1      if(dem>=led[13]) P2_2=0; else P2_2=1;
+  38   1      if(dem>=led[14]) P2_1=0; else P2_1=1;
+  39   1      if(dem>=led[15]) P2_0=0; else P2_0=1;
+  40   1      dem++;
+  41   1      TR0=1;
+  42   1      }
+  43          /*xxxxxxxxxxxxxxx*/
+  44          /*void Timer1()interrupt 3 {
+  45          TF1=0; TR1=0;
+  46          //if(dem==0) {P0=0;P2=0;}
+  47          if(dem>=led[15]) P0_0=0; else P0_0=1;
+  48          if(dem>=led[14]) P0_1=0; else P0_1=1;
+  49          if(dem>=led[13]) P0_2=0; else P0_2=1;
+  50          if(dem>=led[12]) P0_3=0; else P0_3=1;
+  51          if(dem>=led[11]) P0_4=0; else P0_4=1;
+  52          if(dem>=led[10]) P0_5=0; else P0_5=1;
+  53          if(dem>=led[9]) P0_6=0; else P0_6=1;
+  54          if(dem>=led[8]) P0_7=0; else P0_7=1;
+  55          
+C51 COMPILER V9.01   SAOBANG                                                               09/11/2012 23:37:18 PAGE 2   
+
+  56          if(dem>=led[7]) P2_7=0; else P2_7=1;
+  57          if(dem>=led[6]) P2_6=0; else P2_6=1;
+  58          if(dem>=led[5]) P2_5=0; else P2_5=1;
+  59          if(dem>=led[4]) P2_4=0; else P2_4=1;
+  60          if(dem>=led[3]) P2_3=0; else P2_3=1;
+  61          if(dem>=led[2]) P2_2=0; else P2_2=1;
+  62          if(dem>=led[1]) P2_1=0; else P2_1=1;
+  63          if(dem>=led[0]) P2_0=0; else P2_0=1;
+  64          dem++;
+  65          TR1=1;
+  66          }*/ 
+  67          /*xxxxxxxxxxxxxxxxxxxxx quay phai xxxxxxxxxxxxxxxxxxxxx*/
+  68          
+  69          void main(void)
+  70          {
+  71   1      
+  72   1      while(1)
+  73   1      {
+  74   2      unsigned int i,j,k;
+  75   2      TH0=180;
+  76   2      TL0=180; 
+  77   2      TMOD=0x02; //timer 0: che do 2: 8 bit tu dong nap lai
+  78   2      EA=1; ET0=1; TR0=1;
+  79   2      
+  80   2      /*for(i=1;i<500;i++)
+  81   2      {
+  82   2      delay_ms(15,10); dem=0;
+  83   2      nho= led[0];
+  84   2      led[0]= led[1]; led[1]= led[2]; led[2]= led[3]; led[3]= led[4];
+  85   2      led[4]= led[5]; led[5]= led[6]; led[6]= led[7]; led[7]= led[8];
+  86   2      led[8]= led[9]; led[9]= led[10]; led[10]=led[11]; led[11]=led[12];
+  87   2      led[12]=led[13]; led[13]=led[14]; led[14]=led[15]; led[15]=nho;
+  88   2      } */
+  89   2      /*xxxxxxxxxxxxxx quay phai xxxxxxxxxxxxxxxxxxx*/
+  90   2      /*TR0=0;
+  91   2      TH1=180;
+  92   2      TL1=180; 
+  93   2      TMOD=0x02; //timer 0: che do 2: 8 bit tu dong nap lai
+  94   2      EA=1; ET1=1; TR1=1;*/
+  95   2      for(j=1;j<500;j++)
+  96   2      {
+  97   3      delay_ms(15,10); dem=0;
+  98   3      nho= led[15];
+  99   3      led[15]= led[14]; led[14]= led[13]; led[13]= led[12]; led[12]= led[11];
+ 100   3      led[11]= led[10]; led[10]= led[9]; led[9]= led[8]; led[8]= led[7];
+ 101   3      led[7]= led[6]; led[6]= led[5]; led[5]=led[4]; led[4]=led[3];
+ 102   3      led[3]=led[2]; led[2]=led[1]; led[1]=led[0]; led[0]=nho;
+ 103   3      }
+ 104   2      /*xxxxxxx chop tat xxxxxxxxxxxxxxxxxxxxxxx*/
+ 105   2      TR0=0; 
+ 106   2      for(k=1;k<20;k++)
+ 107   2      {
+ 108   3      P0_0=0; 
+ 109   3      P0_1=0;
+ 110   3      P0_2=0; 
+ 111   3      P0_3=0;
+ 112   3      P0_4=0; 
+ 113   3      P0_5=0; 
+ 114   3      P0_6=0; 
+ 115   3      P0_7=0; 
+ 116   3      
+ 117   3      P2_7=0; 
+C51 COMPILER V9.01   SAOBANG                                                               09/11/2012 23:37:18 PAGE 3   
+
+ 118   3      P2_6=0; 
+ 119   3      P2_5=0; 
+ 120   3      P2_4=0; 
+ 121   3      P2_3=0; 
+ 122   3      P2_2=0; 
+ 123   3      P2_1=0; 
+ 124   3      P2_0=0; 
+ 125   3      delay_ms(60,30);
+ 126   3      P0_0=1; 
+ 127   3      P0_1=1;
+ 128   3      P0_2=1; 
+ 129   3      P0_3=1;
+ 130   3      P0_4=1; 
+ 131   3      P0_5=1; 
+ 132   3      P0_6=1; 
+ 133   3      P0_7=1; 
+ 134   3      
+ 135   3      P2_7=1; 
+ 136   3      P2_6=1; 
+ 137   3      P2_5=1; 
+ 138   3      P2_4=1; 
+ 139   3      P2_3=1; 
+ 140   3      P2_2=1; 
+ 141   3      P2_1=1; 
+ 142   3      P2_0=1; 
+ 143   3      delay_ms(60,30);
+ 144   3      } 
+ 145   2      
+ 146   2      }}
+*** WARNING C280 IN LINE 74 OF SAOBANG.C: 'i': unreferenced local variable
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    488    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

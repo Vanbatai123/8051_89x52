@@ -1,0 +1,79 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/08/2016  21:34:29  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE ASM.obj TO ASM RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  ASM.obj (ASM)
+
+
+LINK MAP OF MODULE:  ASM (ASM)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0039H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  ASM (ASM)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ASM
+  C:0012H         SYMBOL        BANGMA
+  C:001CH         SYMBOL        DELAYH
+  C:0032H         SYMBOL        DELAYMS
+  C:0027H         SYMBOL        DELAYS
+  C:0002H         SYMBOL        L1
+  C:0034H         SYMBOL        LOOPA
+  C:0029H         SYMBOL        LOOPB
+  C:002BH         SYMBOL        LOOPC
+  C:001EH         SYMBOL        LOOPD
+  C:0020H         SYMBOL        LOOPE
+  C:0000H         SYMBOL        MAIN
+  D:00A0H         SYMBOL        P2
+  C:000FH         SYMBOL        TRABANG
+  C:0000H         LINE#         3
+  C:0002H         LINE#         4
+  C:0003H         LINE#         5
+  C:0005H         LINE#         6
+  C:0007H         LINE#         7
+  C:0009H         LINE#         8
+  C:000AH         LINE#         9
+  C:000DH         LINE#         10
+  C:000FH         LINE#         12
+  C:0010H         LINE#         13
+  C:0011H         LINE#         14
+  C:001CH         LINE#         17
+  C:001EH         LINE#         18
+  C:0020H         LINE#         19
+  C:0022H         LINE#         20
+  C:0024H         LINE#         21
+  C:0026H         LINE#         22
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/08/2016  21:34:29  PAGE 2
+
+
+  C:0027H         LINE#         24
+  C:0029H         LINE#         25
+  C:002BH         LINE#         26
+  C:002DH         LINE#         27
+  C:002FH         LINE#         28
+  C:0031H         LINE#         29
+  C:0032H         LINE#         31
+  C:0034H         LINE#         32
+  C:0035H         LINE#         33
+  C:0036H         LINE#         34
+  C:0038H         LINE#         35
+  -------         ENDMOD        ASM
+
+Program Size: data=8.0 xdata=0 code=57
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,264 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              03/20/2017 22:07:19 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\MAIN.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE MAIN.C OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\MAIN
+                    -.lst) TABS(2) OBJECT(.\Objects\MAIN.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include <delay.H>
+   3          #include <myDS1307.H>
+   4          // MARCO
+   5          #define setb(thanhghi,bit)  thanhghi=thanhghi|(1<<bit)
+   6          #define clrb(thanhghi,bit)  thanhghi=thanhghi&(~(1<<bit))
+   7          // KHAI BAO PORT
+   8          #define MINUS         P1
+   9          #define MATR_P        P0
+  10          #define LED7_PORT     P2
+  11          #define NUTNHAN_PORT  P3
+  12          // KHAI BAO CHAN LED 7 DOAN
+  13          #define DONVI         P2_7
+  14          #define CHUC          P2_6
+  15          #define TRAM          P2_5
+  16          #define NGHIN         P2_4
+  17          // KHAI BAO NUT NHAN  
+  18          #define MODE          P3_0
+  19          #define CONG          P3_1
+  20          
+  21          // KHAI BAO CHAN COMON LED 7 DOAN
+  22          char led7_pin[]={7,6,5,4};
+  23          // KHAI BAO BIEN NGAY THANG NAM
+  24          char ngay, thang, nam, gio, phut, giay;
+  25          //KHAI BAO BIEN HIEN THI LED 7 DOAN
+  26          char nghin, tram, chuc, donvi;  thuong, sodu;
+  27          // KHAI BAO BIEN SETUP
+  28          char setup = 1;
+  29          // KHAI BAO BIEN DEM
+  30          int i, count;
+  31          // MANG CHO MA TRAN VIEN 1
+  32          char matrix[]={0x00,0x01,0x03,0x07,0x0F,0x1F,0x3F, 0x7F,0xFF};
+  33          // MANG SO 0-9 CHO LED 7 DOAN
+  34          char sev[]={0x3F,0X06,0X5B,0X4F,0X66,0X6D,0X7D,0X07,0X7F,0X6F};
+  35          //-----------------------------------------------------------------
+  36          void cai_ngay_gio(int sec, int min,int hour,int day,int month,int year)
+  37          {
+  38   1           //Ghi du lieu ngay gio vao DS1307
+  39   1           DS1307_Write(DS1307_SEC,sec);
+  40   1           DS1307_Write(DS1307_MIN,min); 
+  41   1           DS1307_Write(DS1307_HOUR,hour); 
+  42   1           DS1307_Write(DS1307_DATE,day); 
+  43   1           DS1307_Write(DS1307_MONTH,month); 
+  44   1           DS1307_Write(DS1307_YEAR,year); 
+  45   1      }
+  46          //-----------------------------------------------------------------
+  47          void doc_gio()
+  48          {
+  49   1        giay = DS1307_Read(DS1307_SEC);
+  50   1        phut = DS1307_Read(DS1307_MIN);
+  51   1        gio  = DS1307_Read(DS1307_HOUR);
+  52   1        if (giay%2)
+  53   1          P2_3 = 1;
+  54   1        else 
+C51 COMPILER V9.56.0.0   MAIN                                                              03/20/2017 22:07:19 PAGE 2   
+
+  55   1          P2_3 = 0;
+  56   1      } 
+  57          //-----------------------------------------------------------------
+  58          void doc_ngay()
+  59          {
+  60   1        ngay = DS1307_Read(DS1307_DATE);
+  61   1        thang = DS1307_Read(DS1307_MONTH);
+  62   1        nam  = DS1307_Read(DS1307_YEAR);
+  63   1      } 
+  64          //-----------------------------------------------------------------
+  65          void led7(char first_2, char last_2)
+  66          {
+  67   1        nghin = first_2/10;
+  68   1        tram = first_2%10;
+  69   1        chuc = last_2/10;
+  70   1        donvi = last_2%10;
+  71   1        
+  72   1        DONVI = 0;
+  73   1        MATR_P = sev[donvi];
+  74   1        if(last_2 != 99)
+  75   1          _delay_us(100);
+  76   1        DONVI = 1;
+  77   1        MATR_P = 0x00;
+  78   1        _delay_us(1);
+  79   1        
+  80   1        CHUC = 0;
+  81   1        MATR_P = sev[chuc];
+  82   1        if(last_2 != 99)
+  83   1          _delay_us(100);
+  84   1        CHUC = 1;
+  85   1        MATR_P = 0x00;
+  86   1        _delay_us(1);
+  87   1        
+  88   1        TRAM = 0;
+  89   1        MATR_P = sev[tram];
+  90   1        if(first_2 != 99)
+  91   1          _delay_us(100);
+  92   1        TRAM = 1;
+  93   1        MATR_P = 0x00;
+  94   1        _delay_us(1);
+  95   1        
+  96   1        NGHIN = 0;
+  97   1        MATR_P = sev[nghin];
+  98   1        if(first_2 != 99)
+  99   1          _delay_us(100);
+ 100   1        NGHIN = 1;
+ 101   1        MATR_P = 0x00;
+ 102   1        _delay_us(1);
+ 103   1        
+ 104   1      }
+ 105          //-----------------------------------------------------------------
+ 106          void vien_1()
+ 107          {
+ 108   1        giay = DS1307_Read(DS1307_SEC)+1;
+ 109   1        thuong = giay/8 + 1;
+ 110   1        sodu = giay%8;
+ 111   1        
+ 112   1        for(count = 0;count < 8;count++)
+ 113   1        {
+ 114   2          clrb(MINUS, 7-count);
+ 115   2          if(count<(thuong-1))
+ 116   2            MATR_P = 0xFF;
+C51 COMPILER V9.56.0.0   MAIN                                                              03/20/2017 22:07:19 PAGE 3   
+
+ 117   2          else if (count>(thuong-1))
+ 118   2            MATR_P = 0x00;
+ 119   2          else
+ 120   2            MATR_P = matrix[sodu];
+ 121   2          _delay_us(100);
+ 122   2          setb(MINUS, 7-count);
+ 123   2          MATR_P = 0x00;
+ 124   2          _delay_us(1);
+ 125   2        } 
+ 126   1      }
+ 127          //-----------------------------------------------------------------
+ 128          void hien_thi()
+ 129          {
+ 130   1        for(i = 0;i <2000;i++)
+ 131   1        {
+ 132   2          doc_gio();
+ 133   2          led7(gio,phut);
+ 134   2          vien_1();
+ 135   2        }
+ 136   1        doc_ngay();
+ 137   1        for(i = 0;i <1000;i++)
+ 138   1        { 
+ 139   2          P2_3 = 0;
+ 140   2          led7(ngay, thang);  
+ 141   2          vien_1();
+ 142   2        }
+ 143   1        /*for(i = 0;i <1000;i++)
+ 144   1        { 
+ 145   1          led7(20, nam);  
+ 146   1          vien_1();
+ 147   1        }*/
+ 148   1      }
+ 149          //-----------------------------------------------------------------
+ 150          int main(void)
+ 151          {
+ 152   1        MATR_P = 0;
+ 153   1        MINUS = 0xFF;
+ 154   1        MODE = CONG = 1;
+ 155   1        IE=0x81;                    //cho phép ngat ngoài 0
+ 156   1        while(1)
+ 157   1        {
+ 158   2          hien_thi();
+ 159   2        }// END WHILE(1)
+ 160   1      }// END MAIN
+ 161          //-----------------------------------------------------------------
+ 162          void  cai_dat(void) interrupt 0
+ 163          {
+ 164   1        MINUS = 0xFF;
+ 165   1        setup = 1;
+ 166   1        while(P3_2 == 0)
+ 167   1        {
+ 168   2          cai_ngay_gio(giay,phut, gio, ngay, thang, nam);
+ 169   2          if(MODE == 0)
+ 170   2          {
+ 171   3            setup++;
+ 172   3            _delay_ms(300);
+ 173   3            if(setup > 7)
+ 174   3              setup = 1;
+ 175   3          }
+ 176   2          switch(setup)
+ 177   2          {
+ 178   3            // CAI GIO
+C51 COMPILER V9.56.0.0   MAIN                                                              03/20/2017 22:07:19 PAGE 4   
+
+ 179   3            case 1: led7(gio,99);
+ 180   3                    if(CONG == 0)
+ 181   3                    {
+ 182   4                      gio++;
+ 183   4                      _delay_ms(200);
+ 184   4                      if(gio > 23)
+ 185   4                        gio = 0;
+ 186   4                    }
+ 187   3                    break;
+ 188   3            // CAI PHUT
+ 189   3            case 2: led7(99,phut);
+ 190   3                    if(CONG == 0)
+ 191   3                    {
+ 192   4                      phut++;
+ 193   4                      _delay_ms(200);
+ 194   4                      if(phut > 59)
+ 195   4                        phut = 0;
+ 196   4                    }
+ 197   3                    break;
+ 198   3            // CAI DAT NGAY
+ 199   3            case 3: led7(ngay, 99);
+ 200   3                    if(CONG == 0)
+ 201   3                    {
+ 202   4                      ngay++;
+ 203   4                      _delay_ms(200);
+ 204   4                      if(ngay > 23)
+ 205   4                        ngay = 0;
+ 206   4                    }
+ 207   3                    break;
+ 208   3            // CAI DAT THANG
+ 209   3            case 4: led7(99, thang);
+ 210   3                    if(CONG == 0)
+ 211   3                    {
+ 212   4                      thang++;
+ 213   4                      _delay_ms(200);
+ 214   4                      if(thang > 12)
+ 215   4                        thang = 0;
+ 216   4                    }
+ 217   3                    break;
+ 218   3            // CAI DAT NAM
+ 219   3            case 5: led7(20, nam);
+ 220   3                    if(CONG == 0)
+ 221   3                    {
+ 222   4                      nam++;
+ 223   4                      _delay_ms(200);
+ 224   4                      if(nam > 20)
+ 225   4                        nam = 16;
+ 226   4                    }
+ 227   3                    break;
+ 228   3            case 6: giay = 1;
+ 229   3                    break;        
+ 230   3          }// END SWITCH
+ 231   2        }// END WHILE()
+ 232   1      }// END INTERRUPT
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1131    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     42      12
+C51 COMPILER V9.56.0.0   MAIN                                                              03/20/2017 22:07:19 PAGE 5   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

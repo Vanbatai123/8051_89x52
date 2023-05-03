@@ -1,0 +1,125 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/31/2017  18:00:11  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\MAIN.obj TO .\Objects\74HC164 PRINT (.\Listings\74HC164.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\MAIN.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\74HC164 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0030H     UNIT         ?PR?_SHIP_164?MAIN
+            CODE    0033H     0020H     UNIT         ?PR?__DELAY_MS?MAIN
+            CODE    0053H     0010H     UNIT         ?PR?MAIN?MAIN
+            CODE    0063H     000CH     UNIT         ?C_C51STARTUP
+            CODE    006FH     000BH     UNIT         ?PR?__DELAY_US?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\74HC164 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?_SHIP_164?MAIN
+  +--> ?PR?__DELAY_MS?MAIN
+
+?PR?_SHIP_164?MAIN
+  +--> ?PR?__DELAY_US?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\74HC164 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/31/2017  18:00:11  PAGE 2
+
+
+  C:0003H         PUBLIC        _Ship_164
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  C:0053H         PUBLIC        main
+  C:0033H         PUBLIC        __delay_ms
+  C:006FH         PUBLIC        __delay_us
+  D:0008H         PUBLIC        i
+  D:0009H         PUBLIC        x
+  -------         PROC          __DELAY_US
+  D:0006H         SYMBOL        us
+  C:006FH         LINE#         1
+  C:006FH         LINE#         2
+  C:006FH         LINE#         3
+  C:0079H         LINE#         4
+  C:0079H         LINE#         7
+  C:0079H         LINE#         8
+  -------         ENDPROC       __DELAY_US
+  -------         PROC          __DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0033H         LINE#         10
+  C:0033H         LINE#         11
+  C:0033H         LINE#         13
+  C:003DH         LINE#         14
+  C:0052H         LINE#         15
+  -------         ENDPROC       __DELAY_MS
+  -------         PROC          _SHIP_164
+  D:0002H         SYMBOL        value
+  C:0003H         LINE#         9
+  C:0007H         LINE#         10
+  C:0007H         LINE#         11
+  C:000AH         LINE#         12
+  C:000AH         LINE#         13
+  C:000EH         LINE#         14
+  C:0012H         LINE#         16
+  C:0014H         LINE#         17
+  C:001CH         LINE#         18
+  C:001EH         LINE#         19
+  C:0025H         LINE#         20
+  C:0027H         LINE#         21
+  C:0032H         LINE#         22
+  -------         ENDPROC       _SHIP_164
+  -------         PROC          MAIN
+  C:0053H         LINE#         23
+  C:0053H         LINE#         24
+  C:0053H         LINE#         25
+  C:0053H         LINE#         26
+  C:0053H         LINE#         27
+  C:005AH         LINE#         28
+  C:0061H         LINE#         29
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=11.0 xdata=0 code=122
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/31/2017  18:00:11  PAGE 3
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

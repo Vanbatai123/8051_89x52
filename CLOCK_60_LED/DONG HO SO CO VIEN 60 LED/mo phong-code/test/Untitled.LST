@@ -1,0 +1,1234 @@
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    1
+
+
+DOS 5.0 (038-N) MCS-51 MACRO ASSEMBLER, V2.2
+OBJECT MODULE PLACED IN C:\Documents and Settings\thanh nguyen\Desktop\test\Untitled.OBJ
+ASSEMBLER INVOKED BY: ??? C:\Documents and Settings\thanh nguyen\Desktop\test\Untitled.asm
+                       
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;===============================================================;
+                       2     ; Disassembled Using DIS8051   -  (C)1989 Data Sync Engineering ;
+                       3     ;===============================================================;
+  0BAC                 4     L0BAC           EQU     00BACH
+                       5     
+                       6     ;
+                       7     ;
+                       8     ;
+0000                   9             ORG     00000H
+                      10     ;
+0000 020B65           11             LJMP    L0B65
+                      12     ;
+                      13     ;
+0B65                  14             ORG     00B65H
+                      15     ;
+                      16     ;
+0B65 787F             17     L0B65:  MOV     R0,#07FH
+0B67 E4               18             CLR     A
+                      19     ;
+0B68 F6               20     L0B68:  MOV     @R0,A
+0B69 D8FD             21             DJNZ    R0,L0B68
+0B6B 75814C           22             MOV     SP,#04CH
+0B6E 020BAC           23             LJMP    L0BAC
+                      24     ;
+                      25     ;
+0C36                  26             ORG     00C36H
+                      27     ;
+0C36 08               28             INC     R0
+0C37 23               29             RL      A
+0C38 FE               30             MOV     R6,A
+0C39 FC               31             MOV     R4,A
+0C3A F8               32             MOV     R0,A
+0C3B F0               33             MOVX    @DPTR,A
+0C3C E0               34             MOVX    A,@DPTR
+0C3D C080             35             PUSH    P0
+0C3F 00               36             NOP     
+0C40 08               37             INC     R0
+0C41 2B               38             ADD     A,R3
+0C42 FF               39             MOV     R7,A
+0C43 FF               40             MOV     R7,A
+0C44 FF               41             MOV     R7,A
+0C45 FF               42             MOV     R7,A
+0C46 FF               43             MOV     R7,A
+0C47 FF               44             MOV     R7,A
+0C48 FF               45             MOV     R7,A
+0C49 FF               46             MOV     R7,A
+0C4A 09               47             INC     R1
+0C4B 33               48             RLC     A
+0C4C 00               49             NOP     
+0C4D 0103             50             AJMP    L0803
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    2
+
+
+LOC  OBJ            LINE     SOURCE
+
+                      51     ;
+0C4F 07               52             INC     @R1
+0C50 0F               53             INC     R7
+0C51 1F               54             DEC     R7
+0C52 3F               55             ADDC    A,R7
+0C53 7FFF             56             MOV     R7,#0FFH
+0C55 0A               57             INC     R2
+0C56 3D               58             ADDC    A,R5
+0C57 C0F9             59             PUSH    0F9H
+0C59 A4               60             MUL     AB
+0C5A B099             61             ANL     C,/TI
+0C5C 9282             62             MOV     P0.2,C
+0C5E F8               63             MOV     R0,A
+0C5F 8090             64             SJMP    L0BF1
+0C61 0147             65             AJMP    L0847
+                      66     ;
+0C63 00               67             NOP     
+0C64 0148             68             AJMP    00848H
+                      69     ;
+0C66 00               70             NOP     
+0C67 014C             71             AJMP    0084CH
+                      72     ;
+0C69 00               73             NOP     
+0C6A C185             74             AJMP    00E85H
+                      75     ;
+0C6C C180             76             AJMP    00E80H
+                      77     ;
+0C6E C182             78             AJMP    00E82H
+                      79     ;
+0C70 C181             80             AJMP    00E81H
+                      81     ;
+0C72 C183             82             AJMP    00E83H
+                      83     ;
+0C74 C184             84             AJMP    00E84H
+                      85     ;
+                      86     ;
+0D96                  87             ORG     00D96H
+                      88     ;
+                      89     ;
+0D96 E4               90     L0D96:  CLR     A
+0D97 FF               91             MOV     R7,A
+                      92     ;
+0D98 0F               93     L0D98:  INC     R7
+0D99 BF04FC           94             CJNE    R7,#004H,L0D98
+0D9C 22               95             RET     
+                      96     ;
+                      97     ;
+0D9D D290             98     L0D9D:  SETB    P1.0
+0D9F 020D96           99             LJMP    L0D96
+                     100     ;
+                     101     ;
+0DA2 C290            102     L0DA2:  CLR     P1.0
+0DA4 020D96          103             LJMP    L0D96
+                     104     ;
+                     105     ;
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    3
+
+
+LOC  OBJ            LINE     SOURCE
+
+0D80                 106             ORG     00D80H
+                     107     ;
+                     108     ;
+0D80 D291            109     L0D80:  SETB    P1.1
+0D82 D290            110             SETB    P1.0
+0D84 C291            111             CLR     P1.1
+0D86 120D96          112             LCALL   L0D96
+0D89 C290            113             CLR     P1.0
+0D8B D291            114             SETB    P1.1
+0D8D 22              115             RET     
+                     116     ;
+                     117     ;
+0D8E C291            118     L0D8E:  CLR     P1.1
+0D90 120D9D          119             LCALL   L0D9D
+0D93 D291            120             SETB    P1.1
+0D95 22              121             RET     
+                     122     ;
+                     123     ;
+0CA9                 124             ORG     00CA9H
+                     125     ;
+                     126     ;
+0CA9 120D80          127     L0CA9:  LCALL   L0D80
+0CAC 7FD0            128             MOV     R7,#0D0H
+                     129     ;
+0CAE AE07            130     L0CAE:  MOV     R6,007H
+0CB0 7D01            131             MOV     R5,#001H
+                     132     ;
+0CB2 EE              133     L0CB2:  MOV     A,R6
+0CB3 33              134             RLC     A
+0CB4 9206            135             MOV     006H,C
+0CB6 A206            136             MOV     C,006H
+0CB8 9291            137             MOV     P1.1,C
+0CBA EE              138             MOV     A,R6
+0CBB 25E0            139             ADD     A,ACC
+0CBD FE              140             MOV     R6,A
+0CBE 120D9D          141             LCALL   L0D9D
+0CC1 120DA2          142             LCALL   L0DA2
+0CC4 0D              143             INC     R5
+0CC5 BD09EA          144             CJNE    R5,#009H,L0CB2
+0CC8 D291            145             SETB    P1.1
+0CCA 120D9D          146             LCALL   L0D9D
+0CCD A291            147             MOV     C,P1.1
+0CCF 9206            148             MOV     006H,C
+0CD1 120DA2          149             LCALL   L0DA2
+0CD4 A206            150             MOV     C,006H
+0CD6 22              151             RET     
+                     152     ;
+                     153     ;
+0C77                 154             ORG     00C77H
+                     155     ;
+                     156     ;
+0C77 E4              157     L0C77:  CLR     A
+0C78 FE              158             MOV     R6,A
+0C79 7D01            159             MOV     R5,#001H
+                     160     ;
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    4
+
+
+LOC  OBJ            LINE     SOURCE
+
+0C7B 120D9D          161     L0C7B:  LCALL   L0D9D
+0C7E A291            162             MOV     C,P1.1
+0C80 9207            163             MOV     007H,C
+0C82 EE              164             MOV     A,R6
+0C83 25E0            165             ADD     A,ACC
+0C85 FE              166             MOV     R6,A
+0C86 A207            167             MOV     C,007H
+0C88 E4              168             CLR     A
+0C89 33              169             RLC     A
+0C8A 4206            170             ORL     006H,A
+0C8C 120DA2          171             LCALL   L0DA2
+0C8F 0D              172             INC     R5
+0C90 BD09E8          173             CJNE    R5,#009H,L0C7B
+0C93 300604          174             JNB     006H,L0C9A
+0C96 C291            175             CLR     P1.1
+0C98 8002            176             SJMP    L0C9C
+                     177     ;
+0C9A D291            178     L0C9A:  SETB    P1.1
+                     179     ;
+0C9C 120D9D          180     L0C9C:  LCALL   L0D9D
+0C9F C290            181             CLR     P1.0
+0CA1 D291            182             SETB    P1.1
+0CA3 120D96          183             LCALL   L0D96
+0CA6 AF06            184             MOV     R7,006H
+0CA8 22              185             RET     
+                     186     ;
+                     187     ;
+0D27                 188             ORG     00D27H
+                     189     ;
+                     190     ;
+0D27 AC05            191     L0D27:  MOV     R4,005H
+0D29 AB07            192             MOV     R3,007H
+0D2B 120CA9          193             LCALL   L0CA9
+0D2E AF03            194             MOV     R7,003H
+0D30 120CAE          195             LCALL   L0CAE
+0D33 EC              196             MOV     A,R4
+0D34 75F00A          197             MOV     B,#00AH
+0D37 84              198             DIV     AB
+0D38 C4              199             SWAP    A
+0D39 54F0            200             ANL     A,#0F0H
+0D3B FF              201             MOV     R7,A
+0D3C EC              202             MOV     A,R4
+0D3D 75F00A          203             MOV     B,#00AH
+0D40 84              204             DIV     AB
+0D41 E5F0            205             MOV     A,B
+0D43 4F              206             ORL     A,R7
+0D44 FF              207             MOV     R7,A
+0D45 120CAE          208             LCALL   L0CAE
+0D48 020D8E          209             LJMP    L0D8E
+                     210     ;
+                     211     ;
+0CD7                 212             ORG     00CD7H
+                     213     ;
+                     214     ;
+0CD7 AC07            215     L0CD7:  MOV     R4,007H
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    5
+
+
+LOC  OBJ            LINE     SOURCE
+
+0CD9 120CA9          216             LCALL   L0CA9
+0CDC AF04            217             MOV     R7,004H
+0CDE 120CAE          218             LCALL   L0CAE
+0CE1 120D80          219             LCALL   L0D80
+0CE4 7FD1            220             MOV     R7,#0D1H
+0CE6 120CAE          221             LCALL   L0CAE
+0CE9 C206            222             CLR     006H
+0CEB 120C77          223             LCALL   L0C77
+0CEE AE07            224             MOV     R6,007H
+0CF0 120D8E          225             LCALL   L0D8E
+0CF3 EE              226             MOV     A,R6
+0CF4 C4              227             SWAP    A
+0CF5 540F            228             ANL     A,#00FH
+0CF7 75F00A          229             MOV     B,#00AH
+0CFA A4              230             MUL     AB
+0CFB FF              231             MOV     R7,A
+0CFC EE              232             MOV     A,R6
+0CFD 540F            233             ANL     A,#00FH
+0CFF 2F              234             ADD     A,R7
+0D00 FF              235             MOV     R7,A
+0D01 22              236             RET     
+                     237     ;
+                     238     ;
+0D6B                 239             ORG     00D6BH
+                     240     ;
+                     241     ;
+0D6B AD21            242     L0D6B:  MOV     R5,021H
+0D6D E4              243             CLR     A
+0D6E FF              244             MOV     R7,A
+0D6F 120D27          245             LCALL   L0D27
+0D72 AD22            246             MOV     R5,022H
+0D74 7F01            247             MOV     R7,#001H
+0D76 120D27          248             LCALL   L0D27
+0D79 AD3C            249             MOV     R5,03CH
+0D7B 7F02            250             MOV     R7,#002H
+0D7D 020D27          251             LJMP    L0D27
+                     252     ;
+                     253     ;
+0D02                 254             ORG     00D02H
+                     255     ;
+                     256     ;
+0D02 E547            257     L0D02:  MOV     A,047H
+0D04 7020            258             JNZ     L0D26
+0D06 E548            259             MOV     A,048H
+0D08 B40106          260             CJNE    A,#001H,L0D11
+0D0B 120D6B          261             LCALL   L0D6B
+0D0E E4              262             CLR     A
+0D0F F548            263             MOV     048H,A
+                     264     ;
+0D11 E4              265     L0D11:  CLR     A
+0D12 FF              266             MOV     R7,A
+0D13 120CD7          267             LCALL   L0CD7
+0D16 8F21            268             MOV     021H,R7
+0D18 7F01            269             MOV     R7,#001H
+0D1A 120CD7          270             LCALL   L0CD7
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    6
+
+
+LOC  OBJ            LINE     SOURCE
+
+0D1D 8F22            271             MOV     022H,R7
+0D1F 7F02            272             MOV     R7,#002H
+0D21 120CD7          273             LCALL   L0CD7
+0D24 8F3C            274             MOV     03CH,R7
+                     275     ;
+0D26 22              276     L0D26:  RET     
+                     277     ;
+                     278     ;
+0BF1                 279             ORG     00BF1H
+                     280     ;
+                     281     ;
+0BF1 120C0F          282     L0BF1:  LCALL   L0C0F
+0BF4 E522            283             MOV     A,022H
+0BF6 75F00A          284             MOV     B,#00AH
+0BF9 84              285             DIV     AB
+0BFA 743D            286             MOV     A,#03DH
+0BFC 25F0            287             ADD     A,B
+0BFE F8              288             MOV     R0,A
+0BFF E6              289             MOV     A,@R0
+0C00 FF              290             MOV     R7,A
+0C01 120C0F          291             LCALL   L0C0F
+0C04 E522            292             MOV     A,022H
+                     293     ;
+0C06 75F00A          294     L0C06:  MOV     B,#00AH
+0C09 84              295             DIV     AB
+0C0A 243D            296             ADD     A,#03DH
+0C0C F8              297             MOV     R0,A
+0C0D E6              298             MOV     A,@R0
+0C0E FF              299             MOV     R7,A
+                     300     ;
+0C0F E4              301     L0C0F:  CLR     A
+0C10 FD              302             MOV     R5,A
+0C11 FC              303             MOV     R4,A
+                     304     ;
+0C12 EF              305     L0C12:  MOV     A,R7
+0C13 FB              306             MOV     R3,A
+0C14 530380          307             ANL     003H,#080H
+0C17 EB              308             MOV     A,R3
+0C18 6480            309             XRL     A,#080H
+0C1A 7004            310             JNZ     L0C20
+0C1C D2A7            311             SETB    P2.7
+0C1E 8002            312             SJMP    L0C22
+                     313     ;
+0C20 C2A7            314     L0C20:  CLR     P2.7
+                     315     ;
+0C22 EF              316     L0C22:  MOV     A,R7
+0C23 25E0            317             ADD     A,ACC
+0C25 FF              318             MOV     R7,A
+0C26 C2A6            319             CLR     P2.6
+0C28 D2A6            320             SETB    P2.6
+0C2A 0D              321             INC     R5
+0C2B BD0001          322             CJNE    R5,#000H,L0C2F
+0C2E 0C              323             INC     R4
+                     324     ;
+0C2F ED              325     L0C2F:  MOV     A,R5
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    7
+
+
+LOC  OBJ            LINE     SOURCE
+
+0C30 6408            326             XRL     A,#008H
+0C32 4C              327             ORL     A,R4
+0C33 70DD            328             JNZ     L0C12
+0C35 22              329             RET     
+                     330     ;
+                     331     ;
+0AA5                 332             ORG     00AA5H
+                     333     ;
+                     334     ;
+0AA5 E547            335     L0AA5:  MOV     A,047H
+0AA7 7037            336             JNZ     L0AE0
+0AA9 E521            337             MOV     A,021H
+0AAB 75F00A          338             MOV     B,#00AH
+0AAE 84              339             DIV     AB
+0AAF 743D            340             MOV     A,#03DH
+0AB1 25F0            341             ADD     A,B
+0AB3 F8              342             MOV     R0,A
+0AB4 E6              343             MOV     A,@R0
+0AB5 FF              344             MOV     R7,A
+0AB6 120C0F          345             LCALL   L0C0F
+0AB9 E521            346             MOV     A,021H
+0ABB 75F00A          347             MOV     B,#00AH
+0ABE 84              348             DIV     AB
+0ABF 243D            349             ADD     A,#03DH
+0AC1 F8              350             MOV     R0,A
+0AC2 E6              351             MOV     A,@R0
+0AC3 FF              352             MOV     R7,A
+0AC4 120BF1          353             LCALL   L0BF1
+0AC7 E53C            354             MOV     A,03CH
+0AC9 75F00A          355             MOV     B,#00AH
+0ACC 84              356             DIV     AB
+0ACD 743D            357             MOV     A,#03DH
+0ACF 25F0            358             ADD     A,B
+0AD1 F8              359             MOV     R0,A
+0AD2 E6              360             MOV     A,@R0
+0AD3 FF              361             MOV     R7,A
+0AD4 120C0F          362             LCALL   L0C0F
+0AD7 E53C            363             MOV     A,03CH
+0AD9 120C06          364             LCALL   L0C06
+0ADC C2A5            365             CLR     P2.5
+0ADE D2A5            366             SETB    P2.5
+                     367     ;
+0AE0 E547            368     L0AE0:  MOV     A,047H
+0AE2 6401            369             XRL     A,#001H
+0AE4 702D            370             JNZ     L0B13
+0AE6 7FFF            371             MOV     R7,#0FFH
+0AE8 120C0F          372             LCALL   L0C0F
+0AEB 7FFF            373             MOV     R7,#0FFH
+0AED 120C0F          374             LCALL   L0C0F
+0AF0 7FFF            375             MOV     R7,#0FFH
+0AF2 120C0F          376             LCALL   L0C0F
+0AF5 7FFF            377             MOV     R7,#0FFH
+0AF7 120C0F          378             LCALL   L0C0F
+0AFA E53C            379             MOV     A,03CH
+0AFC 75F00A          380             MOV     B,#00AH
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    8
+
+
+LOC  OBJ            LINE     SOURCE
+
+0AFF 84              381             DIV     AB
+0B00 743D            382             MOV     A,#03DH
+0B02 25F0            383             ADD     A,B
+0B04 F8              384             MOV     R0,A
+0B05 E6              385             MOV     A,@R0
+0B06 FF              386             MOV     R7,A
+0B07 120C0F          387             LCALL   L0C0F
+0B0A E53C            388             MOV     A,03CH
+0B0C 120C06          389             LCALL   L0C06
+0B0F C2A5            390             CLR     P2.5
+0B11 D2A5            391             SETB    P2.5
+                     392     ;
+0B13 E547            393     L0B13:  MOV     A,047H
+0B15 6402            394             XRL     A,#002H
+0B17 7018            395             JNZ     L0B31
+0B19 7FFF            396             MOV     R7,#0FFH
+0B1B 120C0F          397             LCALL   L0C0F
+0B1E 7FFF            398             MOV     R7,#0FFH
+0B20 120BF1          399             LCALL   L0BF1
+0B23 7FFF            400             MOV     R7,#0FFH
+0B25 120C0F          401             LCALL   L0C0F
+0B28 7FFF            402             MOV     R7,#0FFH
+0B2A 120C0F          403             LCALL   L0C0F
+0B2D C2A5            404             CLR     P2.5
+0B2F D2A5            405             SETB    P2.5
+                     406     ;
+0B31 E547            407     L0B31:  MOV     A,047H
+0B33 6403            408             XRL     A,#003H
+0B35 702D            409             JNZ     L0B64
+0B37 E521            410             MOV     A,021H
+0B39 75F00A          411             MOV     B,#00AH
+0B3C 84              412             DIV     AB
+                     413     ;
+0B3D 743D            414     L0B3D:  MOV     A,#03DH
+0B3F 25F0            415             ADD     A,B
+0B41 F8              416             MOV     R0,A
+0B42 E6              417             MOV     A,@R0
+0B43 FF              418             MOV     R7,A
+0B44 120C0F          419             LCALL   L0C0F
+0B47 E521            420             MOV     A,021H
+0B49 120C06          421             LCALL   L0C06
+0B4C 7FFF            422             MOV     R7,#0FFH
+0B4E 120C0F          423             LCALL   L0C0F
+0B51 7FFF            424             MOV     R7,#0FFH
+0B53 120C0F          425             LCALL   L0C0F
+0B56 7FFF            426             MOV     R7,#0FFH
+0B58 120C0F          427             LCALL   L0C0F
+0B5B 7FFF            428             MOV     R7,#0FFH
+0B5D 120C0F          429             LCALL   L0C0F
+0B60 C2A5            430             CLR     P2.5
+0B62 D2A5            431             SETB    P2.5
+                     432     ;
+0B64 22              433     L0B64:  RET     
+                     434     ;
+                     435     ;
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE    9
+
+
+LOC  OBJ            LINE     SOURCE
+
+09E1                 436             ORG     009E1H
+                     437     ;
+                     438     ;
+09E1 A200            439     L09E1:  MOV     C,000H
+09E3 9205            440             MOV     005H,C
+09E5 A2B5            441             MOV     C,P3.5
+09E7 9200            442             MOV     000H,C
+09E9 30050F          443             JNB     005H,L09FB
+09EC 20000C          444             JB      000H,L09FB
+09EF 0547            445             INC     047H
+09F1 E547            446             MOV     A,047H
+09F3 D3              447             SETB    C
+09F4 9403            448             SUBB    A,#003H
+09F6 4003            449             JC      L09FB
+09F8 E4              450             CLR     A
+09F9 F547            451             MOV     047H,A
+                     452     ;
+09FB E547            453     L09FB:  MOV     A,047H
+09FD 24FE            454             ADD     A,#0FEH
+09FF 6040            455             JZ      L0A41
+0A01 14              456             DEC     A
+0A02 6073            457             JZ      L0A77
+0A04 2402            458             ADD     A,#002H
+0A06 6003            459             JZ      L0A0B
+0A08 020AA4          460             LJMP    L0AA4
+                     461     ;
+                     462     ;
+0A0B A202            463     L0A0B:  MOV     C,002H
+0A0D 9201            464             MOV     001H,C
+0A0F A2B6            465             MOV     C,P3.6
+0A11 9202            466             MOV     002H,C
+0A13 754801          467             MOV     048H,#001H
+0A16 30010F          468             JNB     001H,L0A28
+0A19 20020C          469             JB      002H,L0A28
+0A1C 053C            470             INC     03CH
+0A1E E53C            471             MOV     A,03CH
+0A20 D3              472             SETB    C
+0A21 9417            473             SUBB    A,#017H
+0A23 4003            474             JC      L0A28
+0A25 E4              475             CLR     A
+0A26 F53C            476             MOV     03CH,A
+                     477     ;
+0A28 A204            478     L0A28:  MOV     C,004H
+0A2A 9203            479             MOV     003H,C
+0A2C A2B7            480             MOV     C,P3.7
+0A2E 9204            481             MOV     004H,C
+0A30 300371          482             JNB     003H,L0AA4
+0A33 20046E          483             JB      004H,L0AA4
+0A36 153C            484             DEC     03CH
+0A38 E53C            485             MOV     A,03CH
+0A3A F4              486             CPL     A
+0A3B 7067            487             JNZ     L0AA4
+0A3D 753C17          488             MOV     03CH,#017H
+0A40 22              489             RET     
+                     490     ;
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   10
+
+
+LOC  OBJ            LINE     SOURCE
+
+                     491     ;
+0A41 A202            492     L0A41:  MOV     C,002H
+0A43 9201            493             MOV     001H,C
+0A45 A2B6            494             MOV     C,P3.6
+0A47 9202            495             MOV     002H,C
+0A49 754801          496             MOV     048H,#001H
+0A4C 30010F          497             JNB     001H,L0A5E
+0A4F 20020C          498             JB      002H,L0A5E
+0A52 0522            499             INC     022H
+0A54 E522            500             MOV     A,022H
+0A56 D3              501             SETB    C
+0A57 943B            502             SUBB    A,#03BH
+0A59 4003            503             JC      L0A5E
+0A5B E4              504             CLR     A
+0A5C F522            505             MOV     022H,A
+                     506     ;
+0A5E A204            507     L0A5E:  MOV     C,004H
+0A60 9203            508             MOV     003H,C
+0A62 A2B7            509             MOV     C,P3.7
+0A64 9204            510             MOV     004H,C
+0A66 30033B          511             JNB     003H,L0AA4
+0A69 200438          512             JB      004H,L0AA4
+0A6C 1522            513             DEC     022H
+0A6E E522            514             MOV     A,022H
+0A70 F4              515             CPL     A
+0A71 7031            516             JNZ     L0AA4
+0A73 75223B          517             MOV     022H,#03BH
+0A76 22              518             RET     
+                     519     ;
+                     520     ;
+0A77 A202            521     L0A77:  MOV     C,002H
+0A79 9201            522             MOV     001H,C
+0A7B A2B6            523             MOV     C,P3.6
+0A7D 9202            524             MOV     002H,C
+0A7F 754801          525             MOV     048H,#001H
+0A82 30010E          526             JNB     001H,L0A93
+0A85 20020B          527             JB      002H,L0A93
+0A88 0521            528             INC     021H
+0A8A E521            529             MOV     A,021H
+0A8C D3              530             SETB    C
+0A8D 943B            531             SUBB    A,#03BH
+0A8F 4002            532             JC      L0A93
+0A91 0521            533             INC     021H
+                     534     ;
+0A93 A204            535     L0A93:  MOV     C,004H
+0A95 9203            536             MOV     003H,C
+0A97 A2B7            537             MOV     C,P3.7
+0A99 9204            538             MOV     004H,C
+0A9B 300306          539             JNB     003H,L0AA4
+0A9E 200403          540             JB      004H,L0AA4
+0AA1 E4              541             CLR     A
+0AA2 F521            542             MOV     021H,A
+                     543     ;
+0AA4 22              544     L0AA4:  RET     
+                     545     ;
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   11
+
+
+LOC  OBJ            LINE     SOURCE
+
+                     546     ;
+0906                 547             ORG     00906H
+                     548     ;
+                     549     ;
+0906 890F            550     L0906:  MOV     00FH,R1
+                     551     ;
+0908 8910            552     L0908:  MOV     010H,R1
+090A 8911            553             MOV     011H,R1
+                     554     ;
+090C AE11            555     L090C:  MOV     R6,011H
+090E E4              556             CLR     A
+090F FC              557             MOV     R4,A
+                     558     ;
+0910 EE              559     L0910:  MOV     A,R6
+0911 30E003          560             JNB     ACC.0,L0917
+0914 D3              561             SETB    C
+0915 8001            562             SJMP    L0918
+                     563     ;
+0917 C3              564     L0917:  CLR     C
+                     565     ;
+0918 92B1            566     L0918:  MOV     P3.1,C
+091A D2B0            567             SETB    P3.0
+091C C2B0            568             CLR     P3.0
+091E EE              569             MOV     A,R6
+091F C3              570             CLR     C
+0920 13              571             RRC     A
+0921 FE              572             MOV     R6,A
+0922 0C              573             INC     R4
+0923 BC08EA          574             CJNE    R4,#008H,L0910
+0926 AE10            575             MOV     R6,010H
+0928 E4              576             CLR     A
+0929 FC              577             MOV     R4,A
+                     578     ;
+092A EE              579     L092A:  MOV     A,R6
+092B 30E003          580             JNB     ACC.0,L0931
+092E D3              581             SETB    C
+092F 8001            582             SJMP    L0932
+                     583     ;
+0931 C3              584     L0931:  CLR     C
+                     585     ;
+0932 92B1            586     L0932:  MOV     P3.1,C
+0934 D2B0            587             SETB    P3.0
+0936 C2B0            588             CLR     P3.0
+0938 EE              589             MOV     A,R6
+0939 C3              590             CLR     C
+093A 13              591             RRC     A
+093B FE              592             MOV     R6,A
+093C 0C              593             INC     R4
+093D BC08EA          594             CJNE    R4,#008H,L092A
+0940 AE0F            595             MOV     R6,00FH
+0942 E4              596             CLR     A
+0943 FC              597             MOV     R4,A
+                     598     ;
+0944 EE              599     L0944:  MOV     A,R6
+0945 30E003          600             JNB     ACC.0,L094B
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   12
+
+
+LOC  OBJ            LINE     SOURCE
+
+0948 D3              601             SETB    C
+0949 8001            602             SJMP    L094C
+                     603     ;
+094B C3              604     L094B:  CLR     C
+                     605     ;
+094C 92B1            606     L094C:  MOV     P3.1,C
+094E D2B0            607             SETB    P3.0
+0950 C2B0            608             CLR     P3.0
+0952 EE              609             MOV     A,R6
+0953 C3              610             CLR     C
+0954 13              611             RRC     A
+0955 FE              612             MOV     R6,A
+0956 0C              613             INC     R4
+0957 BC08EA          614             CJNE    R4,#008H,L0944
+095A AE0E            615             MOV     R6,00EH
+095C E4              616             CLR     A
+095D FC              617             MOV     R4,A
+                     618     ;
+095E EE              619     L095E:  MOV     A,R6
+095F 30E003          620             JNB     ACC.0,L0965
+0962 D3              621             SETB    C
+0963 8001            622             SJMP    L0966
+                     623     ;
+0965 C3              624     L0965:  CLR     C
+                     625     ;
+0966 92B1            626     L0966:  MOV     P3.1,C
+0968 D2B0            627             SETB    P3.0
+096A C2B0            628             CLR     P3.0
+096C EE              629             MOV     A,R6
+096D C3              630             CLR     C
+096E 13              631             RRC     A
+096F FE              632             MOV     R6,A
+0970 0C              633             INC     R4
+0971 BC08EA          634             CJNE    R4,#008H,L095E
+0974 AE0D            635             MOV     R6,00DH
+0976 E4              636             CLR     A
+0977 FC              637             MOV     R4,A
+                     638     ;
+0978 EE              639     L0978:  MOV     A,R6
+0979 30E003          640             JNB     ACC.0,L097F
+097C D3              641             SETB    C
+097D 8001            642             SJMP    L0980
+                     643     ;
+097F C3              644     L097F:  CLR     C
+                     645     ;
+0980 92B1            646     L0980:  MOV     P3.1,C
+0982 D2B0            647             SETB    P3.0
+0984 C2B0            648             CLR     P3.0
+0986 EE              649             MOV     A,R6
+0987 C3              650             CLR     C
+0988 13              651             RRC     A
+0989 FE              652             MOV     R6,A
+098A 0C              653             INC     R4
+098B BC08EA          654             CJNE    R4,#008H,L0978
+098E AE03            655             MOV     R6,003H
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   13
+
+
+LOC  OBJ            LINE     SOURCE
+
+0990 E4              656             CLR     A
+0991 FC              657             MOV     R4,A
+                     658     ;
+0992 EE              659     L0992:  MOV     A,R6
+0993 30E003          660             JNB     ACC.0,L0999
+0996 D3              661             SETB    C
+0997 8001            662             SJMP    L099A
+                     663     ;
+0999 C3              664     L0999:  CLR     C
+                     665     ;
+099A 92B1            666     L099A:  MOV     P3.1,C
+099C D2B0            667             SETB    P3.0
+099E C2B0            668             CLR     P3.0
+09A0 EE              669             MOV     A,R6
+09A1 C3              670             CLR     C
+09A2 13              671             RRC     A
+09A3 FE              672             MOV     R6,A
+09A4 0C              673             INC     R4
+09A5 BC08EA          674             CJNE    R4,#008H,L0992
+09A8 AE05            675             MOV     R6,005H
+09AA E4              676             CLR     A
+09AB FC              677             MOV     R4,A
+                     678     ;
+09AC EE              679     L09AC:  MOV     A,R6
+09AD 30E003          680             JNB     ACC.0,L09B3
+09B0 D3              681             SETB    C
+09B1 8001            682             SJMP    L09B4
+                     683     ;
+09B3 C3              684     L09B3:  CLR     C
+                     685     ;
+09B4 92B1            686     L09B4:  MOV     P3.1,C
+09B6 D2B0            687             SETB    P3.0
+09B8 C2B0            688             CLR     P3.0
+09BA EE              689             MOV     A,R6
+09BB C3              690             CLR     C
+09BC 13              691             RRC     A
+09BD FE              692             MOV     R6,A
+09BE 0C              693             INC     R4
+09BF BC08EA          694             CJNE    R4,#008H,L09AC
+09C2 AE07            695             MOV     R6,007H
+09C4 E4              696             CLR     A
+09C5 FC              697             MOV     R4,A
+                     698     ;
+09C6 EE              699     L09C6:  MOV     A,R6
+09C7 30E003          700             JNB     ACC.0,L09CD
+09CA D3              701             SETB    C
+09CB 8001            702             SJMP    L09CE
+                     703     ;
+09CD C3              704     L09CD:  CLR     C
+                     705     ;
+09CE 92B1            706     L09CE:  MOV     P3.1,C
+09D0 D2B0            707             SETB    P3.0
+09D2 C2B0            708             CLR     P3.0
+09D4 EE              709             MOV     A,R6
+09D5 C3              710             CLR     C
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   14
+
+
+LOC  OBJ            LINE     SOURCE
+
+09D6 13              711             RRC     A
+09D7 FE              712             MOV     R6,A
+09D8 0C              713             INC     R4
+09D9 BC08EA          714             CJNE    R4,#008H,L09C6
+09DC C2B2            715             CLR     P3.2
+09DE D2B2            716             SETB    P3.2
+09E0 22              717             RET     
+                     718     ;
+                     719     ;
+0800                 720             ORG     00800H
+                     721     ;
+                     722     ;
+0800 8F08            723     L0800:  MOV     008H,R7
+                     724     ;
+0802 E4              725     L0802:  CLR     A
+                     726     ;
+0803 FA              727     L0803:  MOV     R2,A
+0804 E508            728             MOV     A,008H
+0806 5407            729             ANL     A,#007H
+0808 2423            730             ADD     A,#023H
+080A F8              731             MOV     R0,A
+080B E6              732             MOV     A,@R0
+080C F509            733             MOV     009H,A
+080E 79FF            734             MOV     R1,#0FFH
+0810 E508            735             MOV     A,008H
+0812 C3              736             CLR     C
+0813 9400            737             SUBB    A,#000H
+0815 4019            738             JC      L0830
+0817 E508            739             MOV     A,008H
+0819 9408            740             SUBB    A,#008H
+081B 5013            741             JNC     L0830
+081D 7DFF            742             MOV     R5,#0FFH
+081F 7BFF            743             MOV     R3,#0FFH
+0821 890D            744             MOV     00DH,R1
+0823 890E            745             MOV     00EH,R1
+0825 890F            746             MOV     00FH,R1
+0827 8910            747             MOV     010H,R1
+0829 8911            748             MOV     011H,R1
+082B AF09            749             MOV     R7,009H
+082D 12090C          750             LCALL   L090C
+                     751     ;
+0830 E508            752     L0830:  MOV     A,008H
+0832 C3              753             CLR     C
+0833 9408            754             SUBB    A,#008H
+0835 4019            755             JC      L0850
+0837 E508            756             MOV     A,008H
+0839 9410            757             SUBB    A,#010H
+083B 5013            758             JNC     L0850
+083D AF02            759             MOV     R7,002H
+083F AB01            760             MOV     R3,001H
+0841 890D            761             MOV     00DH,R1
+0843 890E            762             MOV     00EH,R1
+0845 890F            763             MOV     00FH,R1
+                     764     ;
+0847 8910            765     L0847:  MOV     010H,R1
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   15
+
+
+LOC  OBJ            LINE     SOURCE
+
+0849 8911            766             MOV     011H,R1
+084B AD09            767             MOV     R5,009H
+084D 12090C          768             LCALL   L090C
+                     769     ;
+0850 E508            770     L0850:  MOV     A,008H
+0852 C3              771             CLR     C
+0853 9410            772             SUBB    A,#010H
+0855 4019            773             JC      L0870
+0857 E508            774             MOV     A,008H
+0859 9418            775             SUBB    A,#018H
+085B 5013            776             JNC     L0870
+085D AF02            777             MOV     R7,002H
+085F AD02            778             MOV     R5,002H
+0861 890D            779             MOV     00DH,R1
+0863 890E            780             MOV     00EH,R1
+0865 890F            781             MOV     00FH,R1
+0867 8910            782             MOV     010H,R1
+0869 8911            783             MOV     011H,R1
+086B AB09            784             MOV     R3,009H
+086D 12090C          785             LCALL   L090C
+                     786     ;
+0870 E508            787     L0870:  MOV     A,008H
+0872 C3              788             CLR     C
+0873 9418            789             SUBB    A,#018H
+0875 4014            790             JC      L088B
+0877 E508            791             MOV     A,008H
+0879 9420            792             SUBB    A,#020H
+087B 500E            793             JNC     L088B
+087D AF02            794             MOV     R7,002H
+087F AD02            795             MOV     R5,002H
+0881 AB02            796             MOV     R3,002H
+0883 85090D          797             MOV     00DH,009H
+0886 890E            798             MOV     00EH,R1
+0888 120906          799             LCALL   L0906
+                     800     ;
+088B E508            801     L088B:  MOV     A,008H
+088D C3              802             CLR     C
+088E 9420            803             SUBB    A,#020H
+0890 4014            804             JC      L08A6
+0892 E508            805             MOV     A,008H
+0894 9428            806             SUBB    A,#028H
+0896 500E            807             JNC     L08A6
+0898 AF02            808             MOV     R7,002H
+089A AD02            809             MOV     R5,002H
+089C AB02            810             MOV     R3,002H
+089E 8A0D            811             MOV     00DH,R2
+08A0 85090E          812             MOV     00EH,009H
+08A3 120906          813             LCALL   L0906
+                     814     ;
+08A6 E508            815     L08A6:  MOV     A,008H
+08A8 C3              816             CLR     C
+08A9 9428            817             SUBB    A,#028H
+08AB 4016            818             JC      L08C3
+08AD E508            819             MOV     A,008H
+08AF 9430            820             SUBB    A,#030H
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   16
+
+
+LOC  OBJ            LINE     SOURCE
+
+08B1 5010            821             JNC     L08C3
+08B3 AF02            822             MOV     R7,002H
+08B5 AD02            823             MOV     R5,002H
+08B7 AB02            824             MOV     R3,002H
+08B9 8A0D            825             MOV     00DH,R2
+08BB 8A0E            826             MOV     00EH,R2
+08BD 85090F          827             MOV     00FH,009H
+08C0 120908          828             LCALL   L0908
+                     829     ;
+08C3 E508            830     L08C3:  MOV     A,008H
+08C5 C3              831             CLR     C
+08C6 9430            832             SUBB    A,#030H
+08C8 401A            833             JC      L08E4
+08CA E508            834             MOV     A,008H
+08CC 9438            835             SUBB    A,#038H
+08CE 5014            836             JNC     L08E4
+08D0 AF02            837             MOV     R7,002H
+08D2 AD02            838             MOV     R5,002H
+08D4 AB02            839             MOV     R3,002H
+08D6 8A0D            840             MOV     00DH,R2
+08D8 8A0E            841             MOV     00EH,R2
+08DA 8A0F            842             MOV     00FH,R2
+08DC 850910          843             MOV     010H,009H
+08DF 8911            844             MOV     011H,R1
+08E1 12090C          845             LCALL   L090C
+                     846     ;
+08E4 E508            847     L08E4:  MOV     A,008H
+08E6 C3              848             CLR     C
+08E7 9438            849             SUBB    A,#038H
+08E9 401A            850             JC      L0905
+08EB E508            851             MOV     A,008H
+08ED 943C            852             SUBB    A,#03CH
+08EF 5014            853             JNC     L0905
+08F1 AF02            854             MOV     R7,002H
+08F3 AD02            855             MOV     R5,002H
+08F5 AB02            856             MOV     R3,002H
+08F7 8A0D            857             MOV     00DH,R2
+08F9 8A0E            858             MOV     00EH,R2
+08FB 8A0F            859             MOV     00FH,R2
+08FD 8A10            860             MOV     010H,R2
+08FF 850911          861             MOV     011H,009H
+0902 12090C          862             LCALL   L090C
+                     863     ;
+0905 22              864     L0905:  RET     
+                     865     ;
+                     866     ;
+0D4B                 867             ORG     00D4BH
+                     868     ;
+                     869     ;
+0D4B 120CA9          870     L0D4B:  LCALL   L0CA9
+0D4E 7F07            871             MOV     R7,#007H
+0D50 120CAE          872             LCALL   L0CAE
+0D53 7F10            873             MOV     R7,#010H
+0D55 120CAE          874             LCALL   L0CAE
+0D58 120D8E          875             LCALL   L0D8E
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   17
+
+
+LOC  OBJ            LINE     SOURCE
+
+                     876     ;
+0D5B 1209E1          877     L0D5B:  LCALL   L09E1
+0D5E 120D02          878             LCALL   L0D02
+0D61 120AA5          879             LCALL   L0AA5
+0D64 AF21            880             MOV     R7,021H
+0D66 120800          881             LCALL   L0800
+0D69 80F0            882             SJMP    L0D5B
+                     883     ;
+0B71                 884             ORG     00B71H
+                     885     ;
+                     886     ;
+0B71 020D4B          887     L0B71:  LJMP    L0D4B
+                     888     ;
+                     889     ;
+0B74 E4              890     L0B74:  CLR     A
+0B75 93              891             MOVC    A,@A+DPTR
+0B76 A3              892             INC     DPTR
+0B77 F8              893             MOV     R0,A
+                     894     ;
+0B78 E4              895     L0B78:  CLR     A
+0B79 93              896             MOVC    A,@A+DPTR
+0B7A A3              897             INC     DPTR
+0B7B 4003            898             JC      L0B80
+0B7D F6              899             MOV     @R0,A
+0B7E 8001            900             SJMP    L0B81
+                     901     ;
+0B80 F2              902     L0B80:  MOVX    @R0,A
+                     903     ;
+0B81 08              904     L0B81:  INC     R0
+0B82 DFF4            905             DJNZ    R7,L0B78
+0B84 8029            906             SJMP    L0BAF
+                     907     ;
+0B86 E4              908     L0B86:  CLR     A
+0B87 93              909             MOVC    A,@A+DPTR
+0B88 A3              910             INC     DPTR
+0B89 F8              911             MOV     R0,A
+0B8A 5407            912             ANL     A,#007H
+0B8C 240C            913             ADD     A,#00CH
+0B8E C8              914             XCH     A,R0
+0B8F C3              915             CLR     C
+0B90 33              916             RLC     A
+0B91 C4              917             SWAP    A
+0B92 540F            918             ANL     A,#00FH
+0B94 4420            919             ORL     A,#020H
+0B96 C8              920             XCH     A,R0
+0B97 83              921             MOVC    A,@A+PC
+0B98 4004            922             JC      L0B9E
+0B9A F4              923             CPL     A
+0B9B 56              924             ANL     A,@R0
+0B9C 8001            925             SJMP    L0B9F
+                     926     ;
+0B9E 46              927     L0B9E:  ORL     A,@R0
+                     928     ;
+0B9F F6              929     L0B9F:  MOV     @R0,A
+0BA0 DFE4            930             DJNZ    R7,L0B86
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   18
+
+
+LOC  OBJ            LINE     SOURCE
+
+0BA2 800B            931             SJMP    L0BAF
+0BA4 0102            932             AJMP    L0802
+                     933     ;
+0BA6 04              934             INC     A
+0BA7 08              935             INC     R0
+0BA8 102040          936             JBC     020H,L0BEB
+0BAB 8090            937             SJMP    L0B3D
+0BAD 0C              938             INC     R4
+0BAE 36              939             ADDC    A,@R0
+                     940     ;
+0BAF E4              941     L0BAF:  CLR     A
+0BB0 7E01            942             MOV     R6,#001H
+0BB2 93              943             MOVC    A,@A+DPTR
+0BB3 60BC            944             JZ      L0B71
+0BB5 A3              945             INC     DPTR
+0BB6 FF              946             MOV     R7,A
+0BB7 543F            947             ANL     A,#03FH
+0BB9 30E509          948             JNB     ACC.5,L0BC5
+0BBC 541F            949             ANL     A,#01FH
+0BBE FE              950             MOV     R6,A
+0BBF E4              951             CLR     A
+0BC0 93              952             MOVC    A,@A+DPTR
+0BC1 A3              953             INC     DPTR
+0BC2 6001            954             JZ      L0BC5
+0BC4 0E              955             INC     R6
+                     956     ;
+0BC5 CF              957     L0BC5:  XCH     A,R7
+0BC6 54C0            958             ANL     A,#0C0H
+0BC8 25E0            959             ADD     A,ACC
+0BCA 60A8            960             JZ      L0B74
+0BCC 40B8            961             JC      L0B86
+0BCE E4              962             CLR     A
+0BCF 93              963             MOVC    A,@A+DPTR
+0BD0 A3              964             INC     DPTR
+0BD1 FA              965             MOV     R2,A
+0BD2 E4              966             CLR     A
+0BD3 93              967             MOVC    A,@A+DPTR
+0BD4 A3              968             INC     DPTR
+0BD5 F8              969             MOV     R0,A
+                     970     ;
+0BD6 E4              971     L0BD6:  CLR     A
+0BD7 93              972             MOVC    A,@A+DPTR
+0BD8 A3              973             INC     DPTR
+0BD9 C8              974             XCH     A,R0
+0BDA C582            975             XCH     A,DPL
+0BDC C8              976             XCH     A,R0
+0BDD CA              977             XCH     A,R2
+0BDE C583            978             XCH     A,DPH
+0BE0 CA              979             XCH     A,R2
+0BE1 F0              980             MOVX    @DPTR,A
+0BE2 A3              981             INC     DPTR
+0BE3 C8              982             XCH     A,R0
+0BE4 C582            983             XCH     A,DPL
+0BE6 C8              984             XCH     A,R0
+0BE7 CA              985             XCH     A,R2
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   19
+
+
+LOC  OBJ            LINE     SOURCE
+
+0BE8 C583            986             XCH     A,DPH
+0BEA CA              987             XCH     A,R2
+                     988     ;
+0BEB DFE9            989     L0BEB:  DJNZ    R7,L0BD6
+0BED DEE7            990             DJNZ    R6,L0BD6
+0BEF 80BE            991             SJMP    L0BAF
+                     992     ;
+0C76                 993             ORG     00C76H
+                     994     ;
+0C76 00              995             NOP     
+                     996     ;
+                     997     ;       Unresolved Address Reference list
+                     998     ;
+                     999     ;
+                    1000     
+                    1001     ;
+                    1002     ;
+                    1003             END
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   20
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E     T Y P E   V A L U E       A T T R I B U T E S
+
+ACC. . . .  D ADDR    00E0H   A       
+B. . . . .  D ADDR    00F0H   A       
+DPH. . . .  D ADDR    0083H   A       
+DPL. . . .  D ADDR    0082H   A       
+L0800. . .  C ADDR    0800H   A       
+L0802. . .  C ADDR    0802H   A       
+L0803. . .  C ADDR    0803H   A       
+L0830. . .  C ADDR    0830H   A       
+L0847. . .  C ADDR    0847H   A       
+L0850. . .  C ADDR    0850H   A       
+L0870. . .  C ADDR    0870H   A       
+L088B. . .  C ADDR    088BH   A       
+L08A6. . .  C ADDR    08A6H   A       
+L08C3. . .  C ADDR    08C3H   A       
+L08E4. . .  C ADDR    08E4H   A       
+L0905. . .  C ADDR    0905H   A       
+L0906. . .  C ADDR    0906H   A       
+L0908. . .  C ADDR    0908H   A       
+L090C. . .  C ADDR    090CH   A       
+L0910. . .  C ADDR    0910H   A       
+L0917. . .  C ADDR    0917H   A       
+L0918. . .  C ADDR    0918H   A       
+L092A. . .  C ADDR    092AH   A       
+L0931. . .  C ADDR    0931H   A       
+L0932. . .  C ADDR    0932H   A       
+L0944. . .  C ADDR    0944H   A       
+L094B. . .  C ADDR    094BH   A       
+L094C. . .  C ADDR    094CH   A       
+L095E. . .  C ADDR    095EH   A       
+L0965. . .  C ADDR    0965H   A       
+L0966. . .  C ADDR    0966H   A       
+L0978. . .  C ADDR    0978H   A       
+L097F. . .  C ADDR    097FH   A       
+L0980. . .  C ADDR    0980H   A       
+L0992. . .  C ADDR    0992H   A       
+L0999. . .  C ADDR    0999H   A       
+L099A. . .  C ADDR    099AH   A       
+L09AC. . .  C ADDR    09ACH   A       
+L09B3. . .  C ADDR    09B3H   A       
+L09B4. . .  C ADDR    09B4H   A       
+L09C6. . .  C ADDR    09C6H   A       
+L09CD. . .  C ADDR    09CDH   A       
+L09CE. . .  C ADDR    09CEH   A       
+L09E1. . .  C ADDR    09E1H   A       
+L09FB. . .  C ADDR    09FBH   A       
+L0A0B. . .  C ADDR    0A0BH   A       
+L0A28. . .  C ADDR    0A28H   A       
+L0A41. . .  C ADDR    0A41H   A       
+L0A5E. . .  C ADDR    0A5EH   A       
+L0A77. . .  C ADDR    0A77H   A       
+L0A93. . .  C ADDR    0A93H   A       
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   21
+
+
+N A M E     T Y P E   V A L U E       A T T R I B U T E S
+
+L0AA4. . .  C ADDR    0AA4H   A       
+L0AA5. . .  C ADDR    0AA5H   A       
+L0AE0. . .  C ADDR    0AE0H   A       
+L0B13. . .  C ADDR    0B13H   A       
+L0B31. . .  C ADDR    0B31H   A       
+L0B3D. . .  C ADDR    0B3DH   A       
+L0B64. . .  C ADDR    0B64H   A       
+L0B65. . .  C ADDR    0B65H   A       
+L0B68. . .  C ADDR    0B68H   A       
+L0B71. . .  C ADDR    0B71H   A       
+L0B74. . .  C ADDR    0B74H   A       
+L0B78. . .  C ADDR    0B78H   A       
+L0B80. . .  C ADDR    0B80H   A       
+L0B81. . .  C ADDR    0B81H   A       
+L0B86. . .  C ADDR    0B86H   A       
+L0B9E. . .  C ADDR    0B9EH   A       
+L0B9F. . .  C ADDR    0B9FH   A       
+L0BAC. . .    NUMB    0BACH   A       
+L0BAF. . .  C ADDR    0BAFH   A       
+L0BC5. . .  C ADDR    0BC5H   A       
+L0BD6. . .  C ADDR    0BD6H   A       
+L0BEB. . .  C ADDR    0BEBH   A       
+L0BF1. . .  C ADDR    0BF1H   A       
+L0C06. . .  C ADDR    0C06H   A       
+L0C0F. . .  C ADDR    0C0FH   A       
+L0C12. . .  C ADDR    0C12H   A       
+L0C20. . .  C ADDR    0C20H   A       
+L0C22. . .  C ADDR    0C22H   A       
+L0C2F. . .  C ADDR    0C2FH   A       
+L0C77. . .  C ADDR    0C77H   A       
+L0C7B. . .  C ADDR    0C7BH   A       
+L0C9A. . .  C ADDR    0C9AH   A       
+L0C9C. . .  C ADDR    0C9CH   A       
+L0CA9. . .  C ADDR    0CA9H   A       
+L0CAE. . .  C ADDR    0CAEH   A       
+L0CB2. . .  C ADDR    0CB2H   A       
+L0CD7. . .  C ADDR    0CD7H   A       
+L0D02. . .  C ADDR    0D02H   A       
+L0D11. . .  C ADDR    0D11H   A       
+L0D26. . .  C ADDR    0D26H   A       
+L0D27. . .  C ADDR    0D27H   A       
+L0D4B. . .  C ADDR    0D4BH   A       
+L0D5B. . .  C ADDR    0D5BH   A       
+L0D6B. . .  C ADDR    0D6BH   A       
+L0D80. . .  C ADDR    0D80H   A       
+L0D8E. . .  C ADDR    0D8EH   A       
+L0D96. . .  C ADDR    0D96H   A       
+L0D98. . .  C ADDR    0D98H   A       
+L0D9D. . .  C ADDR    0D9DH   A       
+L0DA2. . .  C ADDR    0DA2H   A       
+P0 . . . .  D ADDR    0080H   A       
+P1 . . . .  D ADDR    0090H   A       
+P2 . . . .  D ADDR    00A0H   A       
+P3 . . . .  D ADDR    00B0H   A       
+SP . . . .  D ADDR    0081H   A       
+MCS-51 MACRO ASSEMBLER    TAM                                                                       09/04/;2   PAGE   22
+
+
+N A M E     T Y P E   V A L U E       A T T R I B U T E S
+
+TI . . . .  B ADDR    0098H.1 A       
+
+
+REGISTER BANK(S) USED: 0
+
+ASSEMBLY COMPLETE, NO ERRORS FOUND

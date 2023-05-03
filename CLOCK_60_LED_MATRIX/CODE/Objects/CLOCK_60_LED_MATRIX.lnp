@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\MAIN.obj" 
+TO ".\Objects\CLOCK_60_LED_MATRIX" 
+PRINT(".\Listings\CLOCK_60_LED_MATRIX.m51") RAMSIZE(256) 

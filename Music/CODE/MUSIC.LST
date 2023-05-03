@@ -1,0 +1,140 @@
+C51 COMPILER V9.01   MUSIC                                                                 04/21/2016 09:53:31 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MUSIC
+OBJECT MODULE PLACED IN MUSIC.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MUSIC.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          unsigned char preloadTH=0xFF,preloadTL=0xFF;
+   3          unsigned int pointer=0,ii=0,jj;
+   4          sbit out=P2^0;
+   5          //octa: 0
+   6          //key : C C# D D# E F F# G G# A A# B 
+   7          code float key_octa0[]={16.35,17.32,18.35,19.45,20.6,21.83,23.12,24.5,25.96,27.5,29.14,30.87};
+   8          code unsigned int chuan=1000;
+   9          //code float crystal=11.0592;
+  10          code float crystal=12;
+  11          //music
+  12          code unsigned char music[]=
+  13          {
+  14          "4d~,4d~,3g~,3a~,4d.,4d~,4g~,4a~,4b~,4a=,4g=,4d.,4 e~,3a~,4c~,3g~,3a~,4d~,4d ,4d=,4c=,3a~,4c~,3g~,3a~,4do"
+  15          "4g~,4g~,4d~,3a~,4g.,4g~,4a~,4g~,4b=,4a=,4g~,4d.,4 g~,4e ,4e~,4d~,4c ,4d~,4d~,3a~,4d~,3b~,3a~,3go,4d ,4go"
+  16          "4go,4a ,4b~,4a~,4F~,4g.,4d~,4g~,4a~,4a=,4b=,4a~,4g.,4d~,3 a ,3a ,3a~,4d ,4d~,4d ,3a=,3b=,3a~,3g.,4b=,4a="
+  17          "4g~,4d~,4g~,4d~,3a.,4g~,4g ,4F~,4a~,5d.,4a=,4b=,4d ,3a ,4go,4d~,4d~,3g~,3a~,4do,4g~,4g~,4d~,3a~,4go,4g~"
+  18          "4d~,4g~,4a~,4A ,4a~,5d~,4b~,4a~,4g~,4F~,4g ,4d ,4d ,4g~,4a~,4A ,4a~,5d~,4b~,4a~,4g~,4F~,4go,s"
+  19          };
+  20          void doitanso(float tanso)
+  21          {
+  22   1              unsigned int giatrinap;
+  23   1              giatrinap=65536-(unsigned int)((1000000*crystal)/(24*tanso));
+  24   1              preloadTL=(unsigned char)giatrinap;
+  25   1              preloadTH=(unsigned char)(giatrinap>>8);        
+  26   1      }
+  27          void key(unsigned char octa,unsigned char k)
+  28          {
+  29   1              float tanso;
+  30   1              switch (k)
+  31   1              {
+  32   2                      case 'c' : tanso=key_octa0[0]; break;
+  33   2                      case 'C' : tanso=key_octa0[1]; break;
+  34   2                      case 'd' : tanso=key_octa0[2]; break;
+  35   2                      case 'D' : tanso=key_octa0[3]; break;
+  36   2                      case 'e' : tanso=key_octa0[4]; break;
+  37   2                      case 'f' : tanso=key_octa0[5]; break;
+  38   2                      case 'F' : tanso=key_octa0[6]; break;
+  39   2                      case 'g' : tanso=key_octa0[7]; break;
+  40   2                      case 'G' : tanso=key_octa0[8]; break;
+  41   2                      case 'a' : tanso=key_octa0[9]; break;
+  42   2                      case 'A' : tanso=key_octa0[10]; break;
+  43   2                      case 'b' : tanso=key_octa0[11]; break;
+  44   2              }
+  45   1              switch (octa)
+  46   1              {
+  47   2                      case '1' : tanso*=2; break;     
+  48   2                      case '2' : tanso*=4; break;
+  49   2                      case '3' : tanso*=8; break;
+  50   2                      case '4' : tanso*=16; break;
+  51   2                      case '5' : tanso*=32; break;
+  52   2                      case '6' : tanso*=64; break;
+  53   2                      case '7' : tanso*=128; break;
+  54   2                      case '8' : tanso*=256; break;
+  55   2              }
+C51 COMPILER V9.01   MUSIC                                                                 04/21/2016 09:53:31 PAGE 2   
+
+  56   1              doitanso(tanso);
+  57   1      }
+  58          unsigned int trave(unsigned int ms)
+  59          {
+  60   1              unsigned int a;
+  61   1              a=preloadTH;
+  62   1              a=a<<8|preloadTL;
+  63   1              return (ms*crystal*1000)/12/(65536-a);
+  64   1      }
+  65          unsigned int tempo(unsigned char tem)
+  66          {
+  67   1              switch (tem)
+  68   1              {
+  69   2                      case '=' : return trave(chuan); break;
+  70   2                      case '~' : return trave(chuan*2); break;
+  71   2                      case ' ' : return trave(chuan*4); break;
+  72   2                      case '.' : return trave(chuan*6); break;
+  73   2                      case 'o' : return trave(chuan*8);       break;
+  74   2              }
+  75   1      }
+  76          void ngattimer_0(void) interrupt 1
+  77          {
+  78   1              out=~out;
+  79   1              TL0=preloadTL;
+  80   1              TH0=preloadTH;
+  81   1              if(ii==0)
+  82   1              {
+  83   2                      if(music[pointer]=='s')
+  84   2                      TR0=0;
+  85   2                      key(music[pointer],music[pointer+1]);
+  86   2                      jj=tempo(music[pointer+2]);
+  87   2              }
+  88   1              ii++;
+  89   1              if(ii==jj)
+  90   1              {
+  91   2                      ii=0;
+  92   2                      pointer+=4;
+  93   2              }       
+  94   1      }
+  95          void main(void)
+  96          {
+  97   1      P0=P1=P2=P3=0;
+  98   1      /*TMOD=17;
+  99   1      TL0=0xff;
+ 100   1      TH0=0xff;
+ 101   1      ET0=1;
+ 102   1      EA=1;
+ 103   1      TR0=1;*/
+ 104   1      EA=0;
+ 105   1      TMOD=0x02;// 8 BIT AUTO RELOAD
+ 106   1      TL0=0xff;
+ 107   1      TH0=0xff;
+ 108   1      ET0=1;
+ 109   1      EA=1;
+ 110   1      TR0=1;
+ 111   1      while(1);
+ 112   1      }
+*** WARNING C291 IN LINE 75 OF MUSIC.C: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    800    ----
+C51 COMPILER V9.01   MUSIC                                                                 04/21/2016 09:53:31 PAGE 3   
+
+   CONSTANT SIZE    =    563    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

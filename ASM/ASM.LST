@@ -1,0 +1,74 @@
+A51 MACRO ASSEMBLER  ASM                                                                  10/08/2016 21:34:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN ASM.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE ASM.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 000H
+                       2     
+0000 7F00              3     MAIN:   MOV R7,#00H
+0002 EF                4     L1:             MOV A,R7
+0003 110F              5                     CALL TRABANG
+0005 F5A0              6                     MOV P2,A
+0007 1127              7                     CALL DELAYS
+0009 0F                8                     INC R7
+000A BF0AF5            9                     CJNE R7,#0AH,L1
+000D 80F1             10                     JMP MAIN
+                      11     
+000F 04               12     TRABANG:INC A
+0010 83               13                     MOVC A,@A+PC
+0011 22               14                     RET
+0012 40792430         15     BANGMA: DB 40H,79H,24H,30H,19H,12H,02H,78H,00H,10H                              
+0016 19120278                
+001A 0010                    
+                      16     
+001C 7C0F             17     DELAYH: MOV R4,#0FH
+001E 7DF0             18     LOOPD:  MOV R5,#0F0H
+0020 1127             19     LOOPE:  CALL DELAYS
+0022 DBFC             20                     DJNZ R3,LOOPE
+0024 DAF8             21                     DJNZ R2,LOOPD
+0026 22               22                     RET
+                      23     
+0027 7A01             24     DELAYS: MOV R2,#01H
+0029 7BFA             25     LOOPB:  MOV R3,#0FAH
+002B 1132             26     LOOPC:  CALL DELAYMS
+002D DBFC             27                     DJNZ R3,LOOPC
+002F DAF8             28                     DJNZ R2,LOOPB
+0031 22               29                     RET     
+                      30     
+0032 79FA             31     DELAYMS:MOV R1,#0FAH    
+0034 00               32     LOOPA:  NOP
+0035 00               33                     NOP
+0036 D9FC             34                     DJNZ R1,LOOPA
+0038 22               35                     RET
+                      36     END
+A51 MACRO ASSEMBLER  ASM                                                                  10/08/2016 21:34:29 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BANGMA . . . . . .  C ADDR   0012H   A   
+DELAYH . . . . . .  C ADDR   001CH   A   
+DELAYMS. . . . . .  C ADDR   0032H   A   
+DELAYS . . . . . .  C ADDR   0027H   A   
+L1 . . . . . . . .  C ADDR   0002H   A   
+LOOPA. . . . . . .  C ADDR   0034H   A   
+LOOPB. . . . . . .  C ADDR   0029H   A   
+LOOPC. . . . . . .  C ADDR   002BH   A   
+LOOPD. . . . . . .  C ADDR   001EH   A   
+LOOPE. . . . . . .  C ADDR   0020H   A   
+MAIN . . . . . . .  C ADDR   0000H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+TRABANG. . . . . .  C ADDR   000FH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

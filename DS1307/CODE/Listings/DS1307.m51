@@ -1,0 +1,648 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/15/2017  17:26:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\Objects\MAIN.obj TO .\Objects\DS1307 PRINT (.\Listings\DS1307.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\MAIN.obj (MAIN)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPADD)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPDIV)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?CASTF)
+  C:\KEIL\C51\LIB\C51FPS.LIB (PRINTF)
+  C:\KEIL\C51\LIB\C51FPS.LIB (SIN)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPROUND)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPCONVERT)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FPSERIES)
+  C:\KEIL\C51\LIB\C51FPS.LIB (?C?FTNPWR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LLDCODE)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?LLDCODE0)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?CCASE)
+  C:\KEIL\C51\LIB\C51S.LIB (PUTCHAR)
+  C:\KEIL\C51\LIB\C51S.LIB (STRLEN)
+
+
+LINK MAP OF MODULE:  .\Objects\DS1307 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0018H     UNIT         ?DT?_GETNEWMOONDAY?MAIN
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+            BIT     0021H.1   0000H.1   UNIT         ?BI?SIN?SIN
+                    0021H.2   0000H.6                *** GAP ***
+            DATA    0022H     0022H     UNIT         _DATA_GROUP_
+            DATA    0044H     0010H     UNIT         ?DT?_GETSUNLONGITUDE?MAIN
+            DATA    0054H     0008H     UNIT         ?DT?_GETLEAPMONTHOFFSET?MAIN
+            DATA    005CH     0006H     UNIT         ?DT?_DS1307_GETTIME?MAIN
+            DATA    0062H     0006H     UNIT         ?DT?_DS1307_GETDATE?MAIN
+            DATA    0068H     0004H     UNIT         ?DT?SIN?SIN
+            IDATA   006CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 2
+
+
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0020H     UNIT         ?PR?__DELAY_MS?MAIN
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     07BBH     UNIT         ?PR?_GETNEWMOONDAY?MAIN
+            CODE    07E1H     06A5H     UNIT         ?C?LIB_CODE
+            CODE    0E86H     046FH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    12F5H     0305H     UNIT         ?PR?_GETSUNLONGITUDE?MAIN
+            CODE    15FAH     016EH     UNIT         ?PR?SIN?SIN
+            CODE    1768H     008EH     UNIT         ?PR?_GETLEAPMONTHOFFSET?MAIN
+            CODE    17F6H     004BH     UNIT         ?PR?DISPLAY?MAIN
+            CODE    1841H     003CH     UNIT         ?PR?_DS1307_READ?MAIN
+            CODE    187DH     0039H     UNIT         ?PR?MAIN?MAIN
+            CODE    18B6H     0034H     UNIT         ?PR?_DS1307_SET?MAIN
+            CODE    18EAH     002FH     UNIT         ?PR?_PRINT_UART?MAIN
+            CODE    1919H     002EH     UNIT         ?PR?_DS1307_WRITE?MAIN
+            CODE    1947H     002BH     UNIT         ?PR?_DS1307_GETTIME?MAIN
+            CODE    1972H     002BH     UNIT         ?PR?_DS1307_GETDATE?MAIN
+            CODE    199DH     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    19C4H     001FH     UNIT         ?PR?NGAT_UART?MAIN
+            CODE    19E3H     001FH     UNIT         ?PR?_VIETSO_UART?MAIN
+            CODE    1A02H     001AH     UNIT         ?PR?I2C_READ?MAIN
+            CODE    1A1CH     0017H     UNIT         ?PR?_I2C_WRITE?MAIN
+            CODE    1A33H     0015H     UNIT         ?PR?_STRLEN?STRLEN
+            CODE    1A48H     0013H     UNIT         ?PR?INIT_UART?MAIN
+            CODE    1A5BH     000CH     UNIT         ?C_C51STARTUP
+            CODE    1A67H     0009H     UNIT         ?PR?I2C_TIME_START?MAIN
+            CODE    1A70H     0009H     UNIT         ?PR?I2C_TIME_STOP?MAIN
+            CODE    1A79H     0007H     UNIT         ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\DS1307 (MAIN)
+
+
+SEGMENT                                 BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH     START    LENGTH
+------------------------------------------------------------------------
+?PR?NGAT_UART?MAIN                   -----    -----      0022H    0001H
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                        -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                        -----    -----      -----    -----
+  +--> ?PR?INIT_UART?MAIN
+  +--> ?PR?_DS1307_SET?MAIN
+  +--> ?PR?DISPLAY?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_PRINT_UART?MAIN
+  +--> ?PR?__DELAY_MS?MAIN
+
+?PR?_DS1307_SET?MAIN                 -----    -----      0023H    000CH
+  +--> ?PR?_DS1307_WRITE?MAIN
+
+?PR?_DS1307_WRITE?MAIN               -----    -----      -----    -----
+  +--> ?PR?I2C_TIME_START?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 3
+
+
+  +--> ?PR?_I2C_WRITE?MAIN
+  +--> ?PR?I2C_TIME_STOP?MAIN
+
+?PR?DISPLAY?MAIN                     -----    -----      -----    -----
+  +--> ?PR?_DS1307_READ?MAIN
+  +--> ?PR?_VIETSO_UART?MAIN
+  +--> ?PR?_PRINT_UART?MAIN
+
+?PR?_DS1307_READ?MAIN                -----    -----      -----    -----
+  +--> ?PR?I2C_TIME_START?MAIN
+  +--> ?PR?_I2C_WRITE?MAIN
+  +--> ?PR?I2C_READ?MAIN
+  +--> ?PR?I2C_TIME_STOP?MAIN
+
+?PR?I2C_READ?MAIN                    0020H.0  0000H.1    -----    -----
+
+?PR?_VIETSO_UART?MAIN                -----    -----      0023H    0005H
+  +--> ?CO?MAIN
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_PRINT_UART?MAIN
+
+?PR?PRINTF?PRINTF                    0020H.0  0001H.1    0028H    001CH
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+?PR?_PRINT_UART?MAIN                 -----    -----      0028H    0003H
+  +--> ?CO?MAIN
+  +--> ?PR?_STRLEN?STRLEN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\DS1307 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:187DH         PUBLIC        main
+  C:0030H         PUBLIC        _getNewMoonDay
+  C:12F5H         PUBLIC        _getSunLongitude
+  D:0099H         PUBLIC        SBUF
+  C:0003H         PUBLIC        __delay_ms
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:1768H         PUBLIC        _getLeapMonthOffset
+  C:19E3H         PUBLIC        _vietso_UART
+  C:1A02H         PUBLIC        I2C_read
+  C:1841H         PUBLIC        _DS1307_Read
+  C:19C4H         PUBLIC        ngat_uart
+  C:1A1CH         PUBLIC        _I2C_write
+  D:008DH         PUBLIC        TH1
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 4
+
+
+  C:18F0H         PUBLIC        _print_UART
+  D:008BH         PUBLIC        TL1
+  C:1919H         PUBLIC        _DS1307_Write
+  C:1A48H         PUBLIC        init_UART
+  B:0088H.6       PUBLIC        TR1
+  C:1A67H         PUBLIC        I2C_time_start
+  C:1972H         PUBLIC        _DS1307_GetDate
+  C:18B6H         PUBLIC        _DS1307_Set
+  C:1947H         PUBLIC        _DS1307_GetTime
+  C:1A70H         PUBLIC        I2C_time_stop
+  C:17F6H         PUBLIC        display
+  -------         PROC          __DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0003H         LINE#         10
+  C:0003H         LINE#         11
+  C:0003H         LINE#         13
+  C:000DH         LINE#         14
+  C:0022H         LINE#         15
+  -------         ENDPROC       __DELAY_MS
+  -------         PROC          INIT_UART
+  C:1A48H         LINE#         14
+  C:1A48H         LINE#         15
+  C:1A48H         LINE#         16
+  C:1A4BH         LINE#         17
+  C:1A4EH         LINE#         18
+  C:1A54H         LINE#         19
+  C:1A56H         LINE#         20
+  C:1A58H         LINE#         21
+  C:1A5AH         LINE#         22
+  -------         ENDPROC       INIT_UART
+  C:18EAH         SYMBOL        L?0054
+  -------         PROC          L?0053
+  -------         ENDPROC       L?0053
+  C:18EAH         SYMBOL        L?0054
+  -------         PROC          _PRINT_UART
+  D:0028H         SYMBOL        s
+  -------         DO            
+  D:0007H         SYMBOL        n
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:18F0H         LINE#         23
+  C:18F6H         LINE#         24
+  C:18F6H         LINE#         26
+  C:18F9H         LINE#         27
+  C:1900H         LINE#         28
+  C:1910H         LINE#         29
+  C:1915H         LINE#         30
+  C:1918H         LINE#         31
+  -------         ENDPROC       _PRINT_UART
+  -------         PROC          NGAT_UART
+  -------         DO            
+  D:0022H         SYMBOL        ledState
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 5
+
+
+  C:19C4H         LINE#         32
+  C:19C8H         LINE#         34
+  C:19CBH         LINE#         35
+  C:19CBH         LINE#         37
+  C:19CEH         LINE#         38
+  C:19D3H         LINE#         39
+  C:19D5H         LINE#         40
+  C:19DAH         LINE#         41
+  C:19DCH         LINE#         42
+  C:19DCH         LINE#         43
+  C:19DEH         LINE#         45
+  -------         ENDPROC       NGAT_UART
+  -------         PROC          _VIETSO_UART
+  D:0006H         SYMBOL        num
+  -------         DO            
+  D:0023H         SYMBOL        dis
+  -------         ENDDO         
+  C:19E3H         LINE#         46
+  C:19E3H         LINE#         47
+  C:19E3H         LINE#         49
+  C:19F9H         LINE#         50
+  -------         ENDPROC       _VIETSO_UART
+  -------         PROC          I2C_TIME_START
+  C:1A67H         LINE#         16
+  C:1A67H         LINE#         17
+  C:1A67H         LINE#         18
+  C:1A69H         LINE#         19
+  C:1A6BH         LINE#         20
+  C:1A6DH         LINE#         21
+  C:1A6FH         LINE#         22
+  -------         ENDPROC       I2C_TIME_START
+  -------         PROC          I2C_TIME_STOP
+  C:1A70H         LINE#         23
+  C:1A70H         LINE#         24
+  C:1A70H         LINE#         25
+  C:1A72H         LINE#         26
+  C:1A74H         LINE#         27
+  C:1A76H         LINE#         28
+  C:1A78H         LINE#         29
+  -------         ENDPROC       I2C_TIME_STOP
+  -------         PROC          _I2C_WRITE
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:1A1CH         LINE#         30
+  C:1A1CH         LINE#         31
+  C:1A1CH         LINE#         33
+  C:1A1EH         LINE#         34
+  C:1A1EH         LINE#         35
+  C:1A22H         LINE#         36
+  C:1A24H         LINE#         37
+  C:1A26H         LINE#         38
+  C:1A2AH         LINE#         39
+  C:1A2EH         LINE#         40
+  C:1A30H         LINE#         41
+  C:1A32H         LINE#         42
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 6
+
+
+  C:1A32H         LINE#         43
+  -------         ENDPROC       _I2C_WRITE
+  -------         PROC          I2C_READ
+  -------         DO            
+  B:0020H.0       SYMBOL        rd_bit
+  D:0006H         SYMBOL        i
+  D:0007H         SYMBOL        dat
+  -------         ENDDO         
+  C:1A02H         LINE#         44
+  C:1A02H         LINE#         45
+  C:1A02H         LINE#         48
+  C:1A04H         LINE#         49
+  C:1A05H         LINE#         50
+  C:1A05H         LINE#         51
+  C:1A07H         LINE#         52
+  C:1A0BH         LINE#         53
+  C:1A0FH         LINE#         54
+  C:1A15H         LINE#         55
+  C:1A17H         LINE#         56
+  C:1A1BH         LINE#         57
+  C:1A1BH         LINE#         58
+  -------         ENDPROC       I2C_READ
+  -------         PROC          _DS1307_WRITE
+  D:0002H         SYMBOL        addr
+  D:0003H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        temp
+  -------         ENDDO         
+  C:1919H         LINE#         62
+  C:191DH         LINE#         63
+  C:191DH         LINE#         65
+  C:1921H         LINE#         66
+  C:1932H         LINE#         67
+  C:1935H         LINE#         68
+  C:193AH         LINE#         69
+  C:193FH         LINE#         70
+  C:1944H         LINE#         71
+  -------         ENDPROC       _DS1307_WRITE
+  -------         PROC          _DS1307_READ
+  D:0005H         SYMBOL        addr
+  -------         DO            
+  D:0002H         SYMBOL        tm
+  D:0006H         SYMBOL        ret
+  -------         ENDDO         
+  C:1841H         LINE#         73
+  C:1843H         LINE#         74
+  C:1843H         LINE#         76
+  C:1846H         LINE#         77
+  C:184BH         LINE#         78
+  C:1850H         LINE#         79
+  C:1853H         LINE#         80
+  C:1858H         LINE#         81
+  C:185DH         LINE#         82
+  C:1860H         LINE#         83
+  C:1862H         LINE#         84
+  C:187CH         LINE#         85
+  C:187CH         LINE#         86
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 7
+
+
+  -------         ENDPROC       _DS1307_READ
+  -------         PROC          _DS1307_SET
+  D:0023H         SYMBOL        sec
+  D:0025H         SYMBOL        min
+  D:0082H         SYMBOL        hour
+  D:0029H         SYMBOL        day
+  D:002BH         SYMBOL        month
+  D:002DH         SYMBOL        year
+  C:18B6H         LINE#         87
+  C:18C0H         LINE#         88
+  C:18C0H         LINE#         90
+  C:18C7H         LINE#         91
+  C:18CEH         LINE#         92
+  C:18D5H         LINE#         93
+  C:18DCH         LINE#         94
+  C:18E3H         LINE#         95
+  -------         ENDPROC       _DS1307_SET
+  -------         PROC          _DS1307_GETTIME
+  D:005CH         SYMBOL        sec
+  D:005EH         SYMBOL        min
+  D:0060H         SYMBOL        hour
+  C:1947H         LINE#         97
+  C:1953H         LINE#         98
+  C:1953H         LINE#         100
+  C:195DH         LINE#         101
+  C:1967H         LINE#         102
+  C:1971H         LINE#         103
+  -------         ENDPROC       _DS1307_GETTIME
+  -------         PROC          _DS1307_GETDATE
+  D:0062H         SYMBOL        day
+  D:0064H         SYMBOL        month
+  D:0066H         SYMBOL        year
+  C:1972H         LINE#         104
+  C:197EH         LINE#         105
+  C:197EH         LINE#         107
+  C:1988H         LINE#         108
+  C:1992H         LINE#         109
+  C:199CH         LINE#         110
+  -------         ENDPROC       _DS1307_GETDATE
+  -------         PROC          L?0055
+  -------         ENDPROC       L?0055
+  -------         PROC          _GETNEWMOONDAY
+  D:0008H         SYMBOL        k
+  D:000AH         SYMBOL        timeZone
+  -------         DO            
+  D:000CH         SYMBOL        T
+  D:000EH         SYMBOL        T2
+  D:0010H         SYMBOL        T3
+  D:0012H         SYMBOL        dr
+  D:0014H         SYMBOL        Jd1
+  D:0016H         SYMBOL        M
+  D:0018H         SYMBOL        Mpr
+  D:001AH         SYMBOL        F
+  D:001CH         SYMBOL        C1
+  D:001EH         SYMBOL        deltat
+  D:0006H         SYMBOL        JdNew
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 8
+
+
+  C:0030H         LINE#         112
+  C:0038H         LINE#         113
+  C:0038H         LINE#         115
+  C:0052H         LINE#         116
+  C:005DH         LINE#         117
+  C:0064H         LINE#         118
+  C:0069H         LINE#         119
+  C:00E2H         LINE#         120
+  C:0179H         LINE#         121
+  C:01FAH         LINE#         122
+  C:026BH         LINE#         123
+  C:02ECH         LINE#         124
+  C:037BH         LINE#         125
+  C:03F7H         LINE#         126
+  C:0441H         LINE#         127
+  C:04CBH         LINE#         128
+  C:0556H         LINE#         129
+  C:05F0H         LINE#         130
+  C:0682H         LINE#         131
+  C:0697H         LINE#         132
+  C:0697H         LINE#         133
+  C:074DH         LINE#         134
+  C:074FH         LINE#         136
+  C:074FH         LINE#         137
+  C:0795H         LINE#         138
+  C:0795H         LINE#         139
+  C:07A8H         LINE#         140
+  C:07E0H         LINE#         141
+  -------         ENDPROC       _GETNEWMOONDAY
+  -------         PROC          _GETSUNLONGITUDE
+  D:0006H         SYMBOL        jdn
+  D:0044H         SYMBOL        timeZone
+  -------         DO            
+  D:0046H         SYMBOL        T
+  D:0048H         SYMBOL        T2
+  D:004AH         SYMBOL        dr
+  D:004CH         SYMBOL        M
+  D:004EH         SYMBOL        L0
+  D:0050H         SYMBOL        DL
+  D:0052H         SYMBOL        L
+  -------         ENDDO         
+  C:12F5H         LINE#         143
+  C:12F9H         LINE#         144
+  C:12F9H         LINE#         146
+  C:134CH         LINE#         147
+  C:1357H         LINE#         148
+  C:135CH         LINE#         149
+  C:13F4H         LINE#         150
+  C:143FH         LINE#         151
+  C:14C3H         LINE#         152
+  C:1574H         LINE#         153
+  C:1580H         LINE#         154
+  C:158EH         LINE#         155
+  C:15D9H         LINE#         156
+  C:15F9H         LINE#         157
+  -------         ENDPROC       _GETSUNLONGITUDE
+  -------         PROC          _GETLEAPMONTHOFFSET
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 9
+
+
+  D:0006H         SYMBOL        a11
+  D:0054H         SYMBOL        timeZone
+  -------         DO            
+  D:0056H         SYMBOL        k
+  D:0058H         SYMBOL        last
+  D:0006H         SYMBOL        arc
+  D:005AH         SYMBOL        i
+  -------         ENDDO         
+  C:1768H         LINE#         159
+  C:176CH         LINE#         160
+  C:176CH         LINE#         162
+  C:179AH         LINE#         163
+  C:179FH         LINE#         164
+  C:17A4H         LINE#         165
+  C:17B7H         LINE#         166
+  C:17B7H         LINE#         167
+  C:17BBH         LINE#         168
+  C:17C3H         LINE#         169
+  C:17D4H         LINE#         170
+  C:17EBH         LINE#         171
+  C:17F5H         LINE#         172
+  -------         ENDPROC       _GETLEAPMONTHOFFSET
+  -------         PROC          DISPLAY
+  C:17F6H         LINE#         174
+  C:17F6H         LINE#         175
+  C:17F6H         LINE#         176
+  C:1800H         LINE#         177
+  C:1803H         LINE#         178
+  C:1810H         LINE#         179
+  C:181DH         LINE#         180
+  C:182AH         LINE#         181
+  C:1837H         LINE#         182
+  -------         ENDPROC       DISPLAY
+  -------         PROC          MAIN
+  C:187DH         LINE#         8
+  C:187DH         LINE#         9
+  C:187DH         LINE#         10
+  C:1880H         LINE#         11
+  C:18A1H         LINE#         12
+  C:18A1H         LINE#         13
+  C:18A1H         LINE#         14
+  C:18A4H         LINE#         15
+  C:18ADH         LINE#         16
+  C:18B4H         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?FPADD
+  C:07E8H         PUBLIC        ?C?FPADD
+  C:07E4H         PUBLIC        ?C?FPSUB
+  -------         ENDMOD        ?C?FPADD
+
+  -------         MODULE        ?C?FPMUL
+  C:08D9H         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FPDIV
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 10
+
+
+  C:09E2H         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FCAST
+  C:0A89H         PUBLIC        ?C?FCASTC
+  C:0A84H         PUBLIC        ?C?FCASTI
+  C:0A7FH         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:0ABDH         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        PRINTF
+  D:0028H         PUBLIC        ?_PRINTF?BYTE
+  D:0028H         PUBLIC        ?_SPRINTF?BYTE
+  C:0EE8H         PUBLIC        _PRINTF
+  C:0EE2H         PUBLIC        _SPRINTF
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        SIN
+  C:1642H         PUBLIC        _COS
+  C:1658H         PUBLIC        _SIN
+  C:168AH         PUBLIC        _TAN
+  -------         ENDMOD        SIN
+
+  -------         MODULE        ?C?FPROUND
+  C:0B3EH         PUBLIC        ?C?FPROUND
+  -------         ENDMOD        ?C?FPROUND
+
+  -------         MODULE        ?C?FPCONVERT
+  C:0B6DH         PUBLIC        ?C?FPCONVERT
+  -------         ENDMOD        ?C?FPCONVERT
+
+  -------         MODULE        ?C?FTNPWR
+  C:0CEDH         PUBLIC        ?C?FTNPWR
+  -------         ENDMOD        ?C?FTNPWR
+
+  -------         MODULE        ?C?CLDPTR
+  C:0D2DH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0D46H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0D73H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?IMUL
+  C:0D85H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?UIDIV
+  C:0D97H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/15/2017  17:26:24  PAGE 11
+
+
+
+  -------         MODULE        ?C?SIDIV
+  C:0DECH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?LNEG
+  C:0E22H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        ?C?LLDCODE
+  C:0E30H         PUBLIC        ?C?LLDCODE
+  -------         ENDMOD        ?C?LLDCODE
+
+  -------         MODULE        ?C?LLDCODE0
+  C:0E40H         PUBLIC        ?C?LLDCODE0
+  -------         ENDMOD        ?C?LLDCODE0
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:0E50H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:0E60H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:199DH         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+  -------         MODULE        STRLEN
+  C:1A33H         PUBLIC        _STRLEN
+  -------         ENDMOD        STRLEN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DS1307_GETTIME?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DS1307_GETDATE?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GETLEAPMONTHOFFSET?MAIN
+
+Program Size: data=108.2 xdata=0 code=6784
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

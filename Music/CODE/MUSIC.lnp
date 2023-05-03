@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"MUSIC.obj" 
+TO "MUSIC" 
+RAMSIZE(256) 

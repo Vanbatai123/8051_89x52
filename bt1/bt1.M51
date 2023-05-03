@@ -1,0 +1,90 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/26/2017  22:48:01  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE bt1.obj TO bt1
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  bt1.obj (BT1)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  bt1 (BT1)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?BT1
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0020H     UNIT         ?PR?__DELAY_MS?BT1
+            CODE    00AFH     000BH     UNIT         ?PR?MAIN?BT1
+            CODE    00BAH     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   bt1 (BT1)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?BT1
+  +--> ?C_INITSEG
+
+?PR?MAIN?BT1
+  +--> ?PR?__DELAY_MS?BT1
+
+
+
+SYMBOL TABLE OF MODULE:  bt1 (BT1)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        BT1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A0H.1       PUBLIC        P2_1
+  C:00AFH         PUBLIC        main
+  C:008FH         PUBLIC        __delay_ms
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/26/2017  22:48:01  PAGE 2
+
+
+  D:0008H         PUBLIC        n
+  -------         PROC          __DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:008FH         LINE#         10
+  C:008FH         LINE#         11
+  C:008FH         LINE#         13
+  C:0099H         LINE#         14
+  C:00AEH         LINE#         15
+  -------         ENDPROC       __DELAY_MS
+  -------         PROC          MAIN
+  C:00AFH         LINE#         4
+  C:00AFH         LINE#         5
+  C:00AFH         LINE#         6
+  C:00AFH         LINE#         7
+  C:00AFH         LINE#         8
+  C:00B1H         LINE#         9
+  C:00B8H         LINE#         10
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        BT1
+
+Program Size: data=11.0 xdata=0 code=191
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

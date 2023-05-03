@@ -1,0 +1,36 @@
+A51 MACRO ASSEMBLER  MAIN                                                                 11/09/2016 11:19:09 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\main.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE main.s SET(SMALL) DEBUG PRINT(.\Listings\main.lst) OBJECT(.\Objects\mai
+                      n.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 00H
+
+0000 D2A1              2             MAIN:   SETB P2.1
+
+0002 C2A1              3                             CLR  P2.1
+
+0004 80FA              4             JMP     MAIN            
+
+                       5             END     
+
+A51 MACRO ASSEMBLER  MAIN                                                                 11/09/2016 11:19:09 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+MAIN . . . . . . .  C ADDR   0000H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

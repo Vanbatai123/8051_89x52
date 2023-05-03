@@ -1,0 +1,43 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              03/17/2017 21:34:03 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\MAIN.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE MAIN.C OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\MAIN
+                    -.lst) TABS(2) OBJECT(.\Objects\MAIN.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "delay.h"
+   3          #include "myLCD_HP.h"
+   4          #include "my595.h"
+   5          #include "myDS1307.h"
+   6          
+   7          unsigned int a=0xa5aa55;
+   8          
+   9          void main()
+  10          {
+  11   1        //_delay_ms(1000);
+  12   1        //init_LCD();
+  13   1        P1=0xFF;
+  14   1        while(1)
+  15   1        {
+  16   2          Ship_595(0x112233);
+  17   2          _delay_ms(400);
+  18   2        }   
+  19   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1539    ----
+   CONSTANT SIZE    =    653    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     21      38
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

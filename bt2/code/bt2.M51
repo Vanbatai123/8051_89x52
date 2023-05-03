@@ -1,0 +1,65 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/13/2017  11:57:23  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE bt2.obj TO bt2 RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  bt2.obj (BT2)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  bt2 (BT2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     000CH     UNIT         ?C_C51STARTUP
+            CODE    000FH     0002H     UNIT         ?PR?MAIN?BT2
+
+
+
+OVERLAY MAP OF MODULE:   bt2 (BT2)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?BT2
+
+
+
+SYMBOL TABLE OF MODULE:  bt2 (BT2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        BT2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:000FH         PUBLIC        main
+  -------         PROC          MAIN
+  C:000FH         LINE#         3
+  C:000FH         LINE#         4
+  C:000FH         LINE#         5
+  C:000FH         LINE#         6
+  C:000FH         LINE#         8
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        BT2
+
+Program Size: data=9.0 xdata=0 code=17
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2017  11:57:23  PAGE 2
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

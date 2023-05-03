@@ -1,0 +1,44 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/09/2016  11:19:10  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\tao xung PRINT (.\Listings\tao xung.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+
+
+LINK MAP OF MODULE:  .\Objects\tao xung (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0006H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\tao xung (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        MAIN
+  D:00A0H         SYMBOL        P2
+  C:0000H         LINE#         2
+  C:0002H         LINE#         3
+  C:0004H         LINE#         4
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0006H BYTE ( 0%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=6
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

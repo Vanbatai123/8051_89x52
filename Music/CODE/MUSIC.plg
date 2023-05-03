@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\8051\Music\CODE\MUSIC.uvproj
+Project File Date:  04/21/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling MUSIC.C...
+MUSIC.C(75): warning C291: not every exit path returns a value
+linking...
+Program Size: data=25.0 xdata=0 code=2239
+creating hex file from "MUSIC"...
+"MUSIC" - 0 Error(s), 1 Warning(s).

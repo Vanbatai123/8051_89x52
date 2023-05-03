@@ -1,0 +1,79 @@
+C51 COMPILER V9.01   DIMMER                                                                03/01/2016 14:32:52 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE DIMMER
+OBJECT MODULE PLACED IN dimmer.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE dimmer.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                                            /*Thach anh su dung f=24Mhz*/
+   2          #include <REGX51.H>
+   3          sbit led = P2^0;
+   4           void delay_ms(int x)
+   5          {
+   6   1              int i,j;
+   7   1              for(i=0;i<x;i++)
+   8   1              {
+   9   2                      for(j=0;j<125;j++)
+  10   2                      {
+  11   3                                      
+  12   3                      }
+  13   2              }
+  14   1      }
+  15          void led_dimmer()
+  16          {
+  17   1              unsigned char i,j;
+  18   1              
+  19   1              for(i=1;i<=16;i++)
+  20   1              {
+  21   2                      j=0;
+  22   2                      while(++j<15)
+  23   2                      {         // tong time delay la 16*5 = 80 ms
+  24   3                              led = 1;
+  25   3                              delay_ms(i);    
+  26   3                              led = 0;
+  27   3                              delay_ms(16-i);
+  28   3                      }               
+  29   2              }
+  30   1              for(i=1;i<=16;i++)
+  31   1              {
+  32   2                      j=0;
+  33   2                      while(++j<15)
+  34   2                      {         // tong time delay la 16*5 = 80ms
+  35   3                              led = 1;
+  36   3                              delay_ms(16-i); 
+  37   3                              led = 0;
+  38   3                              delay_ms(i);
+  39   3                      }               
+  40   2              }
+  41   1      }
+  42          
+  43          
+  44          
+  45          void main()
+  46          {
+  47   1              while(1)
+  48   1              {
+  49   2                              led = 0;
+  50   2                              delay_ms(40);   
+  51   2                              led = 1;
+  52   2                              delay_ms(80);   
+  53   2              }
+  54   1      }
+
+C51 COMPILER V9.01   DIMMER                                                                03/01/2016 14:32:52 PAGE 2   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    144    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

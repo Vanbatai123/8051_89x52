@@ -1,0 +1,3815 @@
+#include <pcx51.inc>
+#include <Rci51Regs.inc>
+C0Seg     segment code
+CodeSeg   segment code
+DataSeg   segment data
+
+; --- external and public functions ---
+public            _ghi_dich
+public            _ktphim
+public            _readds
+public            _I2C_Read
+public            _delay
+public            _sosanh
+public            _quetled
+public            _I2C_Start
+public            _main
+public            _SCL_low
+public            _writeds
+public            _hienthi
+public            _rtc_write
+public            _rtc_read
+public            _SCL_high
+public            _I2C_Stop
+
+; --- external and public variables ---
+public            _second
+public            _minute
+public            _a
+public            _c
+public            _ma
+public            _x
+public            _i
+public            _m1
+public            _kt
+public            _hour
+public            _m2
+public            _k
+public            _m3
+
+                                        ; #line 1 // ------------- READS51 generated header -------------- 
+                                        ; #line 2 // module  : C:\Program Files\Rigel\Reads51\Work\ngat\mtp.c
+                                        ; #line 3 // created : 00:46:52, Monday, June 25, 2012
+                                        ; #line 4 // ----------------------------------------------------- 
+                                        ; #line 5 #include<reg52.h>   
+                                        ; #line 6 sbit  DATA1 = P2^7;
+                                        ; #line 7 sbit  SCK1 = P2^6;
+                                        ; #line 8 sbit  LACH1 = P2^5;
+                                        ; #line 9 sbit   set=P3^5;
+                                        ; #line 10 sbit   up=P3^6;
+                                        ; #line 11 sbit   down=P3^7;
+                                        ; #line 12 
+                                        ; #line 13 sbit sdi1 = P3^1;
+                                        ; #line 14 sbit str1 = P3^2;
+                                        ; #line 15 sbit clk1 = P3^0;
+                                        ; #line 16 unsigned char m1[]={0xfe,0xfc,0xf8,0xf0,0xe0,0xc0,0x80,0x00};
+                                        ; -----------------------------------------------
+          rseg    DataSeg               ; CHGSEG(1)
+_m1:                                    ; DECLPUBm(m1)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     R_AUX, #_m1           ; GETdm(m1)
+          mov     a, #0xFE              ; PUTwdn(254)
+          mov     @R_AUX, a
+          inc     R_AUX
+          mov     a, #0x00
+          mov     @R_AUX, a
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(1)
+          add     a, #0x01
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0xFC            ; GETw1n(252)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(2)
+          add     a, #0x02
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0xF8            ; GETw1n(248)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(3)
+          add     a, #0x03
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xF0            ; GETw1n(240)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(4)
+          add     a, #0x04
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xE0            ; GETw1n(224)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(5)
+          add     a, #0x05
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xC0            ; GETw1n(192)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(6)
+          add     a, #0x06
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x80            ; GETw1n(128)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(7)
+          add     a, #0x07
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+                                        ; #line 17 unsigned char m2[]={0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    DataSeg               ; CHGSEG(1)
+_m2:                                    ; DECLPUBm(m2)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     R_AUX, #_m2           ; GETdm(m2)
+          mov     a, #0xFF              ; PUTwdn(255)
+          mov     @R_AUX, a
+          inc     R_AUX
+          mov     a, #0x00
+          mov     @R_AUX, a
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(1)
+          add     a, #0x01
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(2)
+          add     a, #0x02
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(3)
+          add     a, #0x03
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(4)
+          add     a, #0x04
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(5)
+          add     a, #0x05
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(6)
+          add     a, #0x06
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m2             ; POINT2m(m2)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(7)
+          add     a, #0x07
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+                                        ; #line 18 unsigned char m3[]={0x00,0x01,0x03,0x07,0x0f,0x1f,0x3f,0x7f,0xff};
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    DataSeg               ; CHGSEG(1)
+_m3:                                    ; DECLPUBm(m3)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     R_AUX, #_m3           ; GETdm(m3)
+          mov     a, #0x00              ; PUTwdn(0)
+          mov     @R_AUX, a
+          inc     R_AUX
+          mov     a, #0x00
+          mov     @R_AUX, a
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(1)
+          add     a, #0x01
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(2)
+          add     a, #0x02
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0x03            ; GETw1n(3)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(3)
+          add     a, #0x03
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x07            ; GETw1n(7)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(4)
+          add     a, #0x04
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x0F            ; GETw1n(15)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(5)
+          add     a, #0x05
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x1F            ; GETw1n(31)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(6)
+          add     a, #0x06
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x3F            ; GETw1n(63)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(7)
+          add     a, #0x07
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x7F            ; GETw1n(127)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_m3             ; POINT2m(m3)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(8)
+          add     a, #0x08
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+                                        ; #line 19  
+                                        ; #line 20 
+                                        ; #line 21 unsigned char hour, minute, second,c;
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    DataSeg               ; CHGSEG(1)
+_hour:                                  ; DECLPUBm(hour)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; -----------------------------------------------
+_minute:                                ; DECLPUBm(minute)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; -----------------------------------------------
+_second:                                ; DECLPUBm(second)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; -----------------------------------------------
+_c:                                     ; DECLPUBm(c)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; #line 22 unsigned char ma[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90};
+                                        ; -----------------------------------------------
+_ma:                                    ; DECLPUBm(ma)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     R_AUX, #_ma           ; GETdm(ma)
+          mov     a, #0xC0              ; PUTwdn(192)
+          mov     @R_AUX, a
+          inc     R_AUX
+          mov     a, #0x00
+          mov     @R_AUX, a
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(1)
+          add     a, #0x01
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0xF9            ; GETw1n(249)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; rINC2(2)
+          add     a, #0x02
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0
+          mov     SRH, a
+          mov     PRL, #0xA4            ; GETw1n(164)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(3)
+          add     a, #0x03
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xB0            ; GETw1n(176)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(4)
+          add     a, #0x04
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x99            ; GETw1n(153)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(5)
+          add     a, #0x05
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x92            ; GETw1n(146)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(6)
+          add     a, #0x06
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x82            ; GETw1n(130)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(7)
+          add     a, #0x07
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0xF8            ; GETw1n(248)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(8)
+          add     a, #0x08
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x80            ; GETw1n(128)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          mov     a, SRL                ; ADD2n(9)
+          add     a, #0x09
+          mov     SRL, a
+          mov     a, SRH
+          addc    a, #0x00
+          mov     SRH, a
+          mov     PRL, #0x90            ; GETw1n(144)
+          mov     PRH, #0x00
+          lcall   __putwp1              ; PUTwp1
+                                        ; #line 23 unsigned char kt=0,a=0,i,k,x=0;
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    DataSeg               ; CHGSEG(1)
+_kt:                                    ; DECLPUBm(kt)
+          ds      0x01                  ; BYTEr0(1)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    DataSeg               ; CHGSEG(1)
+_a:                                     ; DECLPUBm(a)
+          ds      0x01                  ; BYTEr0(1)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    DataSeg               ; CHGSEG(1)
+_i:                                     ; DECLPUBm(i)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; -----------------------------------------------
+_k:                                     ; DECLPUBm(k)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; -----------------------------------------------
+_x:                                     ; DECLPUBm(x)
+          ds      0x01                  ; BYTEr0(1)
+          end                           ; ENDSEG(1)
+          rseg    C0Seg                 ; CHGSEG(3)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; #line 24 bit set0=1,set1=1,up1=1,up0=1,down0=1,down1=1;
+                                        ; #line 25 sbit SCL = P1^0;
+                                        ; #line 26 sbit SDA = P1^1;
+                                        ; #line 27 void delay(){
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(3)
+          rseg    CodeSeg               ; CHGSEG(2)
+_delay:                                 ; DECLPUBm(delay)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 28 unsigned char i;
+                                        ; #line 29 for (i = 0; i < 4; i++){};
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; ADDSP(1)
+          add     a, SPL
+          mov     SPL, a
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_1:                                     ; LABm(_1:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x04            ; GETw1n(4)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_3)
+          jnc     $+5
+          ljmp    _3
+                                        ; -----------------------------------------------
+_2:                                     ; LABm(_2:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; -----------------------------------------------
+          ljmp    _1                    ; JMPn(_1)
+_3:                                     ; LABm(_3:)
+                                        ; #line 30 }
+                                        ; -----------------------------------------------
+          mov     a, #0xFF              ; ADDSP(-1)
+          add     a, SPL
+          mov     SPL, a
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 31 
+                                        ; #line 32 //-----------------------------------------
+                                        ; #line 33 void SCL_high(){
+                                        ; -----------------------------------------------
+_SCL_high:                              ; DECLPUBm(SCL_high)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 34 SCL = 1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 35 delay();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _delay                ; CALLm(_delay)
+                                        ; #line 36 }
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 37 
+                                        ; #line 38 //------------------------------------------
+                                        ; #line 39 void SCL_low(){
+                                        ; -----------------------------------------------
+_SCL_low:                               ; DECLPUBm(SCL_low)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 40 SCL = 0;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 41 delay();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _delay                ; CALLm(_delay)
+                                        ; #line 42 }
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 43 
+                                        ; #line 44 //-------------------------------------------
+                                        ; #line 45 void I2C_Start(){
+                                        ; -----------------------------------------------
+_I2C_Start:                             ; DECLPUBm(I2C_Start)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 46 SDA = 1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 47 SCL = 1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 48 SDA = 0;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 49 delay();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _delay                ; CALLm(_delay)
+                                        ; #line 50 SCL = 0;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 51 SDA = 1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 52 }
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 53 
+                                        ; #line 54 //--------------------------------------------
+                                        ; #line 55 void I2C_Stop(){
+                                        ; -----------------------------------------------
+_I2C_Stop:                              ; DECLPUBm(I2C_Stop)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 56 SDA = 0;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 57 SCL_high();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _SCL_high             ; CALLm(_SCL_high)
+                                        ; #line 58 SDA = 1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 59 }
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 60 
+                                        ; #line 61 //----------------------------------------------
+                                        ; #line 62 bit I2C_Write(unsigned char dat){
+                                        ; #line 63 unsigned char i;
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(2)
+          rseg    DataSeg               ; CHGSEG(1)
+_i:                                     ; DECLPUBm(i)
+          ds      0x01                  ; BYTEr0(1)
+                                        ; #line 64 bit outbit;
+                                        ; #line 65 for (i = 1; i <= 8; i++){
+                                        ; #line 66 outbit=dat&0x80;
+                                        ; #line 67 SDA = outbit;
+                                        ; #line 68 dat = dat << 1;
+                                        ; #line 69 SCL_high();
+                                        ; #line 70 SCL_low();
+                                        ; #line 71 }
+                                        ; #line 72 SDA = 1; 
+                                        ; #line 73 SCL_high();
+                                        ; #line 74 outbit = SDA; 
+                                        ; #line 75 SCL_low();
+                                        ; #line 76 return(outbit); 
+                                        ; #line 66 outbit=dat&0x80;
+                                        ; #line 67 SDA = outbit;
+                                        ; #line 68 dat = dat << 1;
+                                        ; #line 69 SCL_high();
+                                        ; #line 70 SCL_low();
+                                        ; #line 71 }
+                                        ; #line 72 SDA = 1; 
+                                        ; #line 73 SCL_high();
+                                        ; #line 74 outbit = SDA; 
+                                        ; #line 75 SCL_low();
+                                        ; #line 76 return(outbit); 
+                                        ; #line 77 }
+                                        ; #line 78 
+                                        ; #line 79 //----------------------------------------------------
+                                        ; #line 80 unsigned char I2C_Read(bit ack){
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(1)
+          rseg    CodeSeg               ; CHGSEG(2)
+_I2C_Read:                              ; DECLPUBm(I2C_Read)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 81 unsigned char i, dat;
+                                        ; #line 82 bit inbit;
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; ADDSP(2)
+          add     a, SPL
+          mov     SPL, a
+          mov     R_AUX, BPL            ; GETw1s(-2)
+          mov     a, #0xFE
+          add     a, R_AUX
+          mov     R_AUX, a
+          mov     PRL, @R_AUX
+          inc     R_AUX
+          mov     PRH, @R_AUX
+                                        ; #line 83 
+                                        ; #line 84 dat = 0;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; #line 85 for(i=1;i<=8;i++) {
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_4:                                     ; LABm(_4:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ult12               ; JLT12un(_6)
+          jnc     $+5
+          ljmp    _6
+                                        ; #line 86 SCL_high();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _SCL_high             ; CALLm(_SCL_high)
+                                        ; #line 87 inbit = SDA;
+                                        ; #line 88 dat = dat << 1;
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __swap12              ; SWAP12
+          lcall   __asl12               ; ASL12
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; #line 89 dat = dat | inbit;
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          lcall   __or12                ; OR12
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; #line 90 SCL_low();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _SCL_low              ; CALLm(_SCL_low)
+                                        ; #line 91 }
+                                        ; -----------------------------------------------
+_5:                                     ; LABm(_5:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 92 if (ack) SDA = 0; 
+                                        ; -----------------------------------------------
+          ljmp    _4                    ; JMPn(_4)
+_6:                                     ; LABm(_6:)
+                                        ; -----------------------------------------------
+          mov     R_AUX, BPL            ; GETw1s(-4)
+          mov     a, #0xFC
+          add     a, R_AUX
+          mov     R_AUX, a
+          mov     PRL, @R_AUX
+          inc     R_AUX
+          mov     PRH, @R_AUX
+          mov     a, PRL                ; EQ10(_7)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _7
+                                        ; -----------------------------------------------
+_7:                                     ; LABm(_7:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 93 else SDA = 1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 94 SCL_high();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _SCL_high             ; CALLm(_SCL_high)
+                                        ; #line 95 SCL = 0;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 96 SDA = 1; 
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 97 delay();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _delay                ; CALLm(_delay)
+                                        ; #line 98 return(dat);
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; RETURN(-2)
+          add     a, SPL
+          mov     SPL, a
+          pop     BPL
+          ret
+                                        ; #line 99 } 
+                                        ; #line 100 
+                                        ; #line 101 //-------------------------------------------------------------
+                                        ; #line 102 void rtc_write(unsigned char add, unsigned char dat){
+                                        ; -----------------------------------------------
+_rtc_write:                             ; DECLPUBm(rtc_write)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 103 I2C_Start();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Start            ; CALLm(_I2C_Start)
+                                        ; #line 104 I2C_Write(0xd0);
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0xD0            ; GETw1n(208)
+          mov     PRH, #0x00
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 105 I2C_Write(add); 
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0xFE              ; GETb1su(-2)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 106 I2C_Write(((dat/10)<<4)|(dat%10)); 
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0xFC              ; GETb2su(-4)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x0A            ; GETw1n(10)
+          mov     PRH, #0x00
+          lcall   __swap12              ; SWAP12
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #0x04            ; GETw2n(4)
+          mov     SRH, #0x00
+          lcall   __asl12               ; ASL12
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0xFC              ; GETb2su(-4)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x0A            ; GETw1n(10)
+          mov     PRH, #0x00
+          lcall   __swap12              ; SWAP12
+          lcall   __umod12              ; MOD12u
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          lcall   __or12                ; OR12
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 107 I2C_Stop();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Stop             ; CALLm(_I2C_Stop)
+                                        ; #line 108 }
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 109 
+                                        ; #line 110 unsigned char rtc_read(unsigned char add){
+                                        ; -----------------------------------------------
+_rtc_read:                              ; DECLPUBm(rtc_read)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 111 unsigned char dat;
+                                        ; #line 112 I2C_Start();
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; ADDSP(1)
+          add     a, SPL
+          mov     SPL, a
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Start            ; CALLm(_I2C_Start)
+                                        ; #line 113 I2C_Write(0xd0); 
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0xD0            ; GETw1n(208)
+          mov     PRH, #0x00
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 114 I2C_Write(add);
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0xFE              ; GETb1su(-2)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 115 I2C_Start(); 
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Start            ; CALLm(_I2C_Start)
+                                        ; #line 116 I2C_Write(0xd1); 
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0xD1            ; GETw1n(209)
+          mov     PRH, #0x00
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 117 dat = I2C_Read(0);
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _I2C_Read             ; CALLm(_I2C_Read)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; #line 118 I2C_Stop();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Stop             ; CALLm(_I2C_Stop)
+                                        ; #line 119 dat = (dat & 0x0f) + (dat>>4)*10;
+                                        ; -----------------------------------------------
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x0F            ; GETw1n(15)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x04            ; GETw1n(4)
+          mov     PRH, #0x00
+          lcall   __swap12              ; SWAP12
+          lcall   __asr12               ; ASR12
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umul12              ; MUL12u
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          lcall   __add12               ; ADD12
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; #line 120 return (dat);
+                                        ; -----------------------------------------------
+          lcall   __getb1su0            ; GETb1su(0)
+                                        ; -----------------------------------------------
+          mov     a, #0xFF              ; RETURN(-1)
+          add     a, SPL
+          mov     SPL, a
+          pop     BPL
+          ret
+                                        ; #line 121 }
+                                        ; #line 122 void writeds(){
+                                        ; -----------------------------------------------
+_writeds:                               ; DECLPUBm(writeds)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 123 rtc_write(0x00, second);
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x02         ; ARGCNTn(2)
+          lcall   _rtc_write            ; CALLm(_rtc_write)
+          mov     a, #0xFC              ; ADDSP(-4)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 124 rtc_write(0x01, minute);
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x02         ; ARGCNTn(2)
+          lcall   _rtc_write            ; CALLm(_rtc_write)
+          mov     a, #0xFC              ; ADDSP(-4)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 125 rtc_write(0x02, hour);
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0x02            ; GETw1n(2)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x02         ; ARGCNTn(2)
+          lcall   _rtc_write            ; CALLm(_rtc_write)
+          mov     a, #0xFC              ; ADDSP(-4)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 126 }
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 127 
+                                        ; #line 128 void readds()
+                                        ; #line 129 {
+                                        ; -----------------------------------------------
+_readds:                                ; DECLPUBm(readds)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 129 {
+                                        ; #line 130 if(kt==0)
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_8)
+          jnc     $+5
+          ljmp    _8
+                                        ; #line 131 {
+                                        ; #line 132 if(a==1)
+                                        ; -----------------------------------------------
+          mov     PRL, _a               ; GETb1mu(a)
+          mov     PRH, #0
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_9)
+          jnc     $+5
+          ljmp    _9
+                                        ; #line 133 {writeds();a=0;
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _writeds              ; CALLm(_writeds)
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_a            ; PUTbm_(a), COMMAn(0)
+          mov     @R_AUX, #0x00
+                                        ; #line 134 }
+                                        ; #line 135 second = rtc_read(0x00);
+                                        ; -----------------------------------------------
+_9:                                     ; LABm(_9:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _rtc_read             ; CALLm(_rtc_read)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+          mov     _second, PRL          ; PUTbm1(second)
+                                        ; #line 136 minute = rtc_read(0x01);
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _rtc_read             ; CALLm(_rtc_read)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+          mov     _minute, PRL          ; PUTbm1(minute)
+                                        ; #line 137 hour = rtc_read(0x02);
+                                        ; -----------------------------------------------
+          mov     PRL, #0x02            ; GETw1n(2)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _rtc_read             ; CALLm(_rtc_read)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+          mov     _hour, PRL            ; PUTbm1(hour)
+                                        ; #line 138 }
+                                        ; #line 139 }
+                                        ; -----------------------------------------------
+_8:                                     ; LABm(_8:)
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 140 
+                                        ; #line 141 void hienthi(unsigned char x)
+                                        ; #line 142 {
+                                        ; -----------------------------------------------
+_hienthi:                               ; DECLPUBm(hienthi)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 142 {
+                                        ; #line 143 unsigned int i,temp;
+                                        ; #line 144 for(i=0;i<8;i++)
+                                        ; -----------------------------------------------
+          mov     a, #0x04              ; ADDSP(4)
+          add     a, SPL
+          mov     SPL, a
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTw1s(0)
+          mov     @R_AUX, PRL
+          inc     R_AUX
+          mov     @R_AUX, PRH
+                                        ; -----------------------------------------------
+_10:                                    ; LABm(_10:)
+          mov     R_AUX, BPL            ; GETw1s(0)
+          mov     PRL, @R_AUX
+          inc     R_AUX
+          mov     PRH, @R_AUX
+          mov     SRL, #0x08            ; GETw2n(8)
+          mov     SRH, #0x00
+          lcall   __uge12               ; JGE12un(_12)
+          jnc     $+5
+          ljmp    _12
+                                        ; #line 145 {
+                                        ; #line 146 temp=x;
+                                        ; -----------------------------------------------
+          mov     PRL, _x               ; GETb1mu(x)
+          mov     PRH, #0
+          mov     R_AUX, BPL            ; PUTw1s(2)
+          mov     a, #0x02
+          add     a, R_AUX
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+          inc     R_AUX
+          mov     @R_AUX, PRH
+                                        ; #line 147 temp=temp&0x80;
+                                        ; -----------------------------------------------
+          mov     R_AUX, BPL            ; GETw1s(2)
+          mov     a, #0x02
+          add     a, R_AUX
+          mov     R_AUX, a
+          mov     PRL, @R_AUX
+          inc     R_AUX
+          mov     PRH, @R_AUX
+          mov     SRL, #0x80            ; GETw2n(128)
+          mov     SRH, #0x00
+          lcall   __and12               ; AND12
+          mov     R_AUX, BPL            ; PUTw1s(2)
+          mov     a, #0x02
+          add     a, R_AUX
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+          inc     R_AUX
+          mov     @R_AUX, PRH
+                                        ; #line 148 if(temp==0x80)
+                                        ; -----------------------------------------------
+          mov     R_AUX, BPL            ; GETw1s(2)
+          mov     a, #0x02
+          add     a, R_AUX
+          mov     R_AUX, a
+          mov     PRL, @R_AUX
+          inc     R_AUX
+          mov     PRH, @R_AUX
+          mov     SRL, #0x80            ; GETw2n(128)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_13)
+          jnc     $+5
+          ljmp    _13
+                                        ; #line 149 DATA1=1;   
+                                        ; -----------------------------------------------
+_13:                                    ; LABm(_13:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 150 else
+                                        ; #line 151 DATA1=0;    
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 152 x*=2;   
+                                        ; -----------------------------------------------
+          mov     PRL, _x               ; GETb1mu(x)
+          mov     PRH, #0
+          mov     SRL, #0x02            ; GETw2n(2)
+          mov     SRH, #0x00
+          lcall   __umul12              ; MUL12u
+          mov     _x, PRL               ; PUTbm1(x)
+                                        ; #line 153 SCK1=0;   
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 154 SCK1=1;  
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 155 }
+                                        ; -----------------------------------------------
+_11:                                    ; LABm(_11:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __incwp               ; INCwp
+                                        ; #line 156 }
+                                        ; -----------------------------------------------
+          ljmp    _10                   ; JMPn(_10)
+_12:                                    ; LABm(_12:)
+          mov     a, #0xFC              ; ADDSP(-4)
+          add     a, SPL
+          mov     SPL, a
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 157 void quetled()
+                                        ; #line 158 {
+                                        ; -----------------------------------------------
+_quetled:                               ; DECLPUBm(quetled)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 158 {
+                                        ; #line 159 
+                                        ; #line 160 if(kt==0)
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_14)
+          jnc     $+5
+          ljmp    _14
+                                        ; #line 161 {
+                                        ; #line 162 hienthi(ma[second%10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 163 hienthi(ma[second/10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 164 hienthi(ma[minute%10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 165 hienthi(ma[minute/10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 166 hienthi(ma[hour%10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 167 hienthi(ma[hour/10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 168 LACH1=0;   
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 169 LACH1=1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 170 }
+                                        ; #line 171 if(kt==1)
+                                        ; -----------------------------------------------
+_14:                                    ; LABm(_14:)
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_15)
+          jnc     $+5
+          ljmp    _15
+                                        ; #line 172 {
+                                        ; #line 173 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 174 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 175 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 176 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 177 hienthi(ma[hour%10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 178 hienthi(ma[hour/10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 179 LACH1=0;   
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 180 LACH1=1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 181 }
+                                        ; #line 182 if(kt==2)
+                                        ; -----------------------------------------------
+_15:                                    ; LABm(_15:)
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     SRL, #0x02            ; GETw2n(2)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_16)
+          jnc     $+5
+          ljmp    _16
+                                        ; #line 183 {
+                                        ; #line 184 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 185 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 186 hienthi(ma[minute%10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 187 hienthi(ma[minute/10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 188 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 189 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 190 LACH1=0;   
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 191 LACH1=1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 192 }
+                                        ; #line 193 if(kt==3)
+                                        ; -----------------------------------------------
+_16:                                    ; LABm(_16:)
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     SRL, #0x03            ; GETw2n(3)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_17)
+          jnc     $+5
+          ljmp    _17
+                                        ; #line 194 {
+                                        ; #line 195 hienthi(ma[second%10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 196 hienthi(ma[second/10]);
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     SRL, #0x0A            ; GETw2n(10)
+          mov     SRH, #0x00
+          lcall   __udiv12              ; DIV12u
+          mov     SRL, #_ma             ; POINT2m(ma)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 197 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 198 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 199 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 200 hienthi(0xff);
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _hienthi              ; CALLm(_hienthi)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 201 LACH1=0;  
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; #line 202 LACH1=1;
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 203 }
+                                        ; #line 204 }
+                                        ; -----------------------------------------------
+_17:                                    ; LABm(_17:)
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 205 void ktphim()
+                                        ; #line 206 {
+                                        ; -----------------------------------------------
+_ktphim:                                ; DECLPUBm(ktphim)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 206 {
+                                        ; #line 207 set0=set1;set1=set;
+                                        ; #line 208 if((set0==1)&&(set1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_19)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _19
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_19)
+          jnc     $+5
+          ljmp    _19
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _20                   ; JMPn(_20)
+_19:                                    ; LABm(_19:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_20:                                    ; LABm(_20:)
+          mov     a, PRL                ; EQ10(_18)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _18
+                                        ; #line 209   {
+                                        ; #line 210    kt++;
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     a, #0x01              ; rINC1(1)
+          lcall   __rinc1
+          mov     _kt, PRL              ; PUTbm1(kt)
+                                        ; #line 211    if(kt>3)kt=0;
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+          mov     SRL, #0x03            ; GETw2n(3)
+          mov     SRH, #0x00
+          lcall   __ule12               ; JLE12un(_21)
+          jnc     $+5
+          ljmp    _21
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_kt           ; PUTbm_(kt), COMMAn(0)
+          mov     @R_AUX, #0x00
+                                        ; #line 212   }
+                                        ; -----------------------------------------------
+_21:                                    ; LABm(_21:)
+                                        ; #line 213 switch(kt)
+                                        ; -----------------------------------------------
+_18:                                    ; LABm(_18:)
+                                        ; -----------------------------------------------
+          mov     PRL, _kt              ; GETb1mu(kt)
+          mov     PRH, #0
+                                        ; -----------------------------------------------
+          ljmp    _22                   ; JMPn(_22)
+                                        ; #line 214  {
+                                        ; #line 215   case 0:break;
+                                        ; -----------------------------------------------
+_24:                                    ; LABm(_24:)
+                                        ; #line 216   case 1:
+                                        ; -----------------------------------------------
+          ljmp    _23                   ; JMPn(_23)
+                                        ; #line 217     {
+                                        ; -----------------------------------------------
+_25:                                    ; LABm(_25:)
+                                        ; #line 218       up0=up1;up1=up; a=1;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_a            ; PUTbm_(a), COMMAn(1)
+          mov     @R_AUX, #0x01
+                                        ; #line 219       if((up0==1)&&(up1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_27)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _27
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_27)
+          jnc     $+5
+          ljmp    _27
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _28                   ; JMPn(_28)
+_27:                                    ; LABm(_27:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_28:                                    ; LABm(_28:)
+          mov     a, PRL                ; EQ10(_26)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _26
+                                        ; #line 220        {
+                                        ; #line 221          hour++;
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     a, #0x01              ; rINC1(1)
+          lcall   __rinc1
+          mov     _hour, PRL            ; PUTbm1(hour)
+                                        ; #line 222 		  if(hour>23)hour=0;
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     SRL, #0x17            ; GETw2n(23)
+          mov     SRH, #0x00
+          lcall   __ule12               ; JLE12un(_29)
+          jnc     $+5
+          ljmp    _29
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_hour         ; PUTbm_(hour), COMMAn(0)
+          mov     @R_AUX, #0x00
+                                        ; #line 223        }
+                                        ; -----------------------------------------------
+_29:                                    ; LABm(_29:)
+                                        ; #line 224        down0=down1;down1=down;
+                                        ; -----------------------------------------------
+_26:                                    ; LABm(_26:)
+                                        ; #line 225        if((down0==1)&&(down1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_31)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _31
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_31)
+          jnc     $+5
+          ljmp    _31
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _32                   ; JMPn(_32)
+_31:                                    ; LABm(_31:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_32:                                    ; LABm(_32:)
+          mov     a, PRL                ; EQ10(_30)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _30
+                                        ; #line 226         {
+                                        ; #line 227           hour--;
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     R_AUX, #_hour         ; SUBm_(hour)
+          clr     C
+          mov     a, @R_AUX
+          subb    a, #0x01
+          mov     @R_AUX, a
+          inc     R_AUX
+          mov     a, @R_AUX
+          subb    a, #0x00
+          mov     @R_AUX, a
+                                        ; #line 228 		   if(hour==-1)
+                                        ; -----------------------------------------------
+          mov     PRL, _hour            ; GETb1mu(hour)
+          mov     PRH, #0
+          mov     SRL, #0xFF            ; GETw2n(-1)
+          mov     SRH, #0xFF
+          lcall   __ne12                ; JNE12n(_33)
+          jnc     $+5
+          ljmp    _33
+                                        ; #line 229 		   hour=23;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_hour         ; PUTbm_(hour), COMMAn(23)
+          mov     @R_AUX, #0x17
+                                        ; #line 230         }
+                                        ; -----------------------------------------------
+_33:                                    ; LABm(_33:)
+                                        ; #line 231      break;
+                                        ; -----------------------------------------------
+_30:                                    ; LABm(_30:)
+                                        ; #line 232    }
+                                        ; -----------------------------------------------
+          ljmp    _23                   ; JMPn(_23)
+                                        ; #line 233   case 2:
+                                        ; #line 234     {
+                                        ; -----------------------------------------------
+_34:                                    ; LABm(_34:)
+                                        ; #line 235      up0=up1;up1=up; a=1;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_a            ; PUTbm_(a), COMMAn(1)
+          mov     @R_AUX, #0x01
+                                        ; #line 236      if((up0==1)&&(up1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_36)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _36
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_36)
+          jnc     $+5
+          ljmp    _36
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _37                   ; JMPn(_37)
+_36:                                    ; LABm(_36:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_37:                                    ; LABm(_37:)
+          mov     a, PRL                ; EQ10(_35)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _35
+                                        ; #line 237        {
+                                        ; #line 238          minute++;
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     a, #0x01              ; rINC1(1)
+          lcall   __rinc1
+          mov     _minute, PRL          ; PUTbm1(minute)
+                                        ; #line 239 		 if(minute>59)
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     SRL, #0x3B            ; GETw2n(59)
+          mov     SRH, #0x00
+          lcall   __ule12               ; JLE12un(_38)
+          jnc     $+5
+          ljmp    _38
+                                        ; #line 240 		 minute=0;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_minute       ; PUTbm_(minute), COMMAn(0)
+          mov     @R_AUX, #0x00
+                                        ; #line 241        }
+                                        ; -----------------------------------------------
+_38:                                    ; LABm(_38:)
+                                        ; #line 242      down0=down1;down1=down;
+                                        ; -----------------------------------------------
+_35:                                    ; LABm(_35:)
+                                        ; #line 243      if((down0==1)&&(down1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_40)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _40
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_40)
+          jnc     $+5
+          ljmp    _40
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _41                   ; JMPn(_41)
+_40:                                    ; LABm(_40:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_41:                                    ; LABm(_41:)
+          mov     a, PRL                ; EQ10(_39)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _39
+                                        ; #line 244        {
+                                        ; #line 245          minute--;
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     R_AUX, #_minute       ; SUBm_(minute)
+          clr     C
+          mov     a, @R_AUX
+          subb    a, #0x01
+          mov     @R_AUX, a
+          inc     R_AUX
+          mov     a, @R_AUX
+          subb    a, #0x00
+          mov     @R_AUX, a
+                                        ; #line 246 		 if(minute==-1)
+                                        ; -----------------------------------------------
+          mov     PRL, _minute          ; GETb1mu(minute)
+          mov     PRH, #0
+          mov     SRL, #0xFF            ; GETw2n(-1)
+          mov     SRH, #0xFF
+          lcall   __ne12                ; JNE12n(_42)
+          jnc     $+5
+          ljmp    _42
+                                        ; #line 247 		 minute=59;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_minute       ; PUTbm_(minute), COMMAn(59)
+          mov     @R_AUX, #0x3B
+                                        ; #line 248        }
+                                        ; -----------------------------------------------
+_42:                                    ; LABm(_42:)
+                                        ; #line 249       break;
+                                        ; -----------------------------------------------
+_39:                                    ; LABm(_39:)
+                                        ; #line 250     }
+                                        ; -----------------------------------------------
+          ljmp    _23                   ; JMPn(_23)
+                                        ; #line 251 
+                                        ; #line 252   case 3:
+                                        ; #line 253     {
+                                        ; -----------------------------------------------
+_43:                                    ; LABm(_43:)
+                                        ; #line 254      up0=up1;up1=up;a=1;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_a            ; PUTbm_(a), COMMAn(1)
+          mov     @R_AUX, #0x01
+                                        ; #line 255      if((up0==1)&&(up1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_45)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _45
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_45)
+          jnc     $+5
+          ljmp    _45
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _46                   ; JMPn(_46)
+_45:                                    ; LABm(_45:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_46:                                    ; LABm(_46:)
+          mov     a, PRL                ; EQ10(_44)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _44
+                                        ; #line 256       {
+                                        ; #line 257        second++;
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     a, #0x01              ; rINC1(1)
+          lcall   __rinc1
+          mov     _second, PRL          ; PUTbm1(second)
+                                        ; #line 258 		 if(second>59)
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     SRL, #0x3B            ; GETw2n(59)
+          mov     SRH, #0x00
+          lcall   __ule12               ; JLE12un(_47)
+          jnc     $+5
+          ljmp    _47
+                                        ; #line 259 		 second++;
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     a, #0x01              ; rINC1(1)
+          lcall   __rinc1
+          mov     _second, PRL          ; PUTbm1(second)
+                                        ; #line 260       }
+                                        ; -----------------------------------------------
+_47:                                    ; LABm(_47:)
+                                        ; #line 261       down0=down1;down1=down;
+                                        ; -----------------------------------------------
+_44:                                    ; LABm(_44:)
+                                        ; #line 262      if((down0==1)&&(down1==0))
+                                        ; -----------------------------------------------
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __eq12                ; EQ12
+          mov     a, PRL                ; EQ10(_49)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _49
+          mov     SRL, #0x00            ; GETw2n(0)
+          mov     SRH, #0x00
+          lcall   __ne12                ; JNE12n(_49)
+          jnc     $+5
+          ljmp    _49
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _50                   ; JMPn(_50)
+_49:                                    ; LABm(_49:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_50:                                    ; LABm(_50:)
+          mov     a, PRL                ; EQ10(_48)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _48
+                                        ; #line 263       {
+                                        ; #line 264       second=0;
+                                        ; -----------------------------------------------
+          mov     R_AUX, #_second       ; PUTbm_(second), COMMAn(0)
+          mov     @R_AUX, #0x00
+                                        ; #line 265       }
+                                        ; #line 266      break;
+                                        ; -----------------------------------------------
+_48:                                    ; LABm(_48:)
+                                        ; #line 267     }
+                                        ; -----------------------------------------------
+          ljmp    _23                   ; JMPn(_23)
+                                        ; #line 268    }
+                                        ; -----------------------------------------------
+          ljmp    _23                   ; JMPn(_23)
+                                        ; #line 269 }
+                                        ; -----------------------------------------------
+_22:                                    ; LABm(_22:)
+          mov     b, #0x04              ; SWITCH(4)
+          lcall   __switch
+          ljmp    _23                   ; JMPn(_23)
+          dw      0x0000                ; WORDn(0)
+          ljmp    _24                   ; JMPn(_24)
+          dw      0x0001                ; WORDn(1)
+          ljmp    _25                   ; JMPn(_25)
+          dw      0x0002                ; WORDn(2)
+          ljmp    _34                   ; JMPn(_34)
+          dw      0x0003                ; WORDn(3)
+          ljmp    _43                   ; JMPn(_43)
+_23:                                    ; LABm(_23:)
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 270 
+                                        ; #line 271 void ghi_dich(unsigned char t1,unsigned char t2,unsigned char t3,unsigned char t4,unsigned char t5,unsigned char t6,unsigned char t7,unsigned char t8)
+                                        ; #line 272 {unsigned char i,Q; 
+                                        ; -----------------------------------------------
+_ghi_dich:                              ; DECLPUBm(ghi_dich)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 272 {unsigned char i,Q; 
+                                        ; #line 273 Q=t8;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; ADDSP(2)
+          add     a, SPL
+          mov     SPL, a
+          mov     a, #0xF0              ; GETb1su(-16)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_51:                                    ; LABm(_51:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_53)
+          jnc     $+5
+          ljmp    _53
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_54)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _54
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _55                   ; JMPn(_55)
+_54:                                    ; LABm(_54:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_55:                                    ; LABm(_55:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_52:                                    ; LABm(_52:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 274 Q=t7;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+                                        ; -----------------------------------------------
+          ljmp    _51                   ; JMPn(_51)
+_53:                                    ; LABm(_53:)
+                                        ; -----------------------------------------------
+          mov     a, #0xF2              ; GETb1su(-14)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_56:                                    ; LABm(_56:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_58)
+          jnc     $+5
+          ljmp    _58
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_59)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _59
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _60                   ; JMPn(_60)
+_59:                                    ; LABm(_59:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_60:                                    ; LABm(_60:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_57:                                    ; LABm(_57:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 275 Q=t6;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+                                        ; -----------------------------------------------
+          ljmp    _56                   ; JMPn(_56)
+_58:                                    ; LABm(_58:)
+                                        ; -----------------------------------------------
+          mov     a, #0xF4              ; GETb1su(-12)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_61:                                    ; LABm(_61:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_63)
+          jnc     $+5
+          ljmp    _63
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_64)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _64
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _65                   ; JMPn(_65)
+_64:                                    ; LABm(_64:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_65:                                    ; LABm(_65:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_62:                                    ; LABm(_62:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 276 Q=t5;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+                                        ; -----------------------------------------------
+          ljmp    _61                   ; JMPn(_61)
+_63:                                    ; LABm(_63:)
+                                        ; -----------------------------------------------
+          mov     a, #0xF6              ; GETb1su(-10)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_66:                                    ; LABm(_66:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_68)
+          jnc     $+5
+          ljmp    _68
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_69)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _69
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _70                   ; JMPn(_70)
+_69:                                    ; LABm(_69:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_70:                                    ; LABm(_70:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_67:                                    ; LABm(_67:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 277 Q=t4;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+                                        ; -----------------------------------------------
+          ljmp    _66                   ; JMPn(_66)
+_68:                                    ; LABm(_68:)
+                                        ; -----------------------------------------------
+          mov     a, #0xF8              ; GETb1su(-8)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_71:                                    ; LABm(_71:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_73)
+          jnc     $+5
+          ljmp    _73
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_74)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _74
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _75                   ; JMPn(_75)
+_74:                                    ; LABm(_74:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_75:                                    ; LABm(_75:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_72:                                    ; LABm(_72:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 278 Q=t3;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+                                        ; -----------------------------------------------
+          ljmp    _71                   ; JMPn(_71)
+_73:                                    ; LABm(_73:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFA              ; GETb1su(-6)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_76:                                    ; LABm(_76:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_78)
+          jnc     $+5
+          ljmp    _78
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_79)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _79
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _80                   ; JMPn(_80)
+_79:                                    ; LABm(_79:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_80:                                    ; LABm(_80:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_77:                                    ; LABm(_77:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 279 Q=t2;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; } 
+                                        ; -----------------------------------------------
+          ljmp    _76                   ; JMPn(_76)
+_78:                                    ; LABm(_78:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFC              ; GETb1su(-4)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_81:                                    ; LABm(_81:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_83)
+          jnc     $+5
+          ljmp    _83
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_84)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _84
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _85                   ; JMPn(_85)
+_84:                                    ; LABm(_84:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_85:                                    ; LABm(_85:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_82:                                    ; LABm(_82:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 280 Q=t1;  for(i=0;i<8;i++){sdi1=(Q&0x01)?1:0;clk1=1;clk1=0;Q>>=1; }
+                                        ; -----------------------------------------------
+          ljmp    _81                   ; JMPn(_81)
+_83:                                    ; LABm(_83:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb1su(-2)
+          mov     b, #0xFF
+          lcall   __getb1su
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_86:                                    ; LABm(_86:)
+          lcall   __getb2su0            ; GETb2su(0)
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_88)
+          jnc     $+5
+          ljmp    _88
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb2su(1)
+          mov     b, #0x00
+          lcall   __getb2su
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          lcall   __and12               ; AND12
+          mov     a, PRL                ; EQ10(_89)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _89
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _90                   ; JMPn(_90)
+_89:                                    ; LABm(_89:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_90:                                    ; LABm(_90:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; POINT2s(1)
+          add     a, BPL
+          mov     SRL, a
+          mov     SRH, #0
+          lcall   __push2               ; PUSH2
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     SRL, #0x01            ; GETw2n(1)
+          mov     SRH, #0x00
+          lcall   __asr12               ; ASR12
+          dec     R_SP                  ; POP2
+          mov     SRH, @R_SP
+          dec     R_SP
+          mov     SRL, @R_SP
+          mov     R_AUX, SRL            ; PUTbp1
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+_87:                                    ; LABm(_87:)
+          mov     SRL, BPL              ; POINT2s(0)
+          mov     SRH, #0
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     R_AUX, SRL            ; INCbp
+          inc     @R_AUX
+                                        ; #line 281 str1=0; str1=1;
+                                        ; -----------------------------------------------
+          ljmp    _86                   ; JMPn(_86)
+_88:                                    ; LABm(_88:)
+                                        ; -----------------------------------------------
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+                                        ; -----------------------------------------------
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+                                        ; #line 282 }
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 283 void sosanh(unsigned char gia_tri)
+                                        ; #line 284 	{unsigned char k1,k2,k3;
+                                        ; -----------------------------------------------
+_sosanh:                                ; DECLPUBm(sosanh)
+          push    BPL                   ; ENTER
+          mov     BPL, SPL
+                                        ; #line 284 	{unsigned char k1,k2,k3;
+                                        ; #line 285 	 k1=0;k2=m1[gia_tri%8];k3=0xff;
+                                        ; -----------------------------------------------
+          mov     a, #0x03              ; ADDSP(3)
+          add     a, SPL
+          mov     SPL, a
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          mov     R_AUX, BPL            ; PUTb1s(0)
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __swap12              ; SWAP12
+          lcall   __umod12              ; MOD12u
+          mov     SRL, #_m1             ; POINT2m(m1)
+          mov     SRH, #0
+          lcall   __add21               ; ADD21
+          lcall   __getb1pu0            ; GETb1pu(0)
+          mov     a, #0x01              ; PUTb1s(1)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; -----------------------------------------------
+          mov     PRL, #0xFF            ; GETw1n(255)
+          mov     PRH, #0x00
+          mov     a, #0x02              ; PUTb1s(2)
+          add     a, BPL
+          mov     R_AUX, a
+          mov     @R_AUX, PRL
+                                        ; #line 286 	 if((gia_tri>=0)&&(gia_tri<8))  ghi_dich(k2,k3,k3,k3,k3,k3,k3,k3);
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_92)
+          jnc     $+5
+          ljmp    _92
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_92)
+          jnc     $+5
+          ljmp    _92
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _93                   ; JMPn(_93)
+_92:                                    ; LABm(_92:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_93:                                    ; LABm(_93:)
+          mov     a, PRL                ; EQ10(_91)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _91
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 287 	 if((gia_tri>=8)&&(gia_tri<16)) ghi_dich(k1,k2,k3,k3,k3,k3,k3,k3);
+                                        ; -----------------------------------------------
+_91:                                    ; LABm(_91:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x08            ; GETw1n(8)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_95)
+          jnc     $+5
+          ljmp    _95
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x10            ; GETw1n(16)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_95)
+          jnc     $+5
+          ljmp    _95
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _96                   ; JMPn(_96)
+_95:                                    ; LABm(_95:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_96:                                    ; LABm(_96:)
+          mov     a, PRL                ; EQ10(_94)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _94
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 288 	 if((gia_tri>=16)&&(gia_tri<24))ghi_dich(k1,k1,k2,k3,k3,k3,k3,k3);
+                                        ; -----------------------------------------------
+_94:                                    ; LABm(_94:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x10            ; GETw1n(16)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_98)
+          jnc     $+5
+          ljmp    _98
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x18            ; GETw1n(24)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_98)
+          jnc     $+5
+          ljmp    _98
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _99                   ; JMPn(_99)
+_98:                                    ; LABm(_98:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_99:                                    ; LABm(_99:)
+          mov     a, PRL                ; EQ10(_97)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _97
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 289 	 if((gia_tri>=24)&&(gia_tri<32))ghi_dich(k1,k1,k1,k2,k3,k3,k3,k3);
+                                        ; -----------------------------------------------
+_97:                                    ; LABm(_97:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x18            ; GETw1n(24)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_101)
+          jnc     $+5
+          ljmp    _101
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x20            ; GETw1n(32)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_101)
+          jnc     $+5
+          ljmp    _101
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _102                  ; JMPn(_102)
+_101:                                   ; LABm(_101:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_102:                                   ; LABm(_102:)
+          mov     a, PRL                ; EQ10(_100)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _100
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 290 	 if((gia_tri>=32)&&(gia_tri<40))ghi_dich(k1,k1,k1,k1,k2,k3,k3,k3);
+                                        ; -----------------------------------------------
+_100:                                   ; LABm(_100:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x20            ; GETw1n(32)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_104)
+          jnc     $+5
+          ljmp    _104
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x28            ; GETw1n(40)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_104)
+          jnc     $+5
+          ljmp    _104
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _105                  ; JMPn(_105)
+_104:                                   ; LABm(_104:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_105:                                   ; LABm(_105:)
+          mov     a, PRL                ; EQ10(_103)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _103
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 291 	 if((gia_tri>=40)&&(gia_tri<48))ghi_dich(k1,k1,k1,k1,k1,k2,k3,k3);
+                                        ; -----------------------------------------------
+_103:                                   ; LABm(_103:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x28            ; GETw1n(40)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_107)
+          jnc     $+5
+          ljmp    _107
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x30            ; GETw1n(48)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_107)
+          jnc     $+5
+          ljmp    _107
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _108                  ; JMPn(_108)
+_107:                                   ; LABm(_107:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_108:                                   ; LABm(_108:)
+          mov     a, PRL                ; EQ10(_106)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _106
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 292 	 if((gia_tri>=48)&&(gia_tri<56))ghi_dich(k1,k1,k1,k1,k1,k1,k2,k3);
+                                        ; -----------------------------------------------
+_106:                                   ; LABm(_106:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x30            ; GETw1n(48)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_110)
+          jnc     $+5
+          ljmp    _110
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x38            ; GETw1n(56)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_110)
+          jnc     $+5
+          ljmp    _110
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _111                  ; JMPn(_111)
+_110:                                   ; LABm(_110:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_111:                                   ; LABm(_111:)
+          mov     a, PRL                ; EQ10(_109)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _109
+                                        ; -----------------------------------------------
+          mov     a, #0x02              ; GETb1su(2)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 293 	 if((gia_tri>=56)&&(gia_tri<60))ghi_dich(k1,k1,k1,k1,k1,k1,k1,k2);
+                                        ; -----------------------------------------------
+_109:                                   ; LABm(_109:)
+                                        ; -----------------------------------------------
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x38            ; GETw1n(56)
+          mov     PRH, #0x00
+          lcall   __ugt12               ; JGT12un(_113)
+          jnc     $+5
+          ljmp    _113
+          mov     a, #0xFE              ; GETb2su(-2)
+          mov     b, #0xFF
+          lcall   __getb2su
+          mov     PRL, #0x3C            ; GETw1n(60)
+          mov     PRH, #0x00
+          lcall   __ule12               ; JLE12un(_113)
+          jnc     $+5
+          ljmp    _113
+          mov     PRL, #0x01            ; GETw1n(1)
+          mov     PRH, #0x00
+          ljmp    _114                  ; JMPn(_114)
+_113:                                   ; LABm(_113:)
+          mov     PRL, #0x00            ; GETw1n(0)
+          mov     PRH, #0x00
+_114:                                   ; LABm(_114:)
+          mov     a, PRL                ; EQ10(_112)
+          orl     a, PRH
+          jnz     $+5
+          ljmp    _112
+                                        ; -----------------------------------------------
+          mov     a, #0x01              ; GETb1su(1)
+          mov     b, #0x00
+          lcall   __getb1su
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          lcall   __getb1su0            ; GETb1su(0)
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x08         ; ARGCNTn(8)
+          lcall   _ghi_dich             ; CALLm(_ghi_dich)
+          mov     a, #0xF0              ; ADDSP(-16)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 294 	}
+                                        ; -----------------------------------------------
+_112:                                   ; LABm(_112:)
+          mov     a, #0xFD              ; ADDSP(-3)
+          add     a, SPL
+          mov     SPL, a
+                                        ; -----------------------------------------------
+          pop     BPL                   ; RETURN(0)
+          ret
+                                        ; #line 295 
+                                        ; #line 296 void main()
+                                        ; #line 297 {
+                                        ; -----------------------------------------------
+_main:                                  ; DECLPUBm(main)
+          mov     SPL, #0x00            ; ENTERMAIN(0)
+          mov     BPL, #0x00
+                                        ; #line 297 {
+                                        ; #line 298     I2C_Start();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Start            ; CALLm(_I2C_Start)
+                                        ; #line 299     I2C_Write(0xD0);
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0xD0            ; GETw1n(208)
+          mov     PRH, #0x00
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 300     I2C_Write(0x07); 
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0x07            ; GETw1n(7)
+          mov     PRH, #0x00
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 301     I2C_Write(0x10); 
+                                        ; -----------------------------------------------
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     PRL, #0x10            ; GETw1n(16)
+          mov     PRH, #0x00
+          mov     dpl, SPL              ; SWAP1s
+          mov     dph, SPH
+          mov     a, PRH
+          push    acc
+          mov     a, PRL
+          push    acc
+          movx    a, @dptr
+          mov     PRL, a
+          pop     acc
+          movx    @dptr, a
+          inc     dptr
+          movx    a, @dptr
+          mov     PRH, a
+          pop     acc
+          movx    @dptr, a
+          mov     dptr, #($+12)         ; CALL1
+          push    dpl
+          push    dph
+          push    PRL
+          push    PRH
+          ret
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 302     I2C_Stop(); 	   
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _I2C_Stop             ; CALLm(_I2C_Stop)
+                                        ; #line 303 	while(1)
+                                        ; -----------------------------------------------
+_115:                                   ; LABm(_115:)
+_116:                                   ; LABm(_116:)
+                                        ; #line 304  {
+                                        ; #line 305  ktphim();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _ktphim               ; CALLm(_ktphim)
+                                        ; #line 306  readds();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _readds               ; CALLm(_readds)
+                                        ; #line 307  quetled();
+                                        ; -----------------------------------------------
+          mov     ARGCNT, #0x00         ; ARGCNTn(0)
+          lcall   _quetled              ; CALLm(_quetled)
+                                        ; #line 308  sosanh(second);
+                                        ; -----------------------------------------------
+          mov     PRL, _second          ; GETb1mu(second)
+          mov     PRH, #0
+          mov     @R_SP, PRL            ; PUSH1
+          inc     R_SP
+          mov     @R_SP, PRH
+          inc     R_SP
+          mov     ARGCNT, #0x01         ; ARGCNTn(1)
+          lcall   _sosanh               ; CALLm(_sosanh)
+          mov     a, #0xFE              ; ADDSP(-2)
+          add     a, SPL
+          mov     SPL, a
+                                        ; #line 309 }
+                                        ; #line 310 }
+                                        ; -----------------------------------------------
+          ljmp    _115                  ; JMPn(_115)
+_117:                                   ; LABm(_117:)
+                                        ; -----------------------------------------------
+          ljmp    _main                 ; RETMAIN
+                                        ; -----------------------------------------------
+          end                           ; ENDSEG(2)

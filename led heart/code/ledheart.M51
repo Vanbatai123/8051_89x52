@@ -1,0 +1,777 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/15/2015  10:01:02  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE ledheart.obj TO ledheart RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  ledheart.obj (LEDHEART)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  ledheart (LEDHEART)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0016H     UNIT         ?DT?LEDHEART
+            DATA    001EH     0010H     UNIT         ?DT?_LANLUOT?LEDHEART
+            DATA    002EH     000AH     UNIT         ?DT?_SANG2BENGIAM?LEDHEART
+            DATA    0038H     0008H     UNIT         ?DT?_SANGDAN?LEDHEART
+            DATA    0040H     0006H     UNIT         ?DT?_SANG2BENTANG?LEDHEART
+            IDATA   0046H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0254H     UNIT         ?PR?_LANLUOT?LEDHEART
+            CODE    0257H     0160H     UNIT         ?PR?_SANG2BENGIAM?LEDHEART
+            CODE    03B7H     0159H     UNIT         ?PR?_SANG2BENTANG?LEDHEART
+            CODE    0510H     0142H     UNIT         ?PR?_HAIBG2XUONG?LEDHEART
+            CODE    0652H     0142H     UNIT         ?PR?_HAIBG2LEN?LEDHEART
+            CODE    0794H     011AH     UNIT         ?PR?_SANGDAN?LEDHEART
+            CODE    08AEH     00FCH     UNIT         ?PR?_XOATRAIFAI?LEDHEART
+            CODE    09AAH     00E8H     UNIT         ?PR?_FULLTRAIFAI?LEDHEART
+            CODE    0A92H     00A0H     UNIT         ?PR?_NEWSTYLE?LEDHEART
+            CODE    0B32H     009EH     UNIT         ?PR?_ALLBONGTAT?LEDHEART
+            CODE    0BD0H     0095H     UNIT         ?PR?_HAIBONGSANG?LEDHEART
+            CODE    0C65H     008EH     UNIT         ?PR?_ALLBONGSANG?LEDHEART
+            CODE    0CF3H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0D7FH     0078H     UNIT         ?PR?_BABONGGIAM?LEDHEART
+            CODE    0DF7H     0078H     UNIT         ?PR?_BABONGTANG?LEDHEART
+            CODE    0E6FH     0044H     UNIT         ?PR?_NHAY2PHA?LEDHEART
+            CODE    0EB3H     0043H     UNIT         ?PR?_HAIPHA?LEDHEART
+            CODE    0EF6H     0032H     UNIT         ?PR?_DELAY_MS?LEDHEART
+            CODE    0F28H     001DH     UNIT         ?C_INITSEG
+            CODE    0F45H     0009H     UNIT         ?PR?MAIN?LEDHEART
+
+
+
+OVERLAY MAP OF MODULE:   ledheart (LEDHEART)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 2
+
+
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?LEDHEART
+  +--> ?C_INITSEG
+
+?PR?MAIN?LEDHEART
+  +--> ?PR?_NHAY2PHA?LEDHEART
+
+?PR?_NHAY2PHA?LEDHEART
+  +--> ?PR?_DELAY_MS?LEDHEART
+
+
+
+SYMBOL TABLE OF MODULE:  ledheart (LEDHEART)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LEDHEART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  C:0A92H         PUBLIC        _newstyle
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0003H         PUBLIC        _lanluot
+  C:0BD0H         PUBLIC        _haibongsang
+  C:0D7FH         PUBLIC        _babonggiam
+  C:0C65H         PUBLIC        _allbongsang
+  C:0DF7H         PUBLIC        _babongtang
+  C:09AAH         PUBLIC        _fulltraifai
+  C:0E6FH         PUBLIC        _nhay2pha
+  C:0F45H         PUBLIC        main
+  C:0B32H         PUBLIC        _allbongtat
+  C:08AEH         PUBLIC        _xoatraifai
+  C:0257H         PUBLIC        _sang2bengiam
+  C:03B7H         PUBLIC        _sang2bentang
+  C:0F02H         PUBLIC        _delay_ms
+  C:0794H         PUBLIC        _sangdan
+  D:0008H         PUBLIC        a
+  D:000AH         PUBLIC        b
+  D:000CH         PUBLIC        c
+  D:000EH         PUBLIC        d
+  C:0510H         PUBLIC        _haibg2xuong
+  D:0010H         PUBLIC        i
+  D:0012H         PUBLIC        j
+  D:0014H         PUBLIC        k
+  D:0016H         PUBLIC        n
+  C:0EB3H         PUBLIC        _haipha
+  C:0652H         PUBLIC        _haibg2len
+  D:0018H         PUBLIC        x
+  D:001AH         PUBLIC        y
+  D:001CH         PUBLIC        z
+  C:0EF6H         SYMBOL        L?0282
+  C:0EFAH         SYMBOL        L?0283
+  C:0EFEH         SYMBOL        L?0284
+  -------         PROC          L?0281
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 3
+
+
+  -------         ENDPROC       L?0281
+  C:0EF6H         SYMBOL        L?0282
+  C:0EFAH         SYMBOL        L?0283
+  C:0EFEH         SYMBOL        L?0284
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0F02H         LINE#         1
+  C:0F02H         LINE#         2
+  C:0F02H         LINE#         4
+  C:0F12H         LINE#         5
+  C:0F12H         LINE#         6
+  C:0F15H         LINE#         7
+  C:0F15H         LINE#         8
+  C:0F20H         LINE#         9
+  C:0F27H         LINE#         10
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _SANGDAN
+  D:0082H         SYMBOL        solan
+  -------         DO            
+  D:0038H         SYMBOL        a
+  D:003AH         SYMBOL        b
+  D:003CH         SYMBOL        c
+  D:003EH         SYMBOL        d
+  -------         ENDDO         
+  C:0794H         LINE#         4
+  C:0798H         LINE#         5
+  C:0798H         LINE#         6
+  C:07B1H         LINE#         7
+  C:07B1H         LINE#         8
+  C:07C9H         LINE#         9
+  C:07CFH         LINE#         10
+  C:07CFH         LINE#         11
+  C:07E5H         LINE#         12
+  C:07E5H         LINE#         13
+  C:07F1H         LINE#         14
+  C:07F4H         LINE#         15
+  C:07FFH         LINE#         16
+  C:0802H         LINE#         17
+  C:080CH         LINE#         18
+  C:0812H         LINE#         19
+  C:081EH         LINE#         20
+  C:0833H         LINE#         21
+  C:0839H         LINE#         22
+  C:0839H         LINE#         23
+  C:084FH         LINE#         24
+  C:084FH         LINE#         25
+  C:085BH         LINE#         26
+  C:085EH         LINE#         27
+  C:086FH         LINE#         29
+  C:0879H         LINE#         30
+  C:087FH         LINE#         31
+  C:088AH         LINE#         32
+  C:089FH         LINE#         33
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 4
+
+
+  C:08ADH         LINE#         34
+  -------         ENDPROC       _SANGDAN
+  -------         PROC          _SANG2BENTANG
+  D:0082H         SYMBOL        solan
+  -------         DO            
+  D:0040H         SYMBOL        x
+  D:0042H         SYMBOL        y
+  D:0044H         SYMBOL        z
+  -------         ENDDO         
+  C:03B7H         LINE#         35
+  C:03BBH         LINE#         36
+  C:03BBH         LINE#         37
+  C:03D4H         LINE#         38
+  C:03D4H         LINE#         39
+  C:03E6H         LINE#         40
+  C:03ECH         LINE#         41
+  C:03ECH         LINE#         42
+  C:03F1H         LINE#         43
+  C:03F1H         LINE#         44
+  C:03F4H         LINE#         45
+  C:03F7H         LINE#         46
+  C:0409H         LINE#         47
+  C:041CH         LINE#         48
+  C:041FH         LINE#         49
+  C:0435H         LINE#         50
+  C:0435H         LINE#         51
+  C:043BH         LINE#         52
+  C:043EH         LINE#         53
+  C:0450H         LINE#         54
+  C:045AH         LINE#         56
+  C:0466H         LINE#         57
+  C:0472H         LINE#         58
+  C:048AH         LINE#         59
+  C:0490H         LINE#         60
+  C:0496H         LINE#         61
+  C:0496H         LINE#         62
+  C:04ACH         LINE#         63
+  C:04ACH         LINE#         64
+  C:04B2H         LINE#         65
+  C:04B5H         LINE#         66
+  C:04C7H         LINE#         67
+  C:04D1H         LINE#         69
+  C:04DDH         LINE#         70
+  C:04E9H         LINE#         71
+  C:04FEH         LINE#         73
+  C:0501H         LINE#         74
+  C:050FH         LINE#         75
+  -------         ENDPROC       _SANG2BENTANG
+  -------         PROC          _SANG2BENGIAM
+  D:0082H         SYMBOL        solan
+  -------         DO            
+  D:002EH         SYMBOL        a
+  D:0030H         SYMBOL        e
+  D:0032H         SYMBOL        b
+  D:0034H         SYMBOL        c
+  D:0036H         SYMBOL        d
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 5
+
+
+  C:0257H         LINE#         76
+  C:025BH         LINE#         77
+  C:025BH         LINE#         78
+  C:0274H         LINE#         79
+  C:0274H         LINE#         80
+  C:0292H         LINE#         81
+  C:0298H         LINE#         82
+  C:0298H         LINE#         83
+  C:029DH         LINE#         84
+  C:029DH         LINE#         85
+  C:02A0H         LINE#         86
+  C:02A3H         LINE#         87
+  C:02B4H         LINE#         88
+  C:02C7H         LINE#         89
+  C:02CAH         LINE#         90
+  C:02E0H         LINE#         91
+  C:02E0H         LINE#         92
+  C:02E6H         LINE#         93
+  C:02E9H         LINE#         94
+  C:02FAH         LINE#         95
+  C:0304H         LINE#         97
+  C:0310H         LINE#         98
+  C:031BH         LINE#         99
+  C:0333H         LINE#         100
+  C:0339H         LINE#         101
+  C:033FH         LINE#         102
+  C:033FH         LINE#         103
+  C:0355H         LINE#         104
+  C:0355H         LINE#         105
+  C:035BH         LINE#         106
+  C:035EH         LINE#         107
+  C:036FH         LINE#         108
+  C:0379H         LINE#         110
+  C:0385H         LINE#         111
+  C:0390H         LINE#         112
+  C:03A5H         LINE#         113
+  C:03A8H         LINE#         114
+  C:03B6H         LINE#         115
+  -------         ENDPROC       _SANG2BENGIAM
+  -------         PROC          _LANLUOT
+  D:0082H         SYMBOL        solan
+  -------         DO            
+  D:001EH         SYMBOL        a
+  D:0020H         SYMBOL        e
+  D:0022H         SYMBOL        b
+  D:0024H         SYMBOL        c
+  D:0026H         SYMBOL        d
+  D:0028H         SYMBOL        x
+  D:002AH         SYMBOL        y
+  D:002CH         SYMBOL        z
+  -------         ENDDO         
+  C:0003H         LINE#         116
+  C:0007H         LINE#         117
+  C:0007H         LINE#         118
+  C:0020H         LINE#         119
+  C:0020H         LINE#         120
+  C:0050H         LINE#         121
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 6
+
+
+  C:0056H         LINE#         122
+  C:0056H         LINE#         123
+  C:005BH         LINE#         124
+  C:005BH         LINE#         125
+  C:005EH         LINE#         126
+  C:0061H         LINE#         127
+  C:0072H         LINE#         128
+  C:0085H         LINE#         129
+  C:0088H         LINE#         130
+  C:009EH         LINE#         131
+  C:009EH         LINE#         132
+  C:00A4H         LINE#         133
+  C:00A7H         LINE#         134
+  C:00B8H         LINE#         135
+  C:00C2H         LINE#         137
+  C:00CEH         LINE#         138
+  C:00D9H         LINE#         139
+  C:00DEH         LINE#         140
+  C:00DEH         LINE#         141
+  C:00E1H         LINE#         142
+  C:00E4H         LINE#         143
+  C:00F6H         LINE#         144
+  C:0109H         LINE#         145
+  C:010CH         LINE#         146
+  C:0122H         LINE#         147
+  C:0122H         LINE#         148
+  C:0128H         LINE#         149
+  C:012BH         LINE#         150
+  C:013DH         LINE#         151
+  C:0147H         LINE#         153
+  C:0153H         LINE#         154
+  C:015FH         LINE#         155
+  C:0177H         LINE#         156
+  C:0183H         LINE#         157
+  C:0189H         LINE#         158
+  C:0189H         LINE#         159
+  C:019FH         LINE#         160
+  C:019FH         LINE#         161
+  C:01A5H         LINE#         162
+  C:01A8H         LINE#         163
+  C:01B9H         LINE#         164
+  C:01C3H         LINE#         166
+  C:01CFH         LINE#         167
+  C:01DAH         LINE#         168
+  C:01F0H         LINE#         169
+  C:01F0H         LINE#         170
+  C:01F6H         LINE#         171
+  C:01F9H         LINE#         172
+  C:020BH         LINE#         173
+  C:0215H         LINE#         175
+  C:0221H         LINE#         176
+  C:022DH         LINE#         177
+  C:0245H         LINE#         178
+  C:0248H         LINE#         179
+  C:0256H         LINE#         180
+  -------         ENDPROC       _LANLUOT
+  -------         PROC          _HAIPHA
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 7
+
+
+  D:0082H         SYMBOL        solan
+  C:0EB3H         LINE#         181
+  C:0EB7H         LINE#         182
+  C:0EB7H         LINE#         183
+  C:0ECDH         LINE#         184
+  C:0ECDH         LINE#         185
+  C:0EDCH         LINE#         186
+  C:0EEBH         LINE#         187
+  C:0EF5H         LINE#         188
+  -------         ENDPROC       _HAIPHA
+  -------         PROC          _FULLTRAIFAI
+  D:0082H         SYMBOL        solan
+  C:09AAH         LINE#         189
+  C:09AEH         LINE#         190
+  C:09AEH         LINE#         191
+  C:09C7H         LINE#         192
+  C:09C7H         LINE#         193
+  C:09CDH         LINE#         194
+  C:09D2H         LINE#         195
+  C:09D2H         LINE#         196
+  C:09D5H         LINE#         197
+  C:09D8H         LINE#         198
+  C:09E3H         LINE#         199
+  C:09F6H         LINE#         200
+  C:09FCH         LINE#         201
+  C:0A01H         LINE#         202
+  C:0A01H         LINE#         203
+  C:0A04H         LINE#         204
+  C:0A07H         LINE#         205
+  C:0A12H         LINE#         206
+  C:0A25H         LINE#         207
+  C:0A2BH         LINE#         208
+  C:0A30H         LINE#         209
+  C:0A30H         LINE#         210
+  C:0A33H         LINE#         211
+  C:0A36H         LINE#         212
+  C:0A41H         LINE#         213
+  C:0A54H         LINE#         214
+  C:0A5AH         LINE#         215
+  C:0A5FH         LINE#         216
+  C:0A5FH         LINE#         217
+  C:0A62H         LINE#         218
+  C:0A65H         LINE#         219
+  C:0A70H         LINE#         220
+  C:0A83H         LINE#         221
+  C:0A91H         LINE#         222
+  -------         ENDPROC       _FULLTRAIFAI
+  -------         PROC          _XOATRAIFAI
+  D:0082H         SYMBOL        solan
+  C:08AEH         LINE#         223
+  C:08B2H         LINE#         224
+  C:08B2H         LINE#         225
+  C:08CBH         LINE#         226
+  C:08CBH         LINE#         228
+  C:08D0H         LINE#         229
+  C:08D4H         LINE#         230
+  C:08D4H         LINE#         231
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 8
+
+
+  C:08D7H         LINE#         232
+  C:08DAH         LINE#         233
+  C:08ECH         LINE#         234
+  C:08FFH         LINE#         235
+  C:0904H         LINE#         236
+  C:0908H         LINE#         237
+  C:0908H         LINE#         238
+  C:090BH         LINE#         239
+  C:090EH         LINE#         240
+  C:0920H         LINE#         241
+  C:0933H         LINE#         242
+  C:0938H         LINE#         243
+  C:093CH         LINE#         244
+  C:093CH         LINE#         245
+  C:093FH         LINE#         246
+  C:0942H         LINE#         247
+  C:0954H         LINE#         248
+  C:0967H         LINE#         249
+  C:096CH         LINE#         250
+  C:0970H         LINE#         251
+  C:0970H         LINE#         252
+  C:0973H         LINE#         253
+  C:0976H         LINE#         254
+  C:0988H         LINE#         255
+  C:099BH         LINE#         256
+  C:09A9H         LINE#         257
+  -------         ENDPROC       _XOATRAIFAI
+  -------         PROC          _HAIBONGSANG
+  D:0082H         SYMBOL        solan
+  C:0BD0H         LINE#         258
+  C:0BD4H         LINE#         259
+  C:0BD4H         LINE#         260
+  C:0BEAH         LINE#         261
+  C:0BEAH         LINE#         262
+  C:0BF0H         LINE#         263
+  C:0BF5H         LINE#         264
+  C:0BF5H         LINE#         265
+  C:0BFBH         LINE#         266
+  C:0BFEH         LINE#         267
+  C:0C0FH         LINE#         268
+  C:0C22H         LINE#         269
+  C:0C28H         LINE#         270
+  C:0C2DH         LINE#         271
+  C:0C2DH         LINE#         272
+  C:0C2FH         LINE#         273
+  C:0C32H         LINE#         274
+  C:0C43H         LINE#         275
+  C:0C56H         LINE#         276
+  C:0C64H         LINE#         277
+  -------         ENDPROC       _HAIBONGSANG
+  -------         PROC          _ALLBONGSANG
+  D:0082H         SYMBOL        solan
+  C:0C65H         LINE#         278
+  C:0C69H         LINE#         279
+  C:0C69H         LINE#         280
+  C:0C7FH         LINE#         281
+  C:0C7FH         LINE#         282
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 9
+
+
+  C:0C85H         LINE#         283
+  C:0C8BH         LINE#         284
+  C:0C90H         LINE#         285
+  C:0C90H         LINE#         286
+  C:0C96H         LINE#         287
+  C:0C99H         LINE#         288
+  C:0CA5H         LINE#         289
+  C:0CB8H         LINE#         290
+  C:0CBEH         LINE#         291
+  C:0CC3H         LINE#         292
+  C:0CC3H         LINE#         293
+  C:0CC5H         LINE#         294
+  C:0CC8H         LINE#         295
+  C:0CD4H         LINE#         296
+  C:0CE7H         LINE#         297
+  C:0CF2H         LINE#         298
+  -------         ENDPROC       _ALLBONGSANG
+  -------         PROC          _ALLBONGTAT
+  D:0082H         SYMBOL        solan
+  C:0B32H         LINE#         299
+  C:0B36H         LINE#         300
+  C:0B36H         LINE#         301
+  C:0B4FH         LINE#         302
+  C:0B4FH         LINE#         303
+  C:0B54H         LINE#         304
+  C:0B58H         LINE#         305
+  C:0B5CH         LINE#         306
+  C:0B5CH         LINE#         307
+  C:0B62H         LINE#         308
+  C:0B65H         LINE#         309
+  C:0B76H         LINE#         310
+  C:0B89H         LINE#         311
+  C:0B8FH         LINE#         312
+  C:0B94H         LINE#         313
+  C:0B98H         LINE#         314
+  C:0B98H         LINE#         315
+  C:0B9AH         LINE#         316
+  C:0B9DH         LINE#         317
+  C:0BAEH         LINE#         318
+  C:0BC1H         LINE#         319
+  C:0BCFH         LINE#         320
+  -------         ENDPROC       _ALLBONGTAT
+  -------         PROC          _NEWSTYLE
+  D:0082H         SYMBOL        solan
+  C:0A92H         LINE#         321
+  C:0A96H         LINE#         322
+  C:0A96H         LINE#         323
+  C:0AAFH         LINE#         324
+  C:0AAFH         LINE#         325
+  C:0AB5H         LINE#         326
+  C:0ABAH         LINE#         327
+  C:0ABEH         LINE#         328
+  C:0ABEH         LINE#         329
+  C:0AC4H         LINE#         330
+  C:0AC7H         LINE#         331
+  C:0AD8H         LINE#         332
+  C:0AEBH         LINE#         333
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 10
+
+
+  C:0AF1H         LINE#         334
+  C:0AF6H         LINE#         335
+  C:0AFAH         LINE#         336
+  C:0AFAH         LINE#         337
+  C:0AFCH         LINE#         338
+  C:0AFFH         LINE#         339
+  C:0B10H         LINE#         340
+  C:0B23H         LINE#         341
+  C:0B31H         LINE#         342
+  -------         ENDPROC       _NEWSTYLE
+  -------         PROC          _BABONGGIAM
+  D:0082H         SYMBOL        solan
+  C:0D7FH         LINE#         343
+  C:0D83H         LINE#         344
+  C:0D83H         LINE#         345
+  C:0D99H         LINE#         346
+  C:0D99H         LINE#         347
+  C:0D9FH         LINE#         348
+  C:0DA4H         LINE#         349
+  C:0DA4H         LINE#         350
+  C:0DB3H         LINE#         351
+  C:0DB3H         LINE#         352
+  C:0DB3H         LINE#         353
+  C:0DB6H         LINE#         354
+  C:0DC7H         LINE#         355
+  C:0DC9H         LINE#         357
+  C:0DC9H         LINE#         358
+  C:0DCCH         LINE#         359
+  C:0DD8H         LINE#         360
+  C:0DEBH         LINE#         361
+  C:0DF6H         LINE#         362
+  -------         ENDPROC       _BABONGGIAM
+  -------         PROC          _BABONGTANG
+  D:0082H         SYMBOL        solan
+  C:0DF7H         LINE#         363
+  C:0DFBH         LINE#         364
+  C:0DFBH         LINE#         365
+  C:0E11H         LINE#         366
+  C:0E11H         LINE#         367
+  C:0E17H         LINE#         368
+  C:0E1CH         LINE#         369
+  C:0E1CH         LINE#         370
+  C:0E2BH         LINE#         371
+  C:0E2BH         LINE#         372
+  C:0E2BH         LINE#         373
+  C:0E2EH         LINE#         374
+  C:0E40H         LINE#         375
+  C:0E42H         LINE#         377
+  C:0E42H         LINE#         378
+  C:0E45H         LINE#         379
+  C:0E50H         LINE#         380
+  C:0E63H         LINE#         381
+  C:0E6EH         LINE#         382
+  -------         ENDPROC       _BABONGTANG
+  -------         PROC          _HAIBG2XUONG
+  D:0082H         SYMBOL        solan
+  C:0510H         LINE#         383
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 11
+
+
+  C:0514H         LINE#         384
+  C:0514H         LINE#         385
+  C:052DH         LINE#         386
+  C:052DH         LINE#         387
+  C:0539H         LINE#         388
+  C:053EH         LINE#         389
+  C:053EH         LINE#         390
+  C:054BH         LINE#         391
+  C:054BH         LINE#         392
+  C:054EH         LINE#         394
+  C:0551H         LINE#         395
+  C:0554H         LINE#         396
+  C:0565H         LINE#         397
+  C:0577H         LINE#         398
+  C:0579H         LINE#         400
+  C:057CH         LINE#         402
+  C:057FH         LINE#         403
+  C:0582H         LINE#         404
+  C:058DH         LINE#         405
+  C:0599H         LINE#         406
+  C:0599H         LINE#         407
+  C:05ACH         LINE#         408
+  C:05B8H         LINE#         409
+  C:05C4H         LINE#         410
+  C:05C9H         LINE#         411
+  C:05C9H         LINE#         412
+  C:05D6H         LINE#         413
+  C:05D6H         LINE#         414
+  C:05D9H         LINE#         416
+  C:05DCH         LINE#         417
+  C:05DFH         LINE#         418
+  C:05F1H         LINE#         419
+  C:0602H         LINE#         420
+  C:0604H         LINE#         422
+  C:0604H         LINE#         423
+  C:0607H         LINE#         425
+  C:060AH         LINE#         426
+  C:060DH         LINE#         427
+  C:0618H         LINE#         428
+  C:0624H         LINE#         429
+  C:0624H         LINE#         430
+  C:0637H         LINE#         431
+  C:0643H         LINE#         432
+  C:0646H         LINE#         433
+  C:0651H         LINE#         434
+  -------         ENDPROC       _HAIBG2XUONG
+  -------         PROC          _HAIBG2LEN
+  D:0082H         SYMBOL        solan
+  C:0652H         LINE#         435
+  C:0656H         LINE#         436
+  C:0656H         LINE#         437
+  C:066FH         LINE#         438
+  C:066FH         LINE#         439
+  C:067BH         LINE#         440
+  C:0680H         LINE#         441
+  C:0680H         LINE#         442
+  C:068DH         LINE#         443
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 12
+
+
+  C:068DH         LINE#         444
+  C:0690H         LINE#         446
+  C:0693H         LINE#         447
+  C:0696H         LINE#         448
+  C:06A7H         LINE#         449
+  C:06B9H         LINE#         450
+  C:06BBH         LINE#         452
+  C:06BEH         LINE#         454
+  C:06C1H         LINE#         455
+  C:06C4H         LINE#         456
+  C:06CFH         LINE#         457
+  C:06DBH         LINE#         458
+  C:06DBH         LINE#         459
+  C:06EEH         LINE#         460
+  C:06FAH         LINE#         461
+  C:0706H         LINE#         462
+  C:070BH         LINE#         463
+  C:070BH         LINE#         464
+  C:0718H         LINE#         465
+  C:0718H         LINE#         466
+  C:071BH         LINE#         468
+  C:071EH         LINE#         469
+  C:0721H         LINE#         470
+  C:0733H         LINE#         471
+  C:0744H         LINE#         472
+  C:0746H         LINE#         474
+  C:0746H         LINE#         475
+  C:0749H         LINE#         477
+  C:074CH         LINE#         478
+  C:074FH         LINE#         479
+  C:075AH         LINE#         480
+  C:0766H         LINE#         481
+  C:0766H         LINE#         482
+  C:0779H         LINE#         483
+  C:0785H         LINE#         484
+  C:0788H         LINE#         485
+  C:0793H         LINE#         486
+  -------         ENDPROC       _HAIBG2LEN
+  -------         PROC          _NHAY2PHA
+  D:0082H         SYMBOL        solan
+  C:0E6FH         LINE#         487
+  C:0E73H         LINE#         488
+  C:0E73H         LINE#         489
+  C:0E89H         LINE#         490
+  C:0E89H         LINE#         491
+  C:0E8EH         LINE#         493
+  C:0E94H         LINE#         494
+  C:0E9AH         LINE#         495
+  C:0E9FH         LINE#         497
+  C:0EA5H         LINE#         498
+  C:0EA8H         LINE#         499
+  C:0EB2H         LINE#         500
+  -------         ENDPROC       _NHAY2PHA
+  -------         PROC          MAIN
+  C:0F45H         LINE#         501
+  C:0F45H         LINE#         502
+  C:0F45H         LINE#         503
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/15/2015  10:01:02  PAGE 13
+
+
+  C:0F45H         LINE#         504
+  C:0F45H         LINE#         505
+  C:0F4CH         LINE#         508
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SANGDAN?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SANG2BENTANG?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SANG2BENGIAM?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LANLUOT?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HAIPHA?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULLTRAIFAI?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_XOATRAIFAI?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HAIBONGSANG?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ALLBONGSANG?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ALLBONGTAT?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_NEWSTYLE?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BABONGGIAM?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BABONGTANG?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HAIBG2XUONG?LEDHEART
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HAIBG2LEN?LEDHEART
+
+Program Size: data=71.0 xdata=0 code=3918
+LINK/LOCATE RUN COMPLETE.  15 WARNING(S),  0 ERROR(S)

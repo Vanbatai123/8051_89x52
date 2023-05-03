@@ -1,0 +1,1096 @@
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE CUBE555
+OBJECT MODULE PLACED IN cube555.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE cube555.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                                            /*Thach anh su dung f=24Mhz*/
+   2          #include <REGX51.H>
+   3          sbit mot = P2^0;
+   4          sbit hai = P2^1;
+   5          sbit ba = P2^2;
+   6          sbit bon = P2^3;
+   7          sbit nam = P2^4;
+   8          sbit tam = P2^7;
+   9          #define ca5 mot=hai=ba=bon=nam                          
+  10          unsigned int i,a;
+  11          unsigned int mang[]={191,119,254,238,251,221,239,187};
+  12          unsigned int scan[]={254,253,251,247,239,223,191,127,254,253,251,247,239,223,191,127};
+  13           void delay(int x)
+  14          {
+  15   1              int i,j;
+  16   1              for(i=0;i<x;i++)
+  17   1              {
+  18   2                      for(j=0;j<125;j++)
+  19   2                      {
+  20   3                                      
+  21   3                      }
+  22   2              }
+  23   1      }
+  24          void tat()
+  25          {
+  26   1              P0=P1=P2=P3=255;
+  27   1      }
+  28          void bat()
+  29          {
+  30   1              P0=P1=P2=P3=0;
+  31   1      }
+  32          void ngoaivao()
+  33          {
+  34   1              for(i=0;i<70;i++)
+  35   1              {
+  36   2                      mot=nam=0;P1=P0=0;delay(2);
+  37   2                      tat();
+  38   2                      hai=ba=bon=0;P1=P0=238;delay(2);
+  39   2                      tat();
+  40   2              } 
+  41   1              for(i=0;i<20;i++)
+  42   1              {
+  43   2                      hai=bon=0;P3=0; delay(2);
+  44   2                      tat();
+  45   2                      ba=0;P3=170; delay(2);
+  46   2                      tat();
+  47   2              }
+  48   1              for(i=0;i<70;i++)
+  49   1              {
+  50   2                      ba=tam=0;
+  51   2                      delay(4);
+  52   2                      //tat();
+  53   2              }               
+  54   1              delay(200);
+  55   1      }
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 2   
+
+  56          void trongra()
+  57          {
+  58   1              for(i=0;i<70;i++)
+  59   1              {
+  60   2                      ba=tam=0;
+  61   2                      delay(4);
+  62   2                      //tat();
+  63   2              }               
+  64   1              delay(400); 
+  65   1              for(i=0;i<20;i++)
+  66   1              {
+  67   2                      hai=bon=0;P3=0; delay(2);
+  68   2                      tat();
+  69   2                      ba=0;P3=170; delay(2);
+  70   2                      tat();
+  71   2              }
+  72   1              for(i=0;i<150;i++)
+  73   1              {
+  74   2                      mot=nam=0;P1=P0=0;delay(2);
+  75   2                      tat();
+  76   2                      hai=ba=bon=0;P1=P0=238;delay(2);
+  77   2                      tat();
+  78   2              }
+  79   1              
+  80   1      }
+  81          void nhapnhay()
+  82          {
+  83   1              for(i=150;i>0;i--)
+  84   1              {
+  85   2                      bat();
+  86   2                      delay(i);
+  87   2                      tat();   
+  88   2                      delay(i);
+  89   2              }
+  90   1      }
+  91          void goc1(int tocdo)
+  92          {
+  93   1                      for(i=0;i<tocdo;i++)
+  94   1                      {
+  95   2                              mot=nam=0;P1=P0=0;delay(2);
+  96   2                              tat();
+  97   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+  98   2                              tat();
+  99   2                      }  
+ 100   1                      for(i=0;i<tocdo;i++)
+ 101   1                      {
+ 102   2                              mot=bon=0;P1=255;P3=14;P0=1;delay(2);
+ 103   2                              tat();
+ 104   2                              hai=ba=0;P0=109;P3=191;delay(2);
+ 105   2                              tat();
+ 106   2                      } 
+ 107   1                      for(i=0;i<tocdo;i++)
+ 108   1                      {
+ 109   2                              mot=ba=0;P0=131;tam=0;P3=245;delay(2);
+ 110   2                              tat();
+ 111   2                              hai=0;P0=171;tam=0;delay(2);
+ 112   2                              tat(); 
+ 113   2                      }  
+ 114   1                      for(i=0;i<tocdo;i++)
+ 115   1                      {
+ 116   2                              mot=hai=0;P0=199;P3=251;delay(4);
+ 117   2                              tat(); 
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 3   
+
+ 118   2                      }
+ 119   1                      for(i=0;i<tocdo;i++)
+ 120   1                      {
+ 121   2                              mot=0;P0=239;delay(4);
+ 122   2                              tat(); 
+ 123   2                      }
+ 124   1                      delay(6*tocdo);
+ 125   1                      for(i=0;i<tocdo;i++)
+ 126   1                      {
+ 127   2                              mot=0;P0=239;delay(4);
+ 128   2                              tat(); 
+ 129   2                      }
+ 130   1                      for(i=0;i<tocdo;i++)
+ 131   1                      {
+ 132   2                              mot=hai=0;P0=199;P3=251;delay(4);
+ 133   2                              tat(); 
+ 134   2                      }
+ 135   1                      for(i=0;i<tocdo;i++)
+ 136   1                      {
+ 137   2                              mot=ba=0;P0=131;tam=0;P3=245;delay(2);
+ 138   2                              tat();
+ 139   2                              hai=0;P0=171;tam=0;delay(2);
+ 140   2                              tat(); 
+ 141   2                      }
+ 142   1                      for(i=0;i<tocdo;i++)
+ 143   1                      {
+ 144   2                              mot=bon=0;P1=255;P3=14;P0=1;delay(2);
+ 145   2                              tat();
+ 146   2                              hai=ba=0;P0=109;P3=191;delay(2);
+ 147   2                              tat();
+ 148   2                      }
+ 149   1                      for(i=0;i<tocdo;i++)
+ 150   1                      {
+ 151   2                              mot=nam=0;P1=P0=0;delay(2);
+ 152   2                              tat();
+ 153   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 154   2                              tat();
+ 155   2                      }  
+ 156   1                       
+ 157   1      }
+ 158          void goc3(int tocdo)
+ 159          {
+ 160   1                      for(i=0;i<tocdo;i++)
+ 161   1                      {
+ 162   2                              mot=nam=0;P1=P0=0;delay(2);
+ 163   2                              tat();
+ 164   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 165   2                              tat();
+ 166   2                      }  
+ 167   1                      for(i=0;i<tocdo;i++)
+ 168   1                      {
+ 169   2                              mot=bon=0;P0=255;P1=1;P3=224;delay(2);
+ 170   2                              tat();
+ 171   2                              hai=ba=0;P0=255;P1=109;P3=251;delay(2);
+ 172   2                              tat();
+ 173   2                      } 
+ 174   1                      for(i=0;i<tocdo;i++)
+ 175   1                      {
+ 176   2                              mot=ba=0;P0=255;tam=0;P1=131;P3=95;delay(2);
+ 177   2                              tat();
+ 178   2                              hai=0;P1=171;tam=0;delay(2);
+ 179   2                              tat(); 
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 4   
+
+ 180   2                      }  
+ 181   1                      for(i=0;i<tocdo;i++)
+ 182   1                      {
+ 183   2                              mot=hai=0;P1=199;P3=191;delay(4);
+ 184   2                              tat(); 
+ 185   2                      }
+ 186   1                      for(i=0;i<tocdo;i++)
+ 187   1                      {
+ 188   2                              mot=0;P1=239;delay(4);
+ 189   2                              tat(); 
+ 190   2                      }
+ 191   1                      delay(6*tocdo);
+ 192   1                      for(i=0;i<tocdo;i++)
+ 193   1                      {
+ 194   2                              mot=0;P1=239;delay(4);
+ 195   2                              tat(); 
+ 196   2                      }
+ 197   1                      for(i=0;i<tocdo;i++)
+ 198   1                      {
+ 199   2                              mot=hai=0;P1=199;P3=191;delay(4);
+ 200   2                              tat(); 
+ 201   2                      }
+ 202   1                      for(i=0;i<tocdo;i++)
+ 203   1                      {
+ 204   2                              mot=ba=0;P0=255;tam=0;P1=131;P3=95;delay(2);
+ 205   2                              tat();
+ 206   2                              hai=0;P1=171;tam=0;delay(2);
+ 207   2                              tat(); 
+ 208   2                      }
+ 209   1                       
+ 210   1                      for(i=0;i<tocdo;i++)
+ 211   1                      {
+ 212   2                              mot=bon=0;P0=255;P1=1;P3=224;delay(2);
+ 213   2                              tat();
+ 214   2                              hai=ba=0;P0=255;P1=109;P3=251;delay(2);
+ 215   2                              tat();
+ 216   2                      }  
+ 217   1                       for(i=0;i<tocdo;i++)
+ 218   1                      {
+ 219   2                              mot=nam=0;P1=P0=0;delay(2);
+ 220   2                              tat();
+ 221   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 222   2                              tat();
+ 223   2                      } 
+ 224   1      }
+ 225          void goc4(int tocdo)
+ 226          {
+ 227   1                      for(i=0;i<tocdo;i++)
+ 228   1                      {
+ 229   2                              mot=nam=0;P1=P0=0;delay(2);
+ 230   2                              tat();
+ 231   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 232   2                              tat();
+ 233   2                      }  
+ 234   1                      for(i=0;i<tocdo;i++)
+ 235   1                      {
+ 236   2                              mot=bon=0;P1=31;P3=131;P0=240;delay(2);
+ 237   2                              tat();
+ 238   2                              hai=ba=0;P0=246;P1=223;P3=239;delay(2);
+ 239   2                              tat();
+ 240   2                      } 
+ 241   1                      for(i=0;i<tocdo;i++)
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 5   
+
+ 242   1                      {
+ 243   2                              mot=ba=0;P0=248;tam=0;P1=63;P3=125;delay(2);
+ 244   2                              tat();
+ 245   2                              hai=0;P1=191;P0=250;tam=0;delay(2);
+ 246   2                              tat(); 
+ 247   2                      }  
+ 248   1                      for(i=0;i<tocdo;i++)
+ 249   1                      {
+ 250   2                              mot=hai=0;P1=127;P0=252;P3=254;delay(4);
+ 251   2                              tat(); 
+ 252   2                      }
+ 253   1                      for(i=0;i<tocdo;i++)
+ 254   1                      {
+ 255   2                              mot=0;P0=254;delay(4);
+ 256   2                              tat(); 
+ 257   2                      }
+ 258   1                      delay(6*tocdo);
+ 259   1                      for(i=0;i<tocdo;i++)
+ 260   1                      {
+ 261   2                              mot=0;P0=254;delay(4);
+ 262   2                              tat(); 
+ 263   2                      }
+ 264   1                      for(i=0;i<tocdo;i++)
+ 265   1                      {
+ 266   2                              mot=hai=0;P1=127;P0=252;P3=254;delay(4);
+ 267   2                              tat(); 
+ 268   2                      }
+ 269   1                      for(i=0;i<tocdo;i++)
+ 270   1                      {
+ 271   2                              mot=ba=0;P0=248;tam=0;P1=63;P3=125;delay(2);
+ 272   2                              tat();
+ 273   2                              hai=0;P1=191;P0=250;tam=0;delay(2);
+ 274   2                              tat(); 
+ 275   2                      }
+ 276   1                      for(i=0;i<tocdo;i++)
+ 277   1                      {
+ 278   2                              mot=bon=0;P1=31;P3=131;P0=240;delay(2);
+ 279   2                              tat();
+ 280   2                              hai=ba=0;P0=246;P1=223;P3=239;delay(2);
+ 281   2                              tat();
+ 282   2                      }
+ 283   1                      for(i=0;i<tocdo;i++)
+ 284   1                      {
+ 285   2                              mot=nam=0;P1=P0=0;delay(2);
+ 286   2                              tat();
+ 287   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 288   2                              tat();
+ 289   2                      }  
+ 290   1                       
+ 291   1      }       
+ 292          void goc5(int tocdo)
+ 293          {
+ 294   1                      for(i=0;i<tocdo;i++)
+ 295   1                      {
+ 296   2                              mot=nam=0;P1=P0=0;delay(2);
+ 297   2                              tat();
+ 298   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 299   2                              tat();
+ 300   2                      }  
+ 301   1                      for(i=0;i<tocdo;i++)
+ 302   1                      {
+ 303   2                              hai=nam=0;P1=255;P3=14;P0=1;delay(2);
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 6   
+
+ 304   2                              tat();
+ 305   2                              bon=ba=0;P0=109;P3=191;delay(2);
+ 306   2                              tat();
+ 307   2                      } 
+ 308   1                      for(i=0;i<tocdo;i++)
+ 309   1                      {
+ 310   2                              nam=ba=0;P0=131;tam=0;P3=245;delay(2);
+ 311   2                              tat();
+ 312   2                              bon=0;P0=171;tam=0;delay(2);
+ 313   2                              tat(); 
+ 314   2                      }  
+ 315   1                      for(i=0;i<tocdo;i++)
+ 316   1                      {
+ 317   2                              bon=nam=0;P0=199;P3=251;delay(4);
+ 318   2                              tat(); 
+ 319   2                      }
+ 320   1                      for(i=0;i<tocdo;i++)
+ 321   1                      {
+ 322   2                              nam=0;P0=239;delay(4);
+ 323   2                              tat(); 
+ 324   2                      }
+ 325   1                      delay(6*tocdo);
+ 326   1                      for(i=0;i<tocdo;i++)
+ 327   1                      {
+ 328   2                              nam=0;P0=239;delay(4);
+ 329   2                              tat(); 
+ 330   2                      }
+ 331   1                      for(i=0;i<tocdo;i++)
+ 332   1                      {
+ 333   2                              nam=bon=0;P0=199;P3=251;delay(4);
+ 334   2                              tat(); 
+ 335   2                      }
+ 336   1                      for(i=0;i<tocdo;i++)
+ 337   1                      {
+ 338   2                              ba=nam=0;P0=131;tam=0;P3=245;delay(2);
+ 339   2                              tat();
+ 340   2                              bon=0;P0=171;tam=0;delay(2);
+ 341   2                              tat(); 
+ 342   2                      }
+ 343   1                      for(i=0;i<tocdo;i++)
+ 344   1                      {
+ 345   2                              hai=nam=0;P1=255;P3=14;P0=1;delay(2);
+ 346   2                              tat();
+ 347   2                              bon=ba=0;P0=109;P3=191;delay(2);
+ 348   2                              tat();
+ 349   2                      }
+ 350   1                      for(i=0;i<tocdo;i++)
+ 351   1                      {
+ 352   2                              mot=nam=0;P1=P0=0;delay(2);
+ 353   2                              tat();
+ 354   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 355   2                              tat();
+ 356   2                      }  
+ 357   1                       
+ 358   1      }
+ 359          void goc6(int tocdo)
+ 360          {
+ 361   1                      for(i=0;i<tocdo;i++)
+ 362   1                      {
+ 363   2                              mot=nam=0;P1=P0=0;delay(2);
+ 364   2                              tat();
+ 365   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 7   
+
+ 366   2                              tat();
+ 367   2                      }  
+ 368   1                      for(i=0;i<tocdo;i++)
+ 369   1                      {
+ 370   2                              hai=nam=0;P1=240;P3=56;P0=31;delay(2);
+ 371   2                              tat();
+ 372   2                              bon=ba=0;P0=223;P1=246;P3=254;delay(2);
+ 373   2                              tat();
+ 374   2                      } 
+ 375   1                      for(i=0;i<tocdo;i++)
+ 376   1                      {
+ 377   2                              nam=ba=0;P0=63;tam=0;P1=248;P3=215;delay(2);
+ 378   2                              tat();
+ 379   2                              bon=0;P0=191;P1=250;tam=0;delay(2);
+ 380   2                              tat(); 
+ 381   2                      }  
+ 382   1                      for(i=0;i<tocdo;i++)
+ 383   1                      {
+ 384   2                              bon=nam=0;P0=127;P1=252;P3=239;delay(4);
+ 385   2                              tat(); 
+ 386   2                      }
+ 387   1                      for(i=0;i<tocdo;i++)
+ 388   1                      {
+ 389   2                              nam=0;P1=254;delay(4);
+ 390   2                              tat(); 
+ 391   2                      }
+ 392   1                      delay(6*tocdo);
+ 393   1                      for(i=0;i<tocdo;i++)
+ 394   1                      {
+ 395   2                              nam=0;P1=254;delay(4);
+ 396   2                              tat(); 
+ 397   2                      }
+ 398   1                      for(i=0;i<tocdo;i++)
+ 399   1                      {
+ 400   2                              nam=bon=0;P0=127;P1=252;P3=239;delay(4);
+ 401   2                              tat(); 
+ 402   2                      }
+ 403   1      
+ 404   1                      for(i=0;i<tocdo;i++)
+ 405   1                      {
+ 406   2                              nam=ba=0;P0=63;tam=0;P1=248;P3=215;delay(2);
+ 407   2                              tat();
+ 408   2                              bon=0;P0=191;P1=250;tam=0;delay(2);
+ 409   2                              tat(); 
+ 410   2                      }
+ 411   1                      for(i=0;i<tocdo;i++)
+ 412   1                      {
+ 413   2                              hai=nam=0;P1=240;P3=56;P0=31;delay(2);
+ 414   2                              tat();
+ 415   2                              bon=ba=0;P0=223;P1=246;P3=254;delay(2);
+ 416   2                              tat();
+ 417   2                      }
+ 418   1                      for(i=0;i<tocdo;i++)
+ 419   1                      {
+ 420   2                              mot=nam=0;P1=P0=0;delay(2);
+ 421   2                              tat();
+ 422   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 423   2                              tat();
+ 424   2                      }  
+ 425   1                       
+ 426   1      }        
+ 427           void goc7(int tocdo)
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 8   
+
+ 428          {
+ 429   1                      for(i=0;i<tocdo;i++)
+ 430   1                      {
+ 431   2                              mot=nam=0;P1=P0=0;delay(2);
+ 432   2                              tat();
+ 433   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 434   2                              tat();
+ 435   2                      }  
+ 436   1                      for(i=0;i<tocdo;i++)
+ 437   1                      {
+ 438   2                              hai=nam=0;P0=255;P1=1;P3=224;delay(2);
+ 439   2                              tat();
+ 440   2                              bon=ba=0;P0=255;P1=109;P3=251;delay(2);
+ 441   2                              tat();
+ 442   2                      } 
+ 443   1                      for(i=0;i<tocdo;i++)
+ 444   1                      {
+ 445   2                              nam=ba=0;P0=255;tam=0;P1=131;P3=95;delay(2);
+ 446   2                              tat();
+ 447   2                              bon=0;P1=171;tam=0;delay(2);
+ 448   2                              tat(); 
+ 449   2                      }  
+ 450   1                      for(i=0;i<tocdo;i++)
+ 451   1                      {
+ 452   2                              bon=nam=0;P1=199;P3=191;delay(4);
+ 453   2                              tat(); 
+ 454   2                      }
+ 455   1                      for(i=0;i<tocdo;i++)
+ 456   1                      {
+ 457   2                              nam=0;P1=239;delay(4);
+ 458   2                              tat(); 
+ 459   2                      }
+ 460   1                      delay(6*tocdo);
+ 461   1                      for(i=0;i<tocdo;i++)
+ 462   1                      {
+ 463   2                              nam=0;P1=239;delay(4);
+ 464   2                              tat(); 
+ 465   2                      }
+ 466   1                      for(i=0;i<tocdo;i++)
+ 467   1                      {
+ 468   2                              nam=bon=0;P1=199;P3=191;delay(4);
+ 469   2                              tat(); 
+ 470   2                      }
+ 471   1                      for(i=0;i<tocdo;i++)
+ 472   1                      {
+ 473   2                              ba=nam=0;P0=255;tam=0;P1=131;P3=95;delay(2);
+ 474   2                              tat();
+ 475   2                              bon=0;P1=171;tam=0;delay(2);
+ 476   2                              tat(); 
+ 477   2                      }
+ 478   1                       
+ 479   1                      for(i=0;i<tocdo;i++)
+ 480   1                      {
+ 481   2                              hai=nam=0;P0=255;P1=1;P3=224;delay(2);
+ 482   2                              tat();
+ 483   2                              bon=ba=0;P0=255;P1=109;P3=251;delay(2);
+ 484   2                              tat();
+ 485   2                      }  
+ 486   1                       for(i=0;i<tocdo;i++)
+ 487   1                      {
+ 488   2                              mot=nam=0;P1=P0=0;delay(2);
+ 489   2                              tat();
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 9   
+
+ 490   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 491   2                              tat();
+ 492   2                      } 
+ 493   1      }
+ 494          void goc8(int tocdo)
+ 495          {
+ 496   1                      for(i=0;i<tocdo;i++)
+ 497   1                      {
+ 498   2                              mot=nam=0;P1=P0=0;delay(2);
+ 499   2                              tat();
+ 500   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 501   2                              tat();
+ 502   2                      }  
+ 503   1                      for(i=0;i<tocdo;i++)
+ 504   1                      {
+ 505   2                              hai=nam=0;P1=31;P3=131;P0=240;delay(2);
+ 506   2                              tat();
+ 507   2                              bon=ba=0;P0=246;P1=223;P3=239;delay(2);
+ 508   2                              tat();
+ 509   2                      } 
+ 510   1                      for(i=0;i<tocdo;i++)
+ 511   1                      {
+ 512   2                              nam=ba=0;P0=248;tam=0;P1=63;P3=125;delay(2);
+ 513   2                              tat();
+ 514   2                              bon=0;P1=191;P0=250;tam=0;delay(2);
+ 515   2                              tat(); 
+ 516   2                      }  
+ 517   1                      for(i=0;i<tocdo;i++)
+ 518   1                      {
+ 519   2                              bon=nam=0;P1=127;P0=252;P3=254;delay(4);
+ 520   2                              tat(); 
+ 521   2                      }
+ 522   1                      for(i=0;i<tocdo;i++)
+ 523   1                      {
+ 524   2                              nam=0;P0=254;delay(4);
+ 525   2                              tat(); 
+ 526   2                      }
+ 527   1                      delay(6*tocdo);
+ 528   1                      for(i=0;i<tocdo;i++)
+ 529   1                      {
+ 530   2                              nam=0;P0=254;delay(4);
+ 531   2                              tat(); 
+ 532   2                      }
+ 533   1                      for(i=0;i<tocdo;i++)
+ 534   1                      {
+ 535   2                              bon=nam=0;P1=127;P0=252;P3=254;delay(4);
+ 536   2                              tat(); 
+ 537   2                      }
+ 538   1                      for(i=0;i<tocdo;i++)
+ 539   1                      {
+ 540   2                              nam=ba=0;P0=248;tam=0;P1=63;P3=125;delay(2);
+ 541   2                              tat();
+ 542   2                              bon=0;P1=191;P0=250;tam=0;delay(2);
+ 543   2                              tat(); 
+ 544   2                      }
+ 545   1                      for(i=0;i<tocdo;i++)
+ 546   1                      {
+ 547   2                              nam=hai=0;P1=31;P3=131;P0=240;delay(2);
+ 548   2                              tat();
+ 549   2                              ba=bon=0;P0=246;P1=223;P3=239;delay(2);
+ 550   2                              tat();
+ 551   2                      }
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 10  
+
+ 552   1                      for(i=0;i<tocdo;i++)
+ 553   1                      {
+ 554   2                              mot=nam=0;P1=P0=0;delay(2);
+ 555   2                              tat();
+ 556   2                              hai=ba=bon=0;P1=P0=238;delay(2);
+ 557   2                              tat();
+ 558   2                      }  
+ 559   1                       
+ 560   1      }
+ 561          
+ 562          void phaohoa(int tocdo)
+ 563          {
+ 564   1              a=255;
+ 565   1              for(i=0;i<5;i++)
+ 566   1              {
+ 567   2                      P2=a<<i;tam=0;delay(tocdo);
+ 568   2              }
+ 569   1              tat();
+ 570   1              //P1=254;
+ 571   1              P2=225-128;delay(tocdo);
+ 572   1              P2=227-128;delay(tocdo);
+ 573   1              P2=231-128;delay(tocdo);
+ 574   1              P2=239-128;delay(tocdo);
+ 575   1              tat();
+ 576   1              nam=0;tam=0;delay(tocdo);
+ 577   1              tam=1;P3=170;delay(tocdo);
+ 578   1              P1=P0=238;P3=255;delay(tocdo);
+ 579   1              bon=0;delay(tocdo);
+ 580   1              ba=0;delay(tocdo);
+ 581   1              hai=0;delay(tocdo);
+ 582   1              mot=0;delay(tocdo);
+ 583   1              nam=1;delay(tocdo);
+ 584   1              bon=1;delay(tocdo);
+ 585   1              ba=1;delay(tocdo);
+ 586   1              hai=1;delay(tocdo);
+ 587   1              tat();delay(tocdo);
+ 588   1      
+ 589   1      }
+ 590          void motmat()
+ 591          {
+ 592   1              int i=0,a=0xff;
+ 593   1              ba=0;
+ 594   1              P1=P0=P3=a=255;
+ 595   1              tam=0;
+ 596   1              delay(100);
+ 597   1              a=0XFF;
+ 598   1              for(i=0;i<8;i++)
+ 599   1              {
+ 600   2                      a=a>>1;
+ 601   2                      P3=a;
+ 602   2                      delay(100);
+ 603   2              }
+ 604   1              a=0XFF;
+ 605   1              for(i=0;i<8;i++)
+ 606   1              {
+ 607   2                      a=a>>1;
+ 608   2                      P1=a;
+ 609   2                      delay(100);
+ 610   2              }
+ 611   1              a=0XFF;
+ 612   1              for(i=0;i<8;i++)
+ 613   1              {
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 11  
+
+ 614   2                      a=a>>1;
+ 615   2                      P0=a;
+ 616   2                      delay(100);
+ 617   2              }
+ 618   1      }
+ 619          void quayngang(int tocdo)
+ 620          {
+ 621   1               for(i=0;i<tocdo;i++)
+ 622   1              {
+ 623   2                      ba=tam=P1=P0=P3=0;delay(1);
+ 624   2                      tat();                  delay(4);
+ 625   2              }
+ 626   1              for(i=0;i<tocdo;i++)
+ 627   1              {
+ 628   2                      mot=0;P0=15;P1=254;delay(1);
+ 629   2                      tat();
+ 630   2                      hai=0;P0=247;P1=253;P3=227;delay(1);
+ 631   2                      tat();
+ 632   2                      ba=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 633   2                      tat();
+ 634   2                      bon=0;P0=253;P1=247;P3=62;       delay(1);
+ 635   2                      tat();
+ 636   2                      nam=0;P0=254;P1=15;P3=255;      delay(1);
+ 637   2                      tat();     
+ 638   2              }
+ 639   1              for(i=0;i<tocdo;i++)
+ 640   1              {
+ 641   2                      ca5=0;P0=251;P1=251;P3=221;tam=0;        delay(4);
+ 642   2                      tat();             delay(1);
+ 643   2                              }
+ 644   1              for(i=0;i<tocdo;i++)
+ 645   1              {
+ 646   2                      nam=0;P0=15;P1=254;delay(1);
+ 647   2                      tat();
+ 648   2                      bon=0;P0=247;P1=253;P3=227;delay(1);
+ 649   2                      tat();
+ 650   2                      ba=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 651   2                      tat();
+ 652   2                      hai=0;P0=253;P1=247;P3=62;       delay(1);
+ 653   2                      tat();
+ 654   2                      mot=0;P0=254;P1=15;P3=255;      delay(1);
+ 655   2                      tat();
+ 656   2              }
+ 657   1      }
+ 658          void song(int tocdo)
+ 659          {
+ 660   1              for(i=0;i<tocdo;i++)
+ 661   1              {
+ 662   2                      nam=0;P0=15;P1=254;delay(1);
+ 663   2                      tat();
+ 664   2                      bon=0;P0=247;P1=253;P3=227;delay(1);
+ 665   2                      tat();
+ 666   2                      ba=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 667   2                      tat();
+ 668   2                      hai=0;P0=253;P1=247;P3=62;       delay(1);
+ 669   2                      tat();
+ 670   2                      mot=0;P0=254;P1=15;P3=255;      delay(1);
+ 671   2                      tat();
+ 672   2              }       
+ 673   1              for(i=0;i<tocdo;i++)
+ 674   1              {
+ 675   2                      bon=0;P0=15;P1=254;delay(1);
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 12  
+
+ 676   2                      tat();
+ 677   2                      nam=0;P0=247;P1=253;P3=227;delay(1);
+ 678   2                      tat();
+ 679   2                      bon=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 680   2                      tat();
+ 681   2                      ba=0;P0=253;P1=247;P3=62;        delay(1);
+ 682   2                      tat();
+ 683   2                      hai=0;P0=254;P1=15;P3=255;      delay(1);
+ 684   2                      tat();
+ 685   2              }
+ 686   1      
+ 687   1                      for(i=0;i<tocdo;i++)
+ 688   1                      {
+ 689   2                              ba=0;P0=15;P1=254;delay(1);
+ 690   2                              tat();
+ 691   2                              bon=0;P0=247;P1=253;P3=227;delay(1);
+ 692   2                              tat();
+ 693   2                              nam=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 694   2                              tat();
+ 695   2                              bon=0;P0=253;P1=247;P3=62;       delay(1);
+ 696   2                              tat();
+ 697   2                              ba=0;P0=254;P1=15;P3=255;       delay(1);
+ 698   2                              tat();
+ 699   2                      }
+ 700   1                      for(i=0;i<tocdo;i++)
+ 701   1                      {
+ 702   2                              hai=0;P0=15;P1=254;delay(1);
+ 703   2                              tat();
+ 704   2                              ba=0;P0=247;P1=253;P3=227;delay(1);
+ 705   2                              tat();
+ 706   2                              bon=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 707   2                              tat();
+ 708   2                              nam=0;P0=253;P1=247;P3=62;       delay(1);
+ 709   2                              tat();
+ 710   2                              bon=0;P0=254;P1=15;P3=255;      delay(1);
+ 711   2                              tat();
+ 712   2                      }
+ 713   1                      for(i=0;i<tocdo;i++)
+ 714   1                      {
+ 715   2                              mot=0;P0=15;P1=254;delay(1);
+ 716   2                              tat();
+ 717   2                              hai=0;P0=247;P1=253;P3=227;delay(1);
+ 718   2                              tat();
+ 719   2                              ba=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 720   2                              tat();
+ 721   2                              bon=0;P0=253;P1=247;P3=62;       delay(1);
+ 722   2                              tat();
+ 723   2                              nam=0;P0=254;P1=15;P3=255;      delay(1);
+ 724   2                              tat();
+ 725   2                      }
+ 726   1                      for(i=0;i<tocdo;i++)
+ 727   1                      {
+ 728   2                              hai=0;P0=15;P1=254;delay(1);
+ 729   2                              tat();
+ 730   2                              mot=0;P0=247;P1=253;P3=227;delay(1);
+ 731   2                              tat();
+ 732   2                              hai=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 733   2                              tat();
+ 734   2                              ba=0;P0=253;P1=247;P3=62;        delay(1);
+ 735   2                              tat();
+ 736   2                              bon=0;P0=254;P1=15;P3=255;      delay(1);
+ 737   2                              tat();
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 13  
+
+ 738   2                      }
+ 739   1                      for(i=0;i<tocdo;i++)
+ 740   1                      {
+ 741   2                              ba=0;P0=15;P1=254;delay(1);
+ 742   2                              tat();
+ 743   2                              hai=0;P0=247;P1=253;P3=227;delay(1);
+ 744   2                              tat();
+ 745   2                              mot=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 746   2                              tat();
+ 747   2                              hai=0;P0=253;P1=247;P3=62;       delay(1);
+ 748   2                              tat();
+ 749   2                              ba=0;P0=254;P1=15;P3=255;       delay(1);
+ 750   2                              tat();
+ 751   2                      }
+ 752   1                      for(i=0;i<tocdo;i++)
+ 753   1                      {
+ 754   2                              bon=0;P0=15;P1=254;delay(1);
+ 755   2                              tat();
+ 756   2                              ba=0;P0=247;P1=253;P3=227;delay(1);
+ 757   2                              tat();
+ 758   2                              hai=0;P0=251;P1=251;P3=221;tam=0;delay(1);
+ 759   2                              tat();
+ 760   2                              mot=0;P0=253;P1=247;P3=62;       delay(1);
+ 761   2                              tat();
+ 762   2                              hai=0;P0=254;P1=15;P3=255;      delay(1);
+ 763   2                              tat();
+ 764   2                      }
+ 765   1      }
+ 766          void quet(int i)
+ 767          {
+ 768   1              mot=0;P0=P1=scan[i];delay(1);tat();
+ 769   1              hai=0;P0=P1=scan[i+1];delay(1);tat();
+ 770   1              ba=0;P0=P1=scan[i+2];delay(1);  tat();
+ 771   1              bon=0;P0=P1=scan[i+3];delay(1);tat();
+ 772   1              nam=0;P0=P1=scan[i+4];delay(1);tat();
+ 773   1      }
+ 774          void bondiem(int tocdo,int solan)
+ 775          {
+ 776   1              for(i=0;i<solan;i++)
+ 777   1              {
+ 778   2                       ba=tam=0;delay(tocdo);
+ 779   2                       tat();
+ 780   2                       hai=bon=0;P3=170;delay(tocdo);
+ 781   2                       tat();
+ 782   2                       mot=nam=0;P0=P1=238;delay(tocdo*4);
+ 783   2                       tat();
+ 784   2                       hai=bon=0;P3=170;delay(tocdo);
+ 785   2                       tat();
+ 786   2              }
+ 787   1      }
+ 788          void cheo(int tocdo)
+ 789          {
+ 790   1               mot=0;
+ 791   1               P0=254;delay(tocdo);
+ 792   1               P3=254;delay(tocdo);
+ 793   1               tam=0;delay(tocdo);
+ 794   1               P3=238;delay(tocdo);
+ 795   1               P1=254;delay(tocdo);
+ 796   1               P0=255;delay(tocdo);
+ 797   1               P3=239;delay(tocdo);
+ 798   1               tam=1;delay(tocdo);
+ 799   1               P3=255;delay(tocdo);
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 14  
+
+ 800   1               tat();delay(tocdo);
+ 801   1      
+ 802   1               nam=0;
+ 803   1               P1=239;delay(tocdo);
+ 804   1               P3=191;delay(tocdo);
+ 805   1               tam=0;delay(tocdo);
+ 806   1               P3=187;delay(tocdo);
+ 807   1               P0=239;delay(tocdo);
+ 808   1               P1=255;delay(tocdo);
+ 809   1               P3=251;delay(tocdo);
+ 810   1               tam=1;delay(tocdo);
+ 811   1               P3=255;delay(tocdo);
+ 812   1               tat();delay(tocdo);
+ 813   1               P1=254;
+ 814   1               a=255;
+ 815   1              for(i=0;i<5;i++)
+ 816   1              {
+ 817   2                      P2=a<<i;tam=1;delay(tocdo);
+ 818   2              }
+ 819   1              tat();
+ 820   1              P1=254;
+ 821   1              P2=225;delay(tocdo);
+ 822   1              P2=227;delay(tocdo);
+ 823   1              P2=231;delay(tocdo);
+ 824   1              P2=239;delay(tocdo);
+ 825   1              tat();delay(tocdo);
+ 826   1              bon=0;
+ 827   1                      P1=247;delay(tocdo);
+ 828   1                      P3=191;delay(tocdo);
+ 829   1                      P3=63;delay(tocdo);
+ 830   1                      P3=62;delay(tocdo);
+ 831   1                      P0=253;delay(tocdo);
+ 832   1                      P1=255;delay(tocdo);
+ 833   1                      P3=126;delay(tocdo);
+ 834   1                      P3=254;delay(tocdo);
+ 835   1                      P3=255;delay(tocdo);
+ 836   1                      tat();delay(tocdo);
+ 837   1                      hai=0;
+ 838   1               P0=254;delay(tocdo);
+ 839   1               P3=254;delay(tocdo);
+ 840   1               tam=0;delay(tocdo);
+ 841   1               P3=238;delay(tocdo);
+ 842   1               P1=254;delay(tocdo);
+ 843   1               P0=255;delay(tocdo);
+ 844   1               P3=239;delay(tocdo);
+ 845   1               tam=1;delay(tocdo);
+ 846   1               P3=255;delay(tocdo);
+ 847   1               tat();delay(tocdo);
+ 848   1       ba=0;
+ 849   1               P1=239;delay(tocdo);
+ 850   1               P3=191;delay(tocdo);
+ 851   1               tam=0;delay(tocdo);
+ 852   1               P3=187;delay(tocdo);
+ 853   1               P0=239;delay(tocdo);
+ 854   1               P1=255;delay(tocdo);
+ 855   1               P3=251;delay(tocdo);
+ 856   1               tam=1;delay(tocdo);
+ 857   1               P3=255;delay(tocdo);
+ 858   1               tat();delay(tocdo);
+ 859   1      }
+ 860          void ilu()
+ 861          {
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 15  
+
+ 862   1                      for(i=0;i<200;i++)
+ 863   1                      {
+ 864   2                               mot=nam=P0=P1=P3=tam=0;delay(2);
+ 865   2                               tat();
+ 866   2                               hai=bon=ba=0;P0=251;P1=251;P3=221;tam=0;delay(2);
+ 867   2                               tat();  
+ 868   2                      }
+ 869   1                      delay(1000);
+ 870   1                      for(i=0;i<200;i++)
+ 871   1                      {
+ 872   2                               mot=nam=P0=P1=P3=tam=0;delay(2);
+ 873   2                               tat();
+ 874   2                               hai=bon=ba=0;P0=251;P1=251;P3=221;tam=0;delay(2);
+ 875   2                               tat();  
+ 876   2                      }
+ 877   1                      delay(1000);
+ 878   1                      for(i=0;i<200;i++)
+ 879   1                      {
+ 880   2                               mot=nam=P0=P1=P3=tam=0;delay(2);
+ 881   2                               tat();
+ 882   2                               hai=bon=ba=0;P0=251;P1=251;P3=221;tam=0;delay(2);
+ 883   2                               tat();  
+ 884   2                      }
+ 885   1                      delay(1000);
+ 886   1                      for(i=0;i<200;i++)
+ 887   1                              {
+ 888   2                       mot=0;P0=251;P1=251;P3=221;tam=0;delay(1); tat();
+ 889   2                       hai=0;P0=241;P1=241;P3=0;tam=0;delay(1);tat();
+ 890   2                       ba=bon=P0=P1=P3=tam=0;delay(1);tat();
+ 891   2                       nam=0;P0=245;P1=245;P3=34;delay(1); tat();
+ 892   2                       }
+ 893   1                       delay(1000);
+ 894   1                       for(i=0;i<200;i++)
+ 895   1                              {
+ 896   2                       mot=0;P0=251;P1=251;P3=221;tam=0;delay(1); tat();
+ 897   2                       hai=0;P0=241;P1=241;P3=0;tam=0;delay(1);tat();
+ 898   2                       ba=bon=P0=P1=P3=tam=0;delay(1);tat();
+ 899   2                       nam=0;P0=245;P1=245;P3=34;delay(1); tat();
+ 900   2                       }
+ 901   1                       delay(1000);
+ 902   1                       for(i=0;i<200;i++)
+ 903   1                              {
+ 904   2                       mot=0;P0=251;P1=251;P3=221;tam=0;delay(1); tat();
+ 905   2                       hai=0;P0=241;P1=241;P3=0;tam=0;delay(1);tat();
+ 906   2                       ba=bon=P0=P1=P3=tam=0;delay(1);tat();
+ 907   2                       nam=0;P0=245;P1=245;P3=34;delay(1); tat();
+ 908   2                       }
+ 909   1                       delay(1000);
+ 910   1                       for(i=0;i<200;i++)
+ 911   1                              {       
+ 912   2                       mot=0;P0=241;P1=241;P3=0;tam=0;delay(2);tat();
+ 913   2                       hai=ba=bon=nam=0;P0=14;P1=14;P3=255; delay(2); tat();
+ 914   2                       }
+ 915   1                       delay(1000);
+ 916   1                       for(i=0;i<200;i++)
+ 917   1                              {       
+ 918   2                       mot=0;P0=241;P1=241;P3=0;tam=0;delay(2);tat();
+ 919   2                       hai=ba=bon=nam=0;P0=14;P1=14;P3=255; delay(2); tat();
+ 920   2                       }
+ 921   1                       delay(1000);
+ 922   1                       for(i=0;i<200;i++)
+ 923   1                              {       
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 16  
+
+ 924   2                       mot=0;P0=241;P1=241;P3=0;tam=0;delay(2);tat();
+ 925   2                       hai=ba=bon=nam=0;P0=14;P1=14;P3=255; delay(2); tat();
+ 926   2                       }
+ 927   1                       delay(1000);
+ 928   1      }
+ 929          void taohop(int tocdo)
+ 930          {
+ 931   1      tat();
+ 932   1                       mot=0;
+ 933   1                       for(i=0;i<8;i++)
+ 934   1                      {
+ 935   2                              P0=a<<i;delay(tocdo);
+ 936   2                      }
+ 937   1                      for(i=0;i<8;i++)
+ 938   1                      {
+ 939   2                              P1=a<<i;delay(tocdo);
+ 940   2                      } //delay(3000);
+ 941   1                      for(i=0;i<1;i++)
+ 942   1                      {
+ 943   2                      mot=1;hai=0;delay(100);
+ 944   2                      hai=1;ba=0;delay(100); 
+ 945   2                      ba=1;bon=0;delay(100);
+ 946   2                      bon=1;nam=0;delay(100);
+ 947   2      
+ 948   2                      nam=1;bon=0;delay(100);
+ 949   2                      bon=1;ba=0;delay(100); 
+ 950   2                      ba=1;hai=0;delay(100);
+ 951   2                      hai=1;mot=0;delay(100);
+ 952   2      
+ 953   2                      }
+ 954   1                      mot=1;hai=0;delay(100);
+ 955   1                      hai=1;ba=0;delay(100); 
+ 956   1                      ba=1;bon=0;delay(100);
+ 957   1                      bon=1;nam=0;delay(100);
+ 958   1      
+ 959   1                      bon=0;delay(100);
+ 960   1                      ba=0;delay(100); 
+ 961   1                      hai=0;delay(100);
+ 962   1                      mot=0;delay(100);
+ 963   1                      delay(1000);
+ 964   1      }
+ 965          void main()
+ 966          {
+ 967   1              int i=0,j,k;
+ 968   1              while(1)
+ 969   1              {
+ 970   2                      nhapnhay();
+ 971   2                      ilu();
+ 972   2                      trongra();ngoaivao();
+ 973   2                      trongra();ngoaivao();
+ 974   2                      trongra();ngoaivao();
+ 975   2                      motmat();
+ 976   2                      for(i=150;i>0;i--)
+ 977   2                      {
+ 978   3                              quayngang(i);
+ 979   3                              if(i>30) i=i-15;
+ 980   3                      }
+ 981   2                      for(i=0;i<100;i++)
+ 982   2                      {
+ 983   3                              quayngang(i);
+ 984   3                              if(i>30) i=i+15;
+ 985   3                      }
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 17  
+
+ 986   2                      for(i=20;i<40;i++)
+ 987   2                      {         
+ 988   3                              song(i);
+ 989   3                      }
+ 990   2                      tat();
+ 991   2                      bondiem(80,5);  
+ 992   2                      for(k=0;k<17;k++)
+ 993   2                              for(i=0;i<8;i++)
+ 994   2                              {
+ 995   3                                      for(j=0;j<20;j++)
+ 996   3                                      quet(i);
+ 997   3                              }
+ 998   2                       
+ 999   2                      bondiem(100,7);
+1000   2                      cheo(100);cheo(100);cheo(100);          
+1001   2                      phaohoa(140);
+1002   2                      phaohoa(90); 
+1003   2                      phaohoa(100);
+1004   2                      phaohoa(70);
+1005   2                      phaohoa(200);
+1006   2                                                      
+1007   2                      
+1008   2                      ilu();
+1009   2                      delay(5000);
+1010   2                      taohop(100);
+1011   2                      bondiem(100,7);
+1012   2                      goc1(20); 
+1013   2                      goc6(20);
+1014   2                      goc3(20);
+1015   2                      goc8(20);
+1016   2              //      goc2(20); 
+1017   2                      goc4(20);
+1018   2                      goc5(20);
+1019   2                      goc7(20);
+1020   2                      goc3(20);
+1021   2                      goc1(20);
+1022   2              //      goc2(20); 
+1023   2                      goc6(20);
+1024   2                      goc5(20);
+1025   2                      for(k=0;k<15;k++)
+1026   2                              for(i=0;i<8;i++)
+1027   2                              {
+1028   3                                      for(j=0;j<20;j++)
+1029   3                                      quet(i);
+1030   3                              } 
+1031   2              }
+1032   1      }
+1033          
+1034          
+1035          
+1036          
+1037          
+1038          
+1039          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   7722    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     52      16
+C51 COMPILER V9.01   CUBE555                                                               04/01/2016 21:15:09 PAGE 18  
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

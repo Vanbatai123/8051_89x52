@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"dongho.obj" 
+TO "dongho" 
+RAMSIZE(256) 

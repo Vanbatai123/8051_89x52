@@ -1,0 +1,5 @@
+ORG 00H
+	MAIN:	SETB P2.1
+			CLR  P2.1
+	JMP     MAIN		
+	END	

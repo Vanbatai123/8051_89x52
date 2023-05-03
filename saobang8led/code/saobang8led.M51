@@ -1,0 +1,150 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/31/2015  07:00:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE saobang8led.obj TO saobang8led RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  saobang8led.obj (SAOBANG8LED)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  saobang8led (SAOBANG8LED)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         ?DT?SAOBANG8LED
+            DATA    000EH     0004H     UNIT         _DATA_GROUP_
+            IDATA   0012H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0054H     UNIT         ?PR?SAOBANG?SAOBANG8LED
+            CODE    0057H     0034H     UNIT         ?PR?_SIP?SAOBANG8LED
+            CODE    008BH     002DH     UNIT         ?PR?_DELAY?SAOBANG8LED
+            CODE    00B8H     000CH     UNIT         ?C_C51STARTUP
+            CODE    00C4H     0005H     UNIT         ?PR?MAIN?SAOBANG8LED
+
+
+
+OVERLAY MAP OF MODULE:   saobang8led (SAOBANG8LED)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?SAOBANG8LED
+
+?PR?MAIN?SAOBANG8LED            -----    -----
+  +--> ?PR?SAOBANG?SAOBANG8LED
+
+?PR?SAOBANG?SAOBANG8LED         000EH    0004H
+  +--> ?PR?_DELAY?SAOBANG8LED
+
+?PR?_DELAY?SAOBANG8LED          -----    -----
+  +--> ?PR?_SIP?SAOBANG8LED
+
+
+
+SYMBOL TABLE OF MODULE:  saobang8led (SAOBANG8LED)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/31/2015  07:00:49  PAGE 2
+
+
+
+  -------         MODULE        SAOBANG8LED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  C:0092H         PUBLIC        _delay
+  C:00C4H         PUBLIC        main
+  D:0008H         PUBLIC        dat
+  C:0057H         PUBLIC        _sip
+  C:0003H         PUBLIC        saobang
+  D:000AH         PUBLIC        i
+  D:000CH         PUBLIC        x
+  -------         PROC          L?0026
+  -------         ENDPROC       L?0026
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0092H         LINE#         6
+  C:0092H         LINE#         7
+  C:0092H         LINE#         9
+  C:00A2H         LINE#         10
+  C:00A2H         LINE#         11
+  C:00A5H         LINE#         12
+  C:00A5H         LINE#         14
+  C:00B0H         LINE#         15
+  C:00B7H         LINE#         16
+  -------         ENDPROC       _DELAY
+  -------         PROC          _SIP
+  D:0006H         SYMBOL        dat
+  C:0057H         LINE#         17
+  C:0057H         LINE#         18
+  C:0057H         LINE#         19
+  C:005DH         LINE#         20
+  C:005DH         LINE#         22
+  C:0061H         LINE#         23
+  C:0066H         LINE#         25
+  C:0069H         LINE#         26
+  C:0070H         LINE#         28
+  C:0073H         LINE#         29
+  C:0076H         LINE#         30
+  C:0084H         LINE#         32
+  C:0087H         LINE#         33
+  C:008AH         LINE#         36
+  -------         ENDPROC       _SIP
+  -------         PROC          SAOBANG
+  -------         DO            
+  D:0082H         SYMBOL        i
+  D:000EH         SYMBOL        a
+  D:0010H         SYMBOL        b
+  -------         ENDDO         
+  C:0003H         LINE#         37
+  C:0003H         LINE#         38
+  C:0003H         LINE#         39
+  C:0011H         LINE#         40
+  C:0011H         LINE#         41
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/31/2015  07:00:49  PAGE 3
+
+
+  C:0011H         LINE#         42
+  C:0022H         LINE#         43
+  C:0022H         LINE#         44
+  C:0022H         LINE#         45
+  C:0025H         LINE#         46
+  C:0030H         LINE#         47
+  C:0032H         LINE#         49
+  C:0032H         LINE#         50
+  C:0032H         LINE#         51
+  C:0035H         LINE#         52
+  C:0047H         LINE#         53
+  C:0047H         LINE#         54
+  C:0050H         LINE#         55
+  -------         ENDPROC       SAOBANG
+  -------         PROC          MAIN
+  C:00C4H         LINE#         57
+  C:00C4H         LINE#         58
+  C:00C4H         LINE#         59
+  C:00C4H         LINE#         60
+  C:00C4H         LINE#         61
+  C:00C7H         LINE#         62
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        SAOBANG8LED
+
+Program Size: data=19.0 xdata=0 code=201
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

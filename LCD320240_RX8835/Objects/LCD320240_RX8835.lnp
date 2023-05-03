@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\LCD320240_RX8835" 
+PRINT(".\Listings\LCD320240_RX8835.m51") RAMSIZE(256) 

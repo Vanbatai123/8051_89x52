@@ -1,0 +1,110 @@
+C51 COMPILER V9.01   BUTTON                                                                04/20/2016 18:51:20 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE BUTTON
+OBJECT MODULE PLACED IN button.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE button.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                                            /*Thach anh su dung f=24Mhz*/
+   2          #include <REGX51.H>
+   3           void delay_ms(int x)
+   4          {
+   5   1              int i,j;
+   6   1              for(i=0;i<x;i++)
+   7   1              {
+   8   2                      for(j=0;j<125;j++)
+   9   2                      {
+  10   3                                      
+  11   3                      }
+  12   2              }
+  13   1      }
+  14          void main()
+  15          {
+  16   1              P2=P1=0;
+  17   1              while(1)
+  18   1              {
+  19   2                              if(P1_0==1)
+  20   2                              {
+  21   3                                      delay_ms(500);
+  22   3                                      P2_0=~P2_0;
+  23   3                              }
+  24   2                              if(P2_0==1)
+  25   2                              {
+  26   3                                      
+  27   3                                      P0_0 = 0;
+  28   3                                      delay_ms(250);  
+  29   3                                      P0_0 = 1;
+  30   3                                      delay_ms(1000);
+  31   3                              }
+  32   2                              else 
+  33   2                              P0_0=1;
+  34   2      
+  35   2                              if(P1_1==1)
+  36   2                              {
+  37   3                                      delay_ms(500);
+  38   3                                      P2_1=~P2_1;
+  39   3                              }
+  40   2                              if(P2_1==1)
+  41   2                              {
+  42   3                                      
+  43   3                                      //P0_0 = 0;
+  44   3                                      //delay_ms(40); 
+  45   3                                      P0_1 = 1;
+  46   3                                      //delay_ms(100);
+  47   3                              }
+  48   2                              else 
+  49   2                              P0_1=0;
+  50   2                                       
+  51   2                              if(P1_2==1)
+  52   2                              {
+  53   3                                      delay_ms(500);
+  54   3                                      P2_2=~P2_2;
+  55   3                              }
+C51 COMPILER V9.01   BUTTON                                                                04/20/2016 18:51:20 PAGE 2   
+
+  56   2                              if(P2_2==1)
+  57   2                              {
+  58   3                                      
+  59   3                                      //P0_0 = 0;
+  60   3                                      //delay_ms(40); 
+  61   3                                      P0_2 = 1;
+  62   3                                      //delay_ms(100);
+  63   3                              }
+  64   2                              else 
+  65   2                              P0_2=0;
+  66   2                      
+  67   2                              
+  68   2      
+  69   2                      /*      if(P1_1==1)
+  70   2                              {
+  71   2                                      delay_ms(600);
+  72   2                                      P2_1=~P2_1;
+  73   2                              }
+  74   2                              if(P1_2==1)
+  75   2                              {
+  76   2                                      delay_ms(600);
+  77   2                                      P2_2=~P2_2;
+  78   2                              }
+  79   2                              if(P1_3==1)
+  80   2                              {
+  81   2                                      delay_ms(600);
+  82   2                                      P2_3=~P2_3;
+  83   2                              }*/     
+  84   2              }
+  85   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    116    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

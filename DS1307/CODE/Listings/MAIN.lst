@@ -1,0 +1,42 @@
+C51 COMPILER V9.52.0.0   MAIN                                                              08/15/2017 17:26:23 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\MAIN.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MAIN.C BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\MAIN.lst) TABS(2) OBJECT(
+                    -.\Objects\MAIN.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "F:\8051\Header\delay.h"
+   3          #include "F:\8051\Header\myUART.h"
+   4          #include <math.h>
+   5          #include "F:\8051\Header\myDS1307.h"
+   6          
+   7          
+   8          int main(void)
+   9          {
+  10   1          init_UART();
+  11   1          DS1307_Set(1,2,3,4,5,6);
+  12   1          while(1)
+  13   1          {
+  14   2              display();
+  15   2              print_UART("\r");
+  16   2              _delay_ms(11);
+  17   2          } 
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3497    ----
+   CONSTANT SIZE    =      7    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      81
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

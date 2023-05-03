@@ -1,0 +1,38 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              11/21/2016 10:17:12 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "F:\8051\Header\delay.h"
+   3          #include "F:\8051\Header\myLCD_HP.h"
+   4          int a=0;
+   5          void main()
+   6          {
+   7   1        init_LCD();
+   8   1        while(1)
+   9   1        {
+  10   2          a++;
+  11   2          move_LCD(1,1);
+  12   2          vietso_LCD(a); 
+  13   2          _delay_ms(100);
+  14   2        }
+  15   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    444    ----
+   CONSTANT SIZE    =    579    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

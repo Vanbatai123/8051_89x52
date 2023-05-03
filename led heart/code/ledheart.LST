@@ -1,0 +1,537 @@
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LEDHEART
+OBJECT MODULE PLACED IN ledheart.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ledheart.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "REGX51.H"
+   2          #include "E:\8051\delay\delay.c"
+*** WARNING C318 IN LINE 2 OF ledheart.c: can't open file 'E:\8051\delay\delay.c'
+   3          int n,i,j,k,a=0xff,b=0xfe,c=0x7f,d=0xff,x=0xff,y=0xfe,z=0xfe;
+   4          void sangdan(int solan)
+   5          {                
+   6   1              for(n=0;n<solan;n++)
+   7   1              {
+   8   2                      int a=0xff,b=0xfe,c=0x7f,d=0xff;
+   9   2                      for(i=8;i>0;i--)
+  10   2                      {
+  11   3                              for(j=0;j<i;j++)
+  12   3                              {
+  13   4                                      P1=P2=P3=P0=a&b;
+  14   4                                      delay_ms(50);
+*** WARNING C206 IN LINE 14 OF LEDHEART.C: 'delay_ms': missing function-prototype
+*** ERROR C267 IN LINE 14 OF LEDHEART.C: 'delay_ms': requires ANSI-style prototype
+  15   4                                      b=b<<1;
+  16   4                                      b=b|0x01;
+  17   4                              }
+  18   3                              b=0xfe;
+  19   3                              a=a>>1;
+  20   3                      }
+  21   2                      for(i=8;i>0;i--)
+  22   2                      {
+  23   3                              for(j=0;j<i;j++)
+  24   3                              {
+  25   4                                      P1=P2=P3=P0=d&c;
+  26   4                                      delay_ms(50);
+  27   4                                      c=(c>>1)+0x80;
+  28   4                                      
+  29   4                              }
+  30   3                              c=0x7f;
+  31   3                              d=d<<1;
+  32   3                      }
+  33   2              }
+  34   1      }
+  35          void sang2bentang(int solan)
+  36          {               
+  37   1              for(n=0;n<solan;n++)
+  38   1              {
+  39   2                      int x=0xff,y=0xfe,z=0xfe;
+  40   2                      for(k=8;k>0;k--)
+  41   2                      {
+  42   3                              for(j=0;j<8;j++)
+  43   3                              {
+  44   4                                      P2=y;
+  45   4                                      delay_ms(50);
+  46   4                                      y=(y<<1)+1;     
+  47   4                              }
+  48   3                              P2=0xff;
+  49   3                              for(i=0;i<k;i++)
+  50   3                              {
+  51   4                                      P3=x&z;
+  52   4                                      delay_ms(50);
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 2   
+
+  53   4                                      z=(z<<1)+1;
+  54   4                              }
+  55   3                              
+  56   3                              z=y=0xfe;
+  57   3                              x=x>>1;                 
+  58   3                      }
+  59   2                      x=0xff;
+  60   2                      for(k=8;k>0;k--)
+  61   2                      {
+  62   3                              for(i=0;i<k;i++)
+  63   3                              {
+  64   4                                      P2=x&z;
+  65   4                                      delay_ms(50);
+  66   4                                      z=(z<<1)+1;
+  67   4                              }
+  68   3                              
+  69   3                              y=z=0xfe;
+  70   3                              x=x>>1;                 
+  71   3                      }
+  72   2                      
+  73   2                      P3=0xff;
+  74   2              }
+  75   1      }
+  76          void sang2bengiam(int solan)
+  77          {               
+  78   1              for(n=0;n<solan;n++)
+  79   1              {
+  80   2                      int a=0xff,e=0x7f,b=0x7f,c=0x7f,d=0xff;
+  81   2                      for(k=8;k>0;k--)
+  82   2                      {
+  83   3                              for(j=0;j<8;j++)
+  84   3                              {
+  85   4                                      P1=e;
+  86   4                                      delay_ms(50);
+  87   4                                      e=(e>>1)+0x80;  
+  88   4                              }
+  89   3                              P1=0xff;        
+  90   3                              for(i=0;i<k;i++)
+  91   3                              {
+  92   4                                      P0=a&b;
+  93   4                                      delay_ms(50);
+  94   4                                      b=(b>>1)+0x80;
+  95   4                              }
+  96   3                              
+  97   3                              e=b=0x7f;
+  98   3                              a=a<<1;                 
+  99   3                      }
+ 100   2                      a=0xff;
+ 101   2                      for(k=8;k>0;k--)
+ 102   2                      {
+ 103   3                              for(i=0;i<k;i++)
+ 104   3                              {
+ 105   4                                      P1=a&b;
+ 106   4                                      delay_ms(50);
+ 107   4                                      b=(b>>1)+0x80;
+ 108   4                              }
+ 109   3                              
+ 110   3                              e=b=0x7f;
+ 111   3                              a=a<<1;                 
+ 112   3                      } 
+ 113   2                      P0=0xff;
+ 114   2              }
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 3   
+
+ 115   1      }
+ 116          void lanluot(int solan)
+ 117          {                
+ 118   1              for(n=0;n<solan;n++)
+ 119   1              {
+ 120   2                      int a=0xff,e=0x7f,b=0x7f,c=0xfe,d=0xff,x=0xff,y=0xfe,z=0xfe;
+ 121   2                      for(k=8;k>0;k--)
+ 122   2                      {
+ 123   3                              for(j=0;j<8;j++)
+ 124   3                              {
+ 125   4                                      P1=e;
+ 126   4                                      delay_ms(50);
+ 127   4                                      e=(e>>1)+0x80;  
+ 128   4                              }
+ 129   3                              P1=0xff;        
+ 130   3                              for(i=0;i<k;i++)
+ 131   3                              {
+ 132   4                                      P0=a&b;
+ 133   4                                      delay_ms(50);
+ 134   4                                      b=(b>>1)+0x80;
+ 135   4                              }
+ 136   3                              
+ 137   3                              e=b=0x7f;
+ 138   3                              a=a<<1;
+ 139   3                              for(j=0;j<8;j++)
+ 140   3                              {
+ 141   4                                      P2=y;
+ 142   4                                      delay_ms(50);
+ 143   4                                      y=(y<<1)+1;     
+ 144   4                              }
+ 145   3                              P2=0xff;
+ 146   3                              for(i=0;i<k;i++)
+ 147   3                              {
+ 148   4                                      P3=x&z;
+ 149   4                                      delay_ms(50);
+ 150   4                                      z=(z<<1)+1;
+ 151   4                              }
+ 152   3                              
+ 153   3                              z=y=0xfe;
+ 154   3                              x=x>>1;                 
+ 155   3                      }
+ 156   2                      a=x=0xff;
+ 157   2                      for(k=8;k>0;k--)
+ 158   2                      {
+ 159   3                              for(i=0;i<k;i++)
+ 160   3                              {
+ 161   4                                      P1=a&b;
+ 162   4                                      delay_ms(50);
+ 163   4                                      b=(b>>1)+0x80;
+ 164   4                              }
+ 165   3                              
+ 166   3                              e=b=0x7f;
+ 167   3                              a=a<<1; 
+ 168   3                      for(i=0;i<k;i++)
+ 169   3                              {
+ 170   4                                      P2=x&z;
+ 171   4                                      delay_ms(50);
+ 172   4                                      z=(z<<1)+1;
+ 173   4                              }
+ 174   3                              
+ 175   3                              y=z=0xfe;
+ 176   3                              x=x>>1;                 
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 4   
+
+ 177   3                      } 
+ 178   2                      P0=0xff;
+ 179   2              }
+ 180   1      }
+ 181          void haipha(int solan)
+ 182          {                
+ 183   1              for(n=0;n<solan;n++)
+ 184   1              {       
+ 185   2                      P0=P1=P2=P3=0Xaa;delay_ms(50);
+ 186   2                      P0=P1=P2=P3=0X55;delay_ms(50);
+ 187   2              }
+ 188   1      }
+ 189          void fulltraifai(int solan)
+ 190          {                
+ 191   1              for(n=0;n<solan;n++)
+ 192   1              {       
+ 193   2                      b=0xfe;
+ 194   2                      for(i=0;i<8;i++)
+ 195   2                      {
+ 196   3                              P0=b;
+ 197   3                              delay_ms(50) ;
+ 198   3                              b=(b<<1);
+ 199   3                      }
+ 200   2                      b=0xfe;
+ 201   2                      for(i=0;i<8;i++)
+ 202   2                      {
+ 203   3                              P1=b;
+ 204   3                              delay_ms(50) ;
+ 205   3                              b=(b<<1);
+ 206   3                      }
+ 207   2                      b=0xfe;
+ 208   2                      for(i=0;i<8;i++)
+ 209   2                      {
+ 210   3                              P2=b;
+ 211   3                              delay_ms(50) ;
+ 212   3                              b=(b<<1);
+ 213   3                      }
+ 214   2                      b=0xfe;
+ 215   2                      for(i=0;i<8;i++)
+ 216   2                      {
+ 217   3                              P3=b;
+ 218   3                              delay_ms(50) ;
+ 219   3                              b=(b<<1);
+ 220   3                      }
+ 221   2              }
+ 222   1      }
+ 223          void xoatraifai(int solan)
+ 224          {                
+ 225   1              for(n=0;n<solan;n++)
+ 226   1              {       
+ 227   2      
+ 228   2                      b=0;
+ 229   2                      for(i=0;i<=8;i++)
+ 230   2                      {
+ 231   3                              P0=b;
+ 232   3                              delay_ms(50) ;
+ 233   3                              b=(b<<1)+1;
+ 234   3                      }
+ 235   2                      b=0;
+ 236   2                      for(i=0;i<=8;i++)
+ 237   2                      {
+ 238   3                              P1=b;
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 5   
+
+ 239   3                              delay_ms(50) ;
+ 240   3                              b=(b<<1)+1;
+ 241   3                      }
+ 242   2                      b=0;
+ 243   2                      for(i=0;i<=8;i++)
+ 244   2                      {
+ 245   3                              P2=b;
+ 246   3                              delay_ms(50) ;
+ 247   3                              b=(b<<1)+1;
+ 248   3                      }
+ 249   2                      b=0;
+ 250   2                      for(i=0;i<=8;i++)
+ 251   2                      {
+ 252   3                              P3=b;
+ 253   3                              delay_ms(50) ;
+ 254   3                              b=(b<<1)+1;
+ 255   3                      }
+ 256   2              }
+ 257   1      }
+ 258          void haibongsang(int solan)
+ 259          {                
+ 260   1              for(n=0;n<solan;n++)
+ 261   1              {
+ 262   2                      c=0x7f;
+ 263   2                      for(j=0;j<8;j++)
+ 264   2                      {
+ 265   3                              P3=P1=c;
+ 266   3                              delay_ms(50);
+ 267   3                              c=(c>>1)+0x80;  
+ 268   3                      }
+ 269   2                              c=0x7f;
+ 270   2                              for(j=0;j<8;j++)
+ 271   2                      {
+ 272   3                              P2=P0=c;
+ 273   3                              delay_ms(50);
+ 274   3                              c=(c>>1)+0x80;  
+ 275   3                      }
+ 276   2              }
+ 277   1      }
+ 278          void allbongsang(int solan)
+ 279          {                
+ 280   1              for(n=0;n<solan;n++)
+ 281   1              {
+ 282   2                      P2=P0=0xff;
+ 283   2                      c=0x7f;
+ 284   2                      for(j=0;j<8;j++)
+ 285   2                      {
+ 286   3                              P3=P1=c;
+ 287   3                              delay_ms(50);
+ 288   3                              c=(c>>1);       
+ 289   3                      }
+ 290   2                              c=0x7f;
+ 291   2                              for(j=0;j<8;j++)
+ 292   2                      {
+ 293   3                              P2=P0=c;
+ 294   3                              delay_ms(50);
+ 295   3                              c=(c>>1);       
+ 296   3                      }
+ 297   2              }
+ 298   1      }
+ 299          void allbongtat(int solan)
+ 300          {                
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 6   
+
+ 301   1              for(n=0;n<solan;n++)
+ 302   1              {
+ 303   2                      P2=P0=0x00;
+ 304   2                      c=0x00;
+ 305   2                      for(j=0;j<8;j++)
+ 306   2                      {
+ 307   3                              P3=P1=c;
+ 308   3                              delay_ms(50);
+ 309   3                              c=(c>>1)+0x80;  
+ 310   3                      }
+ 311   2                      P3=P1=0xff;
+ 312   2                              c=0x00;
+ 313   2                              for(j=0;j<8;j++)
+ 314   2                      {
+ 315   3                              P2=P0=c;
+ 316   3                              delay_ms(50);
+ 317   3                              c=(c>>1)+0x80;  
+ 318   3                      }
+ 319   2              }
+ 320   1      }
+ 321          void newstyle(int solan)
+ 322          {                
+ 323   1              for(n=0;n<solan;n++)
+ 324   1              {
+ 325   2                      P2=P0=0xff;
+ 326   2                      c=0x00;
+ 327   2                      for(j=0;j<8;j++)
+ 328   2                      {
+ 329   3                              P3=P1=c;
+ 330   3                              delay_ms(50);
+ 331   3                              c=(c>>1)+0x80;  
+ 332   3                      }
+ 333   2                      P3=P1=0xff;
+ 334   2                              c=0x00;
+ 335   2                              for(j=0;j<8;j++)
+ 336   2                      {
+ 337   3                              P2=P0=c;
+ 338   3                              delay_ms(50);
+ 339   3                              c=(c>>1)+0x80;  
+ 340   3                      }
+ 341   2              }
+ 342   1      }
+ 343          void babonggiam(int solan)
+ 344          {                
+ 345   1              for(n=0;n<solan;n++)
+ 346   1              {
+ 347   2                      c=0x7f;
+ 348   2                      for(j=0;j<9;j++)
+ 349   2                      {
+ 350   3                              if(j>1)
+ 351   3                              {
+ 352   4                              P2=P0=P3=P1=c;
+ 353   4                              delay_ms(50);
+ 354   4                              c=(c>>1)+0x80;
+ 355   4                              }
+ 356   3                      else
+ 357   3                      {       P2=P0=P3=P1=c;
+ 358   4                              delay_ms(50);
+ 359   4                              c=(c>>1);}      
+ 360   3                      }
+ 361   2              }
+ 362   1      }
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 7   
+
+ 363          void babongtang(int solan)
+ 364          {                
+ 365   1              for(n=0;n<solan;n++)
+ 366   1              {
+ 367   2                      c=0xfe;
+ 368   2                      for(j=0;j<9;j++)
+ 369   2                      {
+ 370   3                              if(j>1)
+ 371   3                              {
+ 372   4                              P2=P0=P3=P1=c;
+ 373   4                              delay_ms(50);
+ 374   4                              c=(c<<1)+1;
+ 375   4                              }
+ 376   3                      else
+ 377   3                      {       P2=P0=P3=P1=c;
+ 378   4                              delay_ms(50);
+ 379   4                              c=(c<<1);}      
+ 380   3                      }
+ 381   2              }
+ 382   1      }
+ 383          void haibg2xuong(int solan)
+ 384          {                
+ 385   1              for(n=0;n<solan;n++)
+ 386   1              {
+ 387   2                      c=0xfe;d=0x7f;
+ 388   2                      for(j=0;j<9;j++)
+ 389   2                      {
+ 390   3                              if(j>0)
+ 391   3                              {
+ 392   4                              P2=c;
+ 393   4                      //      delay_ms(30);
+ 394   4                              P1=d;
+ 395   4                              delay_ms(50);
+ 396   4                              d=(d>>1)+0x80;
+ 397   4                              c=(c<<1)+1;
+ 398   4                              }
+ 399   3                              else
+ 400   3                              {       P2=c;
+ 401   4                              //      delay_ms(50);
+ 402   4                                      P1=d;
+ 403   4                                      delay_ms(50);
+ 404   4                                      c=(c<<1);       
+ 405   4                                      d=d>>1;
+ 406   4                              }
+ 407   3                      }
+ 408   2                      P0=P1=P2=P3=0XFF;
+ 409   2                      c=0xfe;d=0x7f;
+ 410   2                      for(j=0;j<9;j++)
+ 411   2                      {
+ 412   3                              if(j>0)
+ 413   3                              {
+ 414   4                              P3=c;
+ 415   4                      //      delay_ms(50);
+ 416   4                              P0=d;
+ 417   4                              delay_ms(50);
+ 418   4                              c=(c<<1)+1;
+ 419   4                              d=(d>>1)+0x80;
+ 420   4                              }
+ 421   3                              else
+ 422   3                              {
+ 423   4                                      P3=c;
+ 424   4                              //      delay_ms(30);
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 8   
+
+ 425   4                                      P0=d;
+ 426   4                                      delay_ms(50);
+ 427   4                                      c=(c<<1);
+ 428   4                                      d=d>>1;
+ 429   4                              }       
+ 430   3                      }
+ 431   2                              P0=P1=P2=P3=0XFF;
+ 432   2                              delay_ms(50);
+ 433   2              }
+ 434   1      }
+ 435          void haibg2len(int solan)
+ 436          {                
+ 437   1              for(n=0;n<solan;n++)
+ 438   1              {
+ 439   2                      c=0xfe;d=0x7f;
+ 440   2                      for(j=0;j<9;j++)
+ 441   2                      {
+ 442   3                              if(j>0)
+ 443   3                              {
+ 444   4                              P0=c;
+ 445   4                      //      delay_ms(30);
+ 446   4                              P3=d;
+ 447   4                              delay_ms(50);
+ 448   4                              d=(d>>1)+0x80;
+ 449   4                              c=(c<<1)+1;
+ 450   4                              }
+ 451   3                              else
+ 452   3                              {       P0=c;
+ 453   4                              //      delay_ms(30);
+ 454   4                                      P3=d;
+ 455   4                                      delay_ms(50);
+ 456   4                                      c=(c<<1);       
+ 457   4                                      d=d>>1;
+ 458   4                              }
+ 459   3                      }
+ 460   2                      P0=P1=P2=P3=0XFF;
+ 461   2                      c=0xfe;d=0x7f;
+ 462   2                      for(j=0;j<9;j++)
+ 463   2                      {
+ 464   3                              if(j>0)
+ 465   3                              {
+ 466   4                              P1=c;
+ 467   4                      //      delay_ms(30);
+ 468   4                              P2=d;
+ 469   4                              delay_ms(50);
+ 470   4                              c=(c<<1)+1;
+ 471   4                              d=(d>>1)+0x80;
+ 472   4                              }
+ 473   3                              else
+ 474   3                              {
+ 475   4                                      P1=c;
+ 476   4                      //              delay_ms(30);
+ 477   4                                      P2=d;
+ 478   4                                      delay_ms(50);
+ 479   4                                      c=(c<<1);
+ 480   4                                      d=d>>1;
+ 481   4                              }       
+ 482   3                      }
+ 483   2                              P0=P1=P2=P3=0XFF;
+ 484   2                              delay_ms(50);
+ 485   2              }
+ 486   1      }
+C51 COMPILER V9.01   LEDHEART                                                              11/05/2015 21:40:26 PAGE 9   
+
+ 487          void nhay2pha(int solan)
+ 488          {                
+ 489   1              for(n=0;n<solan;n++)
+ 490   1              {  
+ 491   2                      P3=P1=0X00;
+ 492   2                      P2=P0=0XFF;
+ 493   2                      delay_ms(100);
+ 494   2                      P2=P0=0X00;
+ 495   2                      P3=P1=0XFF;
+ 496   2                      delay_ms(100);
+ 497   2              }
+ 498   1      }
+ 499          void main (void)
+ 500          {
+ 501   1              while(1)
+ 502   1              {
+ 503   2                      nhay2pha(1);
+ 504   2                      
+ 505   2                       
+ 506   2              }
+ 507   1      }
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)

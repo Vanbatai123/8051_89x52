@@ -1,0 +1,275 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              08/02/2018 23:39:30 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_c51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\mai
+                    -n.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*---------------?????----------------*/
+   2          #include <REGX51.H>
+   3          
+   4          
+   5          #define uint  unsigned int
+   6          #define uchar unsigned char
+   7          
+   8          #define data_ora  P0
+   9          #define a0        P0_0
+  10          #define wr        P0_1
+  11          #define rd        P0_2
+  12          #define rst       P0_3
+  13          #define cs        P0_4
+  14            
+  15          void delay (uint us)
+  16          {
+  17   1        while(us--);
+  18   1      }
+  19          
+  20          void delay1(uint ms)
+  21          {
+  22   1        uint i,j;
+  23   1        for(i=0;i<ms;i++)
+  24   1        for(j=0;j<1000;j++);
+  25   1      }
+  26          
+  27          void chk_busy(void)               //???
+  28          {
+  29   1        P0=0xff;
+  30   1        a0=0;
+  31   1        wr=1;
+  32   1        rd=0;
+  33   1        //while(busy==1);
+  34   1        rd=1;
+  35   1      }
+  36          
+  37          void wr_comm(uchar comm)     //???
+  38          {
+  39   1        chk_busy ();
+  40   1        a0=1;
+  41   1        rd=1;
+  42   1        data_ora=comm;
+  43   1        wr=0;
+  44   1        // delay(2);
+  45   1        wr=1;
+  46   1      }
+  47          
+  48          void wr_data (uchar dat)        //???
+  49          {
+  50   1        chk_busy ();
+  51   1        a0=0;
+  52   1        rd=1;
+  53   1        data_ora=dat;
+  54   1        wr=0;
+C51 COMPILER V9.59.0.0   MAIN                                                              08/02/2018 23:39:30 PAGE 2   
+
+  55   1        //  delay(2);
+  56   1        wr=1;
+  57   1      }
+  58           
+  59          uchar rd_data (uchar dat)        //???
+  60          {
+  61   1        P0=0xff;
+  62   1        a0=1;
+  63   1        wr=1;
+  64   1        rd=0;
+  65   1        dat=data_ora;
+  66   1        rd=1;
+  67   1        return dat;
+  68   1      }
+  69          
+  70          void wr_xd (uint dat)       //???16????
+  71          {
+  72   1        uchar datl,dath;
+  73   1        datl=dat;
+  74   1        dath=dat>>8;
+  75   1        wr_data (datl);        //????
+  76   1        wr_data (dath);        //????
+  77   1      }
+  78          
+  79          //........????..........
+  80          void lcd_lattice(uchar dat1,uchar dat2)
+  81          {
+  82   1      uchar i,j,k;
+  83   1      //wr_comm(0x4c);     //????????--??
+  84   1      wr_comm(0x46);
+  85   1      wr_xd(0x04b0);
+  86   1      wr_comm(0x42);
+  87   1       for(i=0;i<120;i++)
+  88   1       {
+  89   2         for(j=0;j<40;j++)
+  90   2            wr_data(dat1);
+  91   2         for(k=0;k<40;k++)
+  92   2            wr_data(dat2);
+  93   2       }
+  94   1      }
+  95          
+  96          //........???..........
+  97          void lcd_kuang(void)
+  98          {
+  99   1      uint n0,n1;
+ 100   1      //wr_comm(0x4c);     //????????--??
+ 101   1      wr_comm(0x46);
+ 102   1      wr_xd(0x04b0);
+ 103   1      wr_comm(0x42);
+ 104   1      for(n0=0;n0<40;n0++)
+ 105   1                         wr_data(0xff);
+ 106   1           for(n0=0;n0<(238);n0++)           
+ 107   1          {
+ 108   2                  for(n1=0;n1<40;n1++)
+ 109   2                  {
+ 110   3                      if (n1==0)          wr_data(0x80);
+ 111   3                        else if (n1==39) wr_data(0x01);
+ 112   3                       else                wr_data(0x00);
+ 113   3              }
+ 114   2           }
+ 115   1       
+ 116   1           for(n0=0;n0<40;n0++)
+C51 COMPILER V9.59.0.0   MAIN                                                              08/02/2018 23:39:30 PAGE 3   
+
+ 117   1                         wr_data(0xff);
+ 118   1      }
+ 119           
+ 120          /*--------------????------------------*/
+ 121          void disp_eng(uchar code *eng)
+ 122          {
+ 123   1        uchar i,j;
+ 124   1        wr_comm(0x46);
+ 125   1        wr_data(0x00);
+ 126   1        wr_data(0x00);
+ 127   1        //wr_xd(0x0000);
+ 128   1        wr_comm(0x42);
+ 129   1        for(i=0;i<7;i++)
+ 130   1        for(j=0;j<40;j++) 
+ 131   1        wr_data(eng[40*i+j]);
+ 132   1        for(i=0;i<96;i++)
+ 133   1        { 
+ 134   2          wr_data(0x20+i);
+ 135   2        }
+ 136   1        for(i=0;i<24;i++)
+ 137   1        {
+ 138   2         wr_data(0xa0+i);
+ 139   2        }
+ 140   1      }
+ 141          
+ 142          //..........????...............
+ 143          void disp_character(uchar x,uchar y,uchar x1,uchar y1,uchar x2,uchar y2,uchar code *chn)
+ 144          {                               //?x,y?????x1,y1??,??x2?,??y2??    
+ 145   1        uchar i,j,k,l;                //x????,y????
+ 146   1        for(i=0;i<x2;i++)
+ 147   1        for(j=0;j<y2;j++)
+ 148   1        for(k=0;k<y1;k++)
+ 149   1        for(l=0;l<x1;l++)
+ 150   1        {
+ 151   2           wr_comm(0x46);
+ 152   2            wr_xd(0x04b0+x+40*y+l+k*40+j*x1+i*y1*40);
+ 153   2            wr_comm(0x42);
+ 154   2           wr_data(*chn);
+ 155   2           ++chn;
+ 156   2        }
+ 157   1      }
+ 158           
+ 159          //............????..........
+ 160          void disp_photo(uchar x,uchar y,uchar x1,uchar y1,uchar code *pho)
+ 161          { 
+ 162   1        uchar i,j;                               //?x,y?????x1,y1???
+ 163   1        wr_comm(0x46);                          
+ 164   1        wr_xd(0x04b0+x+40*y);
+ 165   1        wr_comm(0x42);
+ 166   1        for(i=0;i<y1;i++)
+ 167   1        for(j=0;j<x1;j++)
+ 168   1        {
+ 169   2          wr_data(*pho);
+ 170   2          ++pho;
+ 171   2        }
+ 172   1      }
+ 173          
+ 174          //.......??............
+ 175          void lcd_clear(void)
+ 176          {
+ 177   1      uint i,j;
+ 178   1      wr_comm(0x46);    //??????
+C51 COMPILER V9.59.0.0   MAIN                                                              08/02/2018 23:39:30 PAGE 4   
+
+ 179   1      //wr_xd(0x0000);
+ 180   1        wr_data(0x00);
+ 181   1        wr_data(0x00);
+ 182   1      wr_comm(0x42);
+ 183   1      for(i=0;i<135;i++)
+ 184   1      for(j=0;j<80;j++)
+ 185   1      wr_data(0x00);
+ 186   1      }
+ 187          
+ 188          //.......???...........
+ 189          void init_lcd (void)
+ 190          {
+ 191   1       uchar i;
+ 192   1       rst=1;
+ 193   1       cs=0;
+ 194   1       wr_comm(0x40);         //WRITE SYSTEMSET ?????
+ 195   1       for(i=0;i<8;i++)
+ 196   1       //wr_data(systab[i]);
+ 197   1       wr_comm(0x44);         //WRITE SCROLL ?????
+ 198   1       for(i=0;i<10;i++)
+ 199   1       //wr_data(scrtab[i]);
+ 200   1       wr_comm(0x5a);    //?????????:00--07?
+ 201   1       wr_data(0x00);
+ 202   1       wr_comm(0x5b);    //????:DM1(DM2)=0,????;DM1(DM2)=1,????;OV=1,????;OV=0,????
+ 203   1       wr_data(0x08);
+ 204   1       wr_comm(0x5d);
+ 205   1       wr_data(0x07);
+ 206   1       wr_data(0x8f);   
+ 207   1       wr_comm(0x4c);    //????????--??
+ 208   1       wr_comm(0x59);    //DISP    ON
+ 209   1       wr_data(0x56);  
+ 210   1      }
+ 211           
+ 212          //...............???...............
+ 213          void main()
+ 214          {
+ 215   1       delay(12);
+ 216   1      // SP=0x5f;
+ 217   1       
+ 218   1       init_lcd ();
+ 219   1       //lcd_clear();
+ 220   1         while(1)
+ 221   1       {
+ 222   2       lcd_clear();
+ 223   2       //disp_eng(tab2);
+ 224   2       //disp_photo(0,160,40,80,tab1);
+ 225   2       delay1(400);
+ 226   2       lcd_clear();
+ 227   2       lcd_lattice(0xff,0x00);
+ 228   2       delay1(400);
+ 229   2       lcd_lattice(0x00,0xff);
+ 230   2       delay1(400);
+ 231   2       lcd_clear();
+ 232   2       //sp_character(4,19,3,19,4,12,tab);
+ 233   2       //sp_photo(0,120,40,80,tab1);
+ 234   2       delay1(400);
+ 235   2       lcd_clear();
+ 236   2       lcd_lattice(0xaa,0x55);
+ 237   2       delay1(400);
+ 238   2       lcd_lattice(0x55,0xaa);
+ 239   2       delay1(400);
+ 240   2       lcd_kuang();
+C51 COMPILER V9.59.0.0   MAIN                                                              08/02/2018 23:39:30 PAGE 5   
+
+ 241   2       delay1(400);
+ 242   2       }
+ 243   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    859    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      19
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
